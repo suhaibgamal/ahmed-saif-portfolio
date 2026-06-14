@@ -1,0 +1,25 @@
+{
+  "name": "ahmed-saif-portfolio",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "lucide-react": "^0.562.0",
+    "next": "16.2.6",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
+  },
+  "devDependencies": {
+    "eslint": "^9",
+    "eslint-config-next": "16.2.6"
+  },
+  "overrides": {
+    "postcss": "8.5.15"
+  }
+}

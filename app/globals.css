@@ -1967,7 +1967,8 @@ h6 {
   transform: translateX(-100%);
 }
 
-.mobile-drawer--open {
+.mobile-drawer--open,
+[dir="rtl"] .mobile-drawer--open {
   transform: translateX(0);
 }
 
@@ -2182,5 +2183,29 @@ h6 {
 .not-found .hero-actions {
   margin-block-start: 18px;
   justify-content: center;
+}
+
+/* ──────────────────────────────────────
+   Arabic Specificity Overrides
+   ────────────────────────────────────── */
+
+[lang="ar"] .hero h1,
+[lang="ar"] .page-hero h1,
+[lang="ar"] .section-heading h2,
+[lang="ar"] .signature-copy h2,
+[lang="ar"] .studio-brand__copy h2,
+[lang="ar"] .story-copy h2,
+[lang="ar"] .home-contact h2,
+[lang="ar"] .work-cta h2,
+[lang="ar"] .not-found h1 {
+  line-height: 1.4 !important;
+}
+
+[lang="ar"] .lead,
+[lang="ar"] .story-copy p,
+[lang="ar"] .signature-copy p,
+[lang="ar"] .timeline-item__content p,
+[lang="ar"] .studio-card p {
+  line-height: 1.85 !important;
 }
 

@@ -96,6 +96,19 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+[lang="ar"] {
+  line-height: 1.75;
+}
+
+[lang="ar"] h1,
+[lang="ar"] h2,
+[lang="ar"] h3,
+[lang="ar"] h4,
+[lang="ar"] h5,
+[lang="ar"] h6 {
+  line-height: 1.45;
+}
+
 ::selection {
   background: var(--gold);
   color: var(--black);
@@ -139,7 +152,7 @@ h6 {
 
 .site-shell {
   min-height: 100vh;
-  overflow-x: hidden;
+  overflow-x: clip;
   background:
     linear-gradient(180deg, #070a0a 0%, #0b0f0f 48%, #070a0a 100%);
 }

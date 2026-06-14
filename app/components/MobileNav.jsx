@@ -46,7 +46,9 @@ export default function MobileNav({ locale, page }) {
       'a[href], button, [tabindex]:not([tabindex="-1"])'
     );
     if (focusable.length > 0) {
-      focusable[0].focus();
+      setTimeout(() => {
+        focusable[0].focus();
+      }, 300);
     }
   }, [open]);
 

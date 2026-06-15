@@ -1482,7 +1482,7 @@ h6 {
   grid-template-columns: minmax(0, 1fr);
   align-items: start;
   gap: 24px;
-  padding-block-start: 86px;
+  padding-block-start: 42px;
 }
 
 .page-hero--story .page-hero__copy {
@@ -2221,9 +2221,6 @@ h6 {
 
 [lang="en"] .page-hero::before {
   transform: scaleX(-1);
-  background:
-    linear-gradient(-90deg, rgba(7, 10, 10, 0.96), rgba(7, 10, 10, 0.72)),
-    url("/ahmed-saif-hero.webp") center / cover;
 }
 
 @media (max-width: 760px) {

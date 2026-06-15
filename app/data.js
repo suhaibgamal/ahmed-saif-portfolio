@@ -85,10 +85,10 @@ export const works = [
   },
   {
     year: "2025",
-    arTitle: "حفلة إكسبو أوساكا - اليابان 2025",
-    enTitle: "Expo Osaka Concert - Japan 2025",
-    arType: "حفل مباشر",
-    enType: "Live concert",
+    arTitle: "مشاركة إكسبو أوساكا - اليابان 2025",
+    enTitle: "Expo Osaka Participation - Japan 2025",
+    arType: "أداء مباشر",
+    enType: "Live performance",
     arMood: "مسرح وذاكرة يمنية",
     enMood: "Stage and Yemeni memory",
     arNote: "حضور حي مع سالم فدعق وعلا الناصري، يضع الأغنية اليمنية في مساحة احتفالية مفتوحة.",
@@ -482,16 +482,16 @@ export const content = {
     },
     contactPage: {
       eyebrow: "التواصل",
-      title: "للحفلات، الإنتاج، التلحين، والتعاونات.",
+      title: "الإنتاج، التلحين، والتعاونات الفنية.",
       body:
-        "أرسل ملخصًا واضحًا: نوع العمل، المدينة، موعده المتوقع، ومن يشارك فيه إن وجد. كل التفاصيل الرسمية تبدأ من هنا.",
+        "نرحب بتواصلكم لمناقشة المشاريع الفنية، الإنتاج، والتلحين. كل التفاصيل الرسمية تبدأ من هنا.",
       primaryEmail: "collaboration@a7mdsif.com",
       secondaryEmail: "ahmed@a7mdsif.com",
       subject: "تعاون فني مع أحمد سيف",
       primaryAction: "راسل فريق التعاون",
       secondaryAction: "راسل أحمد",
       cards: [
-        "حفلات ومناسبات",
+        "مشاريع فنية",
         "تعاونات غنائية",
         "تلحين وكتابة",
         "تراخيص واستخدامات"
@@ -698,16 +698,16 @@ export const content = {
     },
     contactPage: {
       eyebrow: "Contact",
-      title: "Bookings, production, composition, and collaborations.",
+      title: "Production, composition, and collaborations.",
       body:
-        "Send the essentials: project type, city, expected date, and who is involved. Official conversations start here.",
+        "We welcome your inquiries regarding artistic projects, production, and composition. Official conversations start here.",
       primaryEmail: "collaboration@a7mdsif.com",
       secondaryEmail: "ahmed@a7mdsif.com",
       subject: "Collaboration with Ahmed Saif",
       primaryAction: "Email collaborations",
       secondaryAction: "Email Ahmed",
       cards: [
-        "Live bookings",
+        "Artistic projects",
         "Vocal collaborations",
         "Composition and writing",
         "Licensing and usage"

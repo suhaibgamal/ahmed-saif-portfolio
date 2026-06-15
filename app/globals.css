@@ -1370,9 +1370,9 @@ h6 {
   inset: 0;
   z-index: 0;
   background:
-    linear-gradient(90deg, rgba(7, 10, 10, 0.9), rgba(7, 10, 10, 0.2)),
+    linear-gradient(90deg, rgba(7, 10, 10, 0.92), rgba(7, 10, 10, 0.15)),
     url("/ahmed-saif-hero.webp") center / cover;
-  opacity: 0.56;
+  opacity: 0.85;
 }
 
 .page-hero > * {
@@ -2222,7 +2222,7 @@ h6 {
 [lang="en"] .page-hero::before {
   transform: scaleX(-1);
   background-image:
-    linear-gradient(90deg, rgba(7, 10, 10, 0.9), rgba(7, 10, 10, 0.2)),
+    linear-gradient(90deg, rgba(7, 10, 10, 0.92), rgba(7, 10, 10, 0.15)),
     url("/ahmed-saif-hero.webp");
 }
 

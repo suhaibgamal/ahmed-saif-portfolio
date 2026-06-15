@@ -2211,11 +2211,11 @@ h6 {
 
 @media (max-width: 760px) {
   .hero-image {
-    object-position: center 15%;
+    object-position: 85% center;
   }
 
   .page-hero::before {
-    background-position: center 15%;
+    background-position: 85% center;
   }
 }
 

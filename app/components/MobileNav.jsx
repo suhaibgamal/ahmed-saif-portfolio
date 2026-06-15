@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import { Languages, Menu, X } from "lucide-react";
 import {
@@ -14,7 +15,12 @@ import { SocialIcon } from "./SiteChrome";
 export default function MobileNav({ locale, page }) {
   const t = content[locale];
   const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const drawerRef = useRef(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const close = useCallback(() => setOpen(false), []);
 
@@ -64,65 +70,71 @@ export default function MobileNav({ locale, page }) {
         <Menu aria-hidden="true" size={20} />
       </button>
 
-      {open && (
-        <div className="mobile-backdrop" onClick={close} aria-hidden="true" />
-      )}
+      {mounted &&
+        createPortal(
+          <>
+            {open && (
+              <div className="mobile-backdrop" onClick={close} aria-hidden="true" />
+            )}
 
-      <nav
-        className={`mobile-drawer ${open ? "mobile-drawer--open" : ""}`}
-        ref={drawerRef}
-        aria-label={t.navLabel}
-        aria-hidden={!open}
-      >
-        <div className="mobile-drawer__header">
-          <strong>{t.brandName}</strong>
-          <button
-            className="mobile-drawer__close"
-            type="button"
-            onClick={close}
-            aria-label={locale === "ar" ? "إغلاق القائمة" : "Close menu"}
-          >
-            <X aria-hidden="true" size={18} />
-          </button>
-        </div>
-
-        <div className="mobile-drawer__links">
-          {t.nav.map((item) => (
-            <Link
-              aria-current={item.page === page ? "page" : undefined}
-              className={`mobile-drawer__link ${item.page === page ? "is-active" : ""}`}
-              href={getLocalePath(locale, item.page)}
-              key={item.page}
-              onClick={close}
+            <nav
+              className={`mobile-drawer ${open ? "mobile-drawer--open" : ""}`}
+              ref={drawerRef}
+              aria-label={t.navLabel}
+              aria-hidden={!open}
             >
-              {item.label}
-            </Link>
-          ))}
-        </div>
+              <div className="mobile-drawer__header">
+                <strong>{t.brandName}</strong>
+                <button
+                  className="mobile-drawer__close"
+                  type="button"
+                  onClick={close}
+                  aria-label={locale === "ar" ? "إغلاق القائمة" : "Close menu"}
+                >
+                  <X aria-hidden="true" size={18} />
+                </button>
+              </div>
 
-        <Link
-          className="mobile-drawer__lang"
-          href={getSwitchPath(locale, page)}
-          onClick={close}
-        >
-          <Languages aria-hidden="true" size={17} strokeWidth={1.8} />
-          <span>{t.switchLabel}</span>
-        </Link>
+              <div className="mobile-drawer__links">
+                {t.nav.map((item) => (
+                  <Link
+                    aria-current={item.page === page ? "page" : undefined}
+                    className={`mobile-drawer__link ${item.page === page ? "is-active" : ""}`}
+                    href={getLocalePath(locale, item.page)}
+                    key={item.page}
+                    onClick={close}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
 
-        <div className="mobile-drawer__social">
-          {socialLinks.slice(0, 5).map((link) => (
-            <a
-              href={link.href}
-              key={link.label}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`${link.label} - ${t.external}`}
-            >
-              <SocialIcon name={link.icon} size={16} />
-            </a>
-          ))}
-        </div>
-      </nav>
+              <Link
+                className="mobile-drawer__lang"
+                href={getSwitchPath(locale, page)}
+                onClick={close}
+              >
+                <Languages aria-hidden="true" size={17} strokeWidth={1.8} />
+                <span>{t.switchLabel}</span>
+              </Link>
+
+              <div className="mobile-drawer__social">
+                {socialLinks.slice(0, 5).map((link) => (
+                  <a
+                    href={link.href}
+                    key={link.label}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${link.label} - ${t.external}`}
+                  >
+                    <SocialIcon name={link.icon} size={16} />
+                  </a>
+                ))}
+              </div>
+            </nav>
+          </>,
+          document.body
+        )}
     </>
   );
 }

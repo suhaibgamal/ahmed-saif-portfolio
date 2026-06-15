@@ -2209,3 +2209,13 @@ h6 {
   line-height: 1.85 !important;
 }
 
+@media (max-width: 760px) {
+  .hero-image {
+    object-position: center 15%;
+  }
+
+  .page-hero::before {
+    background-position: center 15%;
+  }
+}
+

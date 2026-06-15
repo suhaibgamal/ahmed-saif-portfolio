@@ -19,6 +19,7 @@ export default function MobileNav({ locale, page }) {
   const drawerRef = useRef(null);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
 

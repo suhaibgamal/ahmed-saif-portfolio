@@ -1482,6 +1482,7 @@ h6 {
   grid-template-columns: minmax(0, 1fr);
   align-items: start;
   gap: 24px;
+  padding-block-start: 86px;
 }
 
 .page-hero--story .page-hero__copy {
@@ -1502,6 +1503,7 @@ h6 {
 }
 
 .artist-quote {
+  margin: 0;
   padding: 24px;
 }
 
@@ -2198,7 +2200,7 @@ h6 {
 [lang="ar"] .home-contact h2,
 [lang="ar"] .work-cta h2,
 [lang="ar"] .not-found h1 {
-  line-height: 1.4 !important;
+  line-height: 1.45 !important;
 }
 
 [lang="ar"] .lead,
@@ -2206,7 +2208,22 @@ h6 {
 [lang="ar"] .signature-copy p,
 [lang="ar"] .timeline-item__content p,
 [lang="ar"] .studio-card p {
-  line-height: 1.85 !important;
+  line-height: 1.95 !important;
+}
+
+/* ──────────────────────────────────────
+   English Image Flipping
+   ────────────────────────────────────── */
+
+[lang="en"] .hero-image {
+  transform: scaleX(-1);
+}
+
+[lang="en"] .page-hero::before {
+  transform: scaleX(-1);
+  background:
+    linear-gradient(-90deg, rgba(7, 10, 10, 0.96), rgba(7, 10, 10, 0.72)),
+    url("/ahmed-saif-hero.webp") center / cover;
 }
 
 @media (max-width: 760px) {

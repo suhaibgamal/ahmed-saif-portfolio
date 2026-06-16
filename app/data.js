@@ -986,7 +986,7 @@ export function getStructuredData(locale, page = "home") {
       nationality: "Yemeni",
       url: siteUrl,
       email: "collaboration@a7mdsif.com",
-      image: getAbsoluteUrl(siteImage.path),
+      image: getAbsoluteUrl("/ahmed-saif-profile.webp"),
       sameAs: socialLinks.map((link) => link.href),
       affiliation: { "@id": studioId },
       homeLocation: {

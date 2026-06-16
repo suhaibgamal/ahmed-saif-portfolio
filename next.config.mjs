@@ -70,6 +70,9 @@ const immutablePublicAssets = [
 
 const nextConfig = {
   poweredByHeader: false,
+  experimental: {
+    globalNotFound: true
+  },
   async headers() {
     return [
       {

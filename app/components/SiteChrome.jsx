@@ -124,7 +124,23 @@ export default function SiteChrome({
           <span>{t.switchLabel}</span>
         </Link>
 
-        <MobileNav locale={locale} page={page} />
+        <MobileNav
+          closeLabel={locale === "ar" ? "إغلاق القائمة" : "Close menu"}
+          openLabel={locale === "ar" ? "فتح القائمة" : "Open menu"}
+          externalLabel={t.external}
+          brandName={t.brandName}
+          navLabel={t.navLabel}
+          switchLabel={t.switchLabel}
+          locale={locale}
+          page={page}
+          switchHref={getSwitchPath(locale, page)}
+          navLinks={t.nav.map((item) => ({
+            page: item.page,
+            label: item.label,
+            href: getLocalePath(locale, item.page)
+          }))}
+          socialLinks={socialLinks.slice(0, 5)}
+        />
       </header>
 
       <main id="main" className="site-main">{children}</main>

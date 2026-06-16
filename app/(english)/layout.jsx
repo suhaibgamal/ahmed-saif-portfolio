@@ -1,5 +1,5 @@
-import "./globals.css";
-import { siteName, siteUrl, studioName } from "./data";
+import "../globals.css";
+import { siteName, siteUrl, studioName } from "../data";
 
 export const viewport = {
   colorScheme: "dark",
@@ -31,9 +31,9 @@ export const metadata = {
   }
 };
 
-export default function RootLayout({ children }) {
+export default function EnglishRootLayout({ children }) {
   return (
-    <html lang="ar" dir="rtl">
+    <html lang="en" dir="ltr">
       <head>
         <link
           rel="preload"

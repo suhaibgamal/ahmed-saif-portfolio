@@ -3,8 +3,8 @@ import { getMetadata } from "../../data";
 
 export const dynamic = "force-static";
 
-export const metadata = getMetadata("en", "contact");
+export const metadata = getMetadata("ar", "contact");
 
 export default function Page() {
-  return <ContactPage locale="en" />;
+  return <ContactPage locale="ar" />;
 }

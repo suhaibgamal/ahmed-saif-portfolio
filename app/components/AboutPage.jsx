@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Quote, Radio, Sparkles } from "lucide-react";
 import { content, getLocalePath } from "../data";
@@ -10,6 +11,14 @@ export default function AboutPage({ locale }) {
   return (
     <SiteChrome locale={locale} page="about">
       <section className="page-hero page-hero--story">
+        <Image
+          src="/ahmed-saif-hero.webp"
+          alt=""
+          fill
+          priority
+          className="page-hero-bg"
+          sizes="100vw"
+        />
         <StaffLines />
         <div className="page-hero__copy">
           <p className="eyebrow">{t.aboutPage.eyebrow}</p>

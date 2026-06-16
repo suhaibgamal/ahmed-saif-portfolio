@@ -1,5 +1,5 @@
-import HomePage from "../components/HomePage";
-import { getMetadata } from "../data";
+import HomePage from "../../components/HomePage";
+import { getMetadata } from "../../data";
 
 export const dynamic = "force-static";
 

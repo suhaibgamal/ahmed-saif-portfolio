@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Mail, Send } from "lucide-react";
 import { content, getLocalePath, socialLinks } from "../data";
@@ -18,6 +19,14 @@ export default function ContactPage({ locale }) {
   return (
     <SiteChrome locale={locale} page="contact">
       <section className="page-hero page-hero--contact">
+        <Image
+          src="/ahmed-saif-hero.webp"
+          alt=""
+          fill
+          priority
+          className="page-hero-bg"
+          sizes="100vw"
+        />
         <div className="page-hero__copy">
           <p className="eyebrow">{t.contactPage.eyebrow}</p>
           <h1>{t.contactPage.title}</h1>

@@ -2,7 +2,6 @@
 
 import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import { Play, X } from "lucide-react";
-import { content, getWorkCopy, getWorkKey } from "../data";
 
 function getRequestedWorkKey() {
   if (typeof window === "undefined") {
@@ -88,8 +87,12 @@ function YouTubeFacade({ work, title }) {
   );
 }
 
-export default function WorkVideoCatalog({ locale, tracks }) {
-  const t = content[locale];
+export default function WorkVideoCatalog({
+  tracks,
+  featuredLabel,
+  catalogLabel,
+  closeLabel
+}) {
   const requestedKey = useSyncExternalStore(
     subscribeToLocation,
     getRequestedWorkKey,
@@ -98,8 +101,8 @@ export default function WorkVideoCatalog({ locale, tracks }) {
   const catalogRef = useRef(null);
   const [manualKey, setManualKey] = useState(undefined);
   const selectedKey = manualKey === undefined ? requestedKey : manualKey;
-  const selected = tracks.find((work) => getWorkKey(work) === selectedKey);
-  const selectedCopy = selected ? getWorkCopy(selected, locale) : null;
+  const selected = tracks.find((work) => work.key === selectedKey);
+  const selectedCopy = selected || null;
   const groupedTracks = useMemo(() => {
     return tracks.reduce((groups, work) => {
       const existing = groups.find((group) => group.year === work.year);
@@ -137,7 +140,7 @@ export default function WorkVideoCatalog({ locale, tracks }) {
                   className="work-player__close"
                   type="button"
                   onClick={() => setManualKey(null)}
-                  aria-label={locale === "ar" ? "إغلاق المشغل" : "Close player"}
+                  aria-label={closeLabel}
                 >
                   <X aria-hidden="true" size={18} />
                 </button>
@@ -146,8 +149,8 @@ export default function WorkVideoCatalog({ locale, tracks }) {
           ) : (
             <div className="work-player__empty">
               <Play aria-hidden="true" size={34} fill="currentColor" />
-              <span>{t.worksPage.featuredLabel}</span>
-              <strong>{t.worksPage.catalogLabel}</strong>
+              <span>{featuredLabel}</span>
+              <strong>{catalogLabel}</strong>
             </div>
           )}
         </aside>
@@ -162,8 +165,7 @@ export default function WorkVideoCatalog({ locale, tracks }) {
 
               <div className="year-tracks">
                 {group.tracks.map((work) => {
-                  const copy = getWorkCopy(work, locale);
-                  const key = getWorkKey(work);
+                  const key = work.key;
 
                   return (
                     <button
@@ -177,10 +179,10 @@ export default function WorkVideoCatalog({ locale, tracks }) {
                         <Play aria-hidden="true" size={15} fill="currentColor" />
                       </span>
                       <span>
-                        <strong>{copy.title}</strong>
-                        <small>{copy.subtitle}</small>
+                        <strong>{work.title}</strong>
+                        <small>{work.subtitle}</small>
                       </span>
-                      <em>{copy.mood}</em>
+                      <em>{work.mood}</em>
                     </button>
                   );
                 })}
@@ -192,4 +194,3 @@ export default function WorkVideoCatalog({ locale, tracks }) {
     </section>
   );
 }
-

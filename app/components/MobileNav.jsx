@@ -4,16 +4,21 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import Link from "next/link";
 import { Languages, Menu, X } from "lucide-react";
-import {
-  content,
-  getLocalePath,
-  getSwitchPath,
-  socialLinks
-} from "../data";
 import { SocialIcon } from "./SiteChrome";
 
-export default function MobileNav({ locale, page }) {
-  const t = content[locale];
+export default function MobileNav({
+  locale,
+  page,
+  brandName,
+  navLabel,
+  switchLabel,
+  externalLabel,
+  closeLabel,
+  openLabel,
+  switchHref,
+  navLinks,
+  socialLinks
+}) {
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const drawerRef = useRef(null);
@@ -65,7 +70,7 @@ export default function MobileNav({ locale, page }) {
         className="mobile-menu-toggle"
         type="button"
         onClick={() => setOpen(true)}
-        aria-label={locale === "ar" ? "فتح القائمة" : "Open menu"}
+        aria-label={openLabel}
         aria-expanded={open}
       >
         <Menu aria-hidden="true" size={20} />
@@ -81,27 +86,27 @@ export default function MobileNav({ locale, page }) {
             <nav
               className={`mobile-drawer ${open ? "mobile-drawer--open" : ""}`}
               ref={drawerRef}
-              aria-label={t.navLabel}
+              aria-label={navLabel}
               aria-hidden={!open}
             >
               <div className="mobile-drawer__header">
-                <strong>{t.brandName}</strong>
+                <strong>{brandName}</strong>
                 <button
                   className="mobile-drawer__close"
                   type="button"
                   onClick={close}
-                  aria-label={locale === "ar" ? "إغلاق القائمة" : "Close menu"}
+                  aria-label={closeLabel}
                 >
                   <X aria-hidden="true" size={18} />
                 </button>
               </div>
 
               <div className="mobile-drawer__links">
-                {t.nav.map((item) => (
+                {navLinks.map((item) => (
                   <Link
                     aria-current={item.page === page ? "page" : undefined}
                     className={`mobile-drawer__link ${item.page === page ? "is-active" : ""}`}
-                    href={getLocalePath(locale, item.page)}
+                    href={item.href}
                     key={item.page}
                     onClick={close}
                   >
@@ -112,21 +117,21 @@ export default function MobileNav({ locale, page }) {
 
               <Link
                 className="mobile-drawer__lang"
-                href={getSwitchPath(locale, page)}
+                href={switchHref}
                 onClick={close}
               >
                 <Languages aria-hidden="true" size={17} strokeWidth={1.8} />
-                <span>{t.switchLabel}</span>
+                <span>{switchLabel}</span>
               </Link>
 
               <div className="mobile-drawer__social">
-                {socialLinks.slice(0, 5).map((link) => (
+                {socialLinks.map((link) => (
                   <a
                     href={link.href}
                     key={link.label}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label={`${link.label} - ${t.external}`}
+                    aria-label={`${link.label} - ${externalLabel}`}
                   >
                     <SocialIcon name={link.icon} size={16} />
                   </a>

@@ -1364,20 +1364,25 @@ h6 {
   border-block-end: 1px solid var(--line);
 }
 
+.page-hero-bg {
+  object-fit: cover;
+  object-position: center;
+  z-index: 0 !important;
+  opacity: 0.85;
+}
+
 .page-hero::before {
   content: "";
   position: absolute;
   inset: 0;
-  z-index: 0;
-  background:
-    linear-gradient(90deg, rgba(7, 10, 10, 0.92), rgba(7, 10, 10, 0.15)),
-    url("/ahmed-saif-hero.webp") center / cover;
-  opacity: 0.85;
+  z-index: 1;
+  background: linear-gradient(90deg, rgba(7, 10, 10, 0.92), rgba(7, 10, 10, 0.15));
+  pointer-events: none;
 }
 
-.page-hero > * {
+.page-hero > *:not(.page-hero-bg) {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 .page-hero__copy {
@@ -2221,9 +2226,11 @@ h6 {
 
 [lang="en"] .page-hero::before {
   transform: scaleX(-1);
-  background-image:
-    linear-gradient(90deg, rgba(7, 10, 10, 0.92), rgba(7, 10, 10, 0.15)),
-    url("/ahmed-saif-hero.webp");
+  background-image: linear-gradient(90deg, rgba(7, 10, 10, 0.92), rgba(7, 10, 10, 0.15));
+}
+
+[lang="en"] .page-hero-bg {
+  transform: scaleX(-1);
 }
 
 [lang="en"] .hero-shade {
@@ -2233,12 +2240,9 @@ h6 {
 }
 
 @media (max-width: 760px) {
-  .hero-image {
+  .hero-image,
+  .page-hero-bg {
     object-position: 85% center;
-  }
-
-  .page-hero::before {
-    background-position: 85% center;
   }
 }
 

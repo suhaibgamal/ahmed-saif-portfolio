@@ -22,6 +22,12 @@ export default function manifest() {
         purpose: "any"
       },
       {
+        src: "/favicon-square.webp",
+        sizes: "512x512",
+        type: "image/webp",
+        purpose: "maskable"
+      },
+      {
         src: "/apple-touch-icon.png",
         sizes: "180x180",
         type: "image/png",

@@ -2,7 +2,7 @@ import { content, siteName, siteUrl, studioName } from "./data";
 
 export default function manifest() {
   return {
-    id: siteUrl,
+    id: "/",
     name: `${siteName} | ${studioName}`,
     short_name: siteName,
     description: content.ar.meta.home.description,

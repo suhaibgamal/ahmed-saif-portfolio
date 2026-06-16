@@ -327,9 +327,9 @@ export const content = {
           "نبذة فنية عن أحمد سيف وصوته بين الذاكرة اليمنية والملامح العربية الحديثة."
       },
       contact: {
-        title: "تواصل مع أحمد سيف | تعاونات وحجوزات",
+        title: "تواصل مع أحمد سيف | تعاونات فنية",
         description:
-          "قنوات التواصل الرسمية للتعاونات الفنية، الحفلات، الإنتاج، والتراخيص."
+          "قنوات التواصل الرسمية للتعاونات الفنية، الإنتاج، التلحين، والتراخيص."
       }
     },
     hero: {
@@ -441,7 +441,7 @@ export const content = {
         {
           page: "contact",
           title: "التواصل",
-          body: "حجوزات، تعاونات، وتواصل رسمي مباشر."
+          body: "تعاونات، إنتاج، وتواصل رسمي مباشر."
         }
       ]
     },
@@ -543,9 +543,9 @@ export const content = {
           "Ahmed Saif's artistic story between Yemeni musical memory and modern Arabic songcraft."
       },
       contact: {
-        title: "Contact Ahmed Saif | Collaborations & Bookings",
+        title: "Contact Ahmed Saif | Collaborations & Production",
         description:
-          "Official contact channels for collaborations, bookings, production, and licensing."
+          "Official contact channels for collaborations, production, composition, and licensing."
       }
     },
     hero: {
@@ -657,7 +657,7 @@ export const content = {
         {
           page: "contact",
           title: "Contact",
-          body: "Bookings, collaborations, and direct official contact."
+          body: "Collaborations, production, and direct official contact."
         }
       ]
     },
@@ -795,7 +795,7 @@ function getSeoKeywords(locale, page) {
     home: [],
     works: locale === "ar" ? ["أعمال أحمد سيف", "ديسكوغرافيا أحمد سيف"] : ["Ahmed Saif works", "Ahmed Saif discography"],
     about: locale === "ar" ? ["قصة أحمد سيف", "سيرة أحمد سيف"] : ["Ahmed Saif biography", "Ahmed Saif story"],
-    contact: locale === "ar" ? ["حجز أحمد سيف", "تعاونات أحمد سيف"] : ["Ahmed Saif booking", "Ahmed Saif collaborations"]
+    contact: locale === "ar" ? ["تعاون مع أحمد سيف", "تعاونات أحمد سيف"] : ["Ahmed Saif contact", "Ahmed Saif collaborations"]
   };
 
   return [...localized, ...shared, ...(pageKeywords[page] || [])];
@@ -997,7 +997,7 @@ export function getStructuredData(locale, page = "home") {
         {
           "@type": "ContactPoint",
           email: "collaboration@a7mdsif.com",
-          contactType: "bookings and collaborations",
+          contactType: "collaborations and production",
           availableLanguage: ["Arabic", "English"]
         },
         {

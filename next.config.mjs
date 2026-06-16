@@ -47,7 +47,7 @@ const securityHeaders = [
   },
   {
     key: "Strict-Transport-Security",
-    value: "max-age=31536000; includeSubDomains"
+    value: "max-age=31536000; includeSubDomains; preload"
   },
   {
     key: "X-XSS-Protection",
@@ -65,11 +65,11 @@ const immutablePublicAssets = [
   "/apple-touch-icon.png",
   "/favicon-square.webp",
   "/favicon.ico",
-  "/favicon.webp",
-  "/icon.svg"
+  "/favicon.webp"
 ];
 
 const nextConfig = {
+  poweredByHeader: false,
   async headers() {
     return [
       {

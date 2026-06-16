@@ -107,6 +107,7 @@ export default function HomePage({ locale }) {
             alt=""
             width={132}
             height={46}
+            sizes="132px"
             className="studio-brand__logo"
           />
           <strong>A7MD Studio</strong>

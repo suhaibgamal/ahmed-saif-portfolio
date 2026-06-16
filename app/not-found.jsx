@@ -3,7 +3,11 @@ import { Home, ArrowUpRight } from "lucide-react";
 
 export const metadata = {
   title: "404 | Ahmed Saif",
-  description: "الصفحة غير موجودة — Page not found"
+  description: "الصفحة غير موجودة — Page not found",
+  robots: {
+    index: false,
+    follow: false
+  }
 };
 
 export default function NotFound() {

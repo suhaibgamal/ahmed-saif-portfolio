@@ -95,6 +95,7 @@ export default function SiteChrome({
               alt=""
               className="brand-logo-image"
               height={28}
+              sizes="84px"
               src="/favicon.webp"
               width={84}
             />

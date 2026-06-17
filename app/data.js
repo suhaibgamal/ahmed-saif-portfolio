@@ -1,7 +1,7 @@
 export const siteUrl = "https://a7mdsif.com";
 export const siteName = "Ahmed Saif";
 export const studioName = "A7MD Studio";
-export const siteLastModified = "2026-06-18";
+export const siteLastModified = "2026-06-18T00:00:00Z";
 export const youtubeChannelId = "UCxJpNT_m4Ad0tMfZhDHr5eQ";
 export const youtubeChannelUrl = `https://www.youtube.com/channel/${youtubeChannelId}`;
 export const siteImage = {

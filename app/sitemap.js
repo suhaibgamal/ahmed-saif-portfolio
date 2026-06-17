@@ -1,7 +1,14 @@
-import { getAbsoluteUrl, pageRoutes, siteImage } from "./data";
+import {
+  getAbsoluteUrl,
+  getWorkPath,
+  getYoutubeThumbnailUrl,
+  pageRoutes,
+  siteImage,
+  siteLastModified,
+  works
+} from "./data";
 
-// Build-time timestamp — automatically reflects the latest deploy date
-const lastModified = new Date();
+const lastModified = new Date(siteLastModified);
 const pages = [
   { page: "home", changeFrequency: "weekly", priority: 1 },
   { page: "works", changeFrequency: "weekly", priority: 0.9 },
@@ -10,7 +17,7 @@ const pages = [
 ];
 
 export default function sitemap() {
-  return pages.flatMap(({ page, changeFrequency, priority }) => {
+  const pageEntries = pages.flatMap(({ page, changeFrequency, priority }) => {
     const arUrl = getAbsoluteUrl(pageRoutes.ar[page]);
     const enUrl = getAbsoluteUrl(pageRoutes.en[page]);
     const alternates = {
@@ -40,4 +47,37 @@ export default function sitemap() {
       }
     ];
   });
+
+  const workEntries = works.flatMap((work) => {
+    const arUrl = getAbsoluteUrl(getWorkPath("ar", work));
+    const enUrl = getAbsoluteUrl(getWorkPath("en", work));
+    const alternates = {
+      languages: {
+        ar: arUrl,
+        en: enUrl,
+        "x-default": arUrl
+      }
+    };
+
+    return [
+      {
+        url: arUrl,
+        lastModified,
+        changeFrequency: "monthly",
+        priority: 0.72,
+        alternates,
+        images: [getYoutubeThumbnailUrl(work)]
+      },
+      {
+        url: enUrl,
+        lastModified,
+        changeFrequency: "monthly",
+        priority: 0.68,
+        alternates,
+        images: [getYoutubeThumbnailUrl(work)]
+      }
+    ];
+  });
+
+  return [...pageEntries, ...workEntries];
 }

@@ -1,7 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Mail, Music2 } from "lucide-react";
-import { content, getLocalePath, getWorkCopy, getWorkKey, works } from "../data";
+import {
+  content,
+  getLocalePath,
+  getWorkCopy,
+  getWorkKey,
+  getWorkPath,
+  works
+} from "../data";
 import { SonicSeal } from "./MusicVisuals";
 import SiteChrome, { emailHref } from "./SiteChrome";
 import WorkVideoCatalog from "./WorkVideoCatalog";
@@ -15,6 +22,7 @@ export default function WorksPage({ locale }) {
     return {
       youtubeId: work.youtubeId,
       year: work.year,
+      href: getWorkPath(locale, work),
       key: getWorkKey(work),
       title: copy.title,
       subtitle: copy.subtitle,
@@ -64,6 +72,7 @@ export default function WorksPage({ locale }) {
       <WorkVideoCatalog
         catalogLabel={t.worksPage.catalogLabel}
         closeLabel={locale === "ar" ? "إغلاق المشغل" : "Close player"}
+        detailLabel={locale === "ar" ? "افتح صفحة العمل" : "Open work page"}
         featuredLabel={t.worksPage.featuredLabel}
         tracks={localizedTracks}
       />

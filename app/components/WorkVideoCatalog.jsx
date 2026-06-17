@@ -1,7 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
-import { Play, X } from "lucide-react";
+import { ExternalLink, Play, X } from "lucide-react";
 
 function getRequestedWorkKey() {
   if (typeof window === "undefined") {
@@ -43,11 +44,6 @@ function getThumbnailUrl(youtubeId) {
   return `https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg`;
 }
 
-/**
- * YouTube lite-embed facade — shows a static thumbnail + play button.
- * Only loads the real iframe when the user clicks play.
- * Saves ~1MB of YouTube player JS/CSS per video view.
- */
 function YouTubeFacade({ work, title }) {
   const [activated, setActivated] = useState(false);
   const embedSrc = getEmbedSrc(work);
@@ -91,6 +87,7 @@ export default function WorkVideoCatalog({
   tracks,
   featuredLabel,
   catalogLabel,
+  detailLabel,
   closeLabel
 }) {
   const requestedKey = useSyncExternalStore(
@@ -123,6 +120,29 @@ export default function WorkVideoCatalog({
     catalogRef.current.scrollIntoView({ block: "start" });
   }, [selectedKey]);
 
+  function handleTrackClick(event, key) {
+    if (
+      event.defaultPrevented ||
+      event.button !== 0 ||
+      event.metaKey ||
+      event.ctrlKey ||
+      event.shiftKey ||
+      event.altKey
+    ) {
+      return;
+    }
+
+    event.preventDefault();
+    setManualKey(key);
+
+    if (typeof window !== "undefined") {
+      const url = new URL(window.location.href);
+      url.searchParams.set("work", key);
+      url.hash = "catalog";
+      window.history.replaceState(null, "", url);
+    }
+  }
+
   return (
     <section className="section video-catalog-section" id="catalog" ref={catalogRef}>
       <div className="video-catalog-layout">
@@ -135,6 +155,10 @@ export default function WorkVideoCatalog({
                   <span>{selected.year}</span>
                   <h2>{selectedCopy.title}</h2>
                   <p>{selectedCopy.note}</p>
+                  <Link className="work-player__detail-link" href={selected.href} prefetch={false}>
+                    <ExternalLink aria-hidden="true" size={16} />
+                    <span>{detailLabel}</span>
+                  </Link>
                 </div>
                 <button
                   className="work-player__close"
@@ -168,12 +192,13 @@ export default function WorkVideoCatalog({
                   const key = work.key;
 
                   return (
-                    <button
-                      aria-pressed={selectedKey === key}
+                    <Link
                       className="year-track"
+                      data-active={selectedKey === key ? "true" : undefined}
+                      href={work.href}
                       key={key}
-                      onClick={() => setManualKey(key)}
-                      type="button"
+                      onClick={(event) => handleTrackClick(event, key)}
+                      prefetch={false}
                     >
                       <span className="year-track__play">
                         <Play aria-hidden="true" size={15} fill="currentColor" />
@@ -183,7 +208,7 @@ export default function WorkVideoCatalog({
                         <small>{work.subtitle}</small>
                       </span>
                       <em>{work.mood}</em>
-                    </button>
+                    </Link>
                   );
                 })}
               </div>

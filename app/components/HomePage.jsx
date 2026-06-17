@@ -17,7 +17,7 @@ import {
   content,
   getLocalePath,
   getWorkCopy,
-  getWorkKey,
+  getWorkPath,
   works
 } from "../data";
 import { MeterStack, SonicSeal, StaffLines, Waveform } from "./MusicVisuals";
@@ -165,11 +165,7 @@ export default function HomePage({ locale }) {
             return (
               <Link
                 className="track-card"
-                href={{
-                  pathname: getLocalePath(locale, "works"),
-                  query: { work: getWorkKey(work) },
-                  hash: "catalog"
-                }}
+                href={getWorkPath(locale, work)}
                 key={work.enTitle}
               >
                 <span className="track-card__number">

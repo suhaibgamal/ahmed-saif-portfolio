@@ -1,6 +1,9 @@
 export const siteUrl = "https://a7mdsif.com";
 export const siteName = "Ahmed Saif";
 export const studioName = "A7MD Studio";
+export const siteLastModified = "2026-06-18";
+export const youtubeChannelId = "UCxJpNT_m4Ad0tMfZhDHr5eQ";
+export const youtubeChannelUrl = `https://www.youtube.com/channel/${youtubeChannelId}`;
 export const siteImage = {
   path: "/ahmed-saif-hero.webp",
   width: 1784,
@@ -81,7 +84,8 @@ export const works = [
     enMood: "Drama with a folk pulse",
     arNote: "الأغنية الرسمية من مسلسل الضايعة؛ تدخل من العبارة اليومية وتترك اللحن يقود المشهد.",
     enNote: "The official song from Al-Dhayeh, carrying a familiar phrase into a cinematic Yemeni pulse.",
-    youtubeId: "6B7Fu1rritc"
+    youtubeId: "6B7Fu1rritc",
+    uploadDate: "2026-02-18T13:55:31-08:00"
   },
   {
     year: "2025",
@@ -93,7 +97,8 @@ export const works = [
     enMood: "Stage and Yemeni memory",
     arNote: "حضور حي مع سالم فدعق وعلا الناصري، يضع الأغنية اليمنية في مساحة احتفالية مفتوحة.",
     enNote: "A live set with Salem Fadak and Ola Al-Nasry, placing Yemeni song in a wider ceremonial room.",
-    youtubeId: "uLdbB2PRR_I"
+    youtubeId: "uLdbB2PRR_I",
+    uploadDate: "2025-09-26T09:57:36-07:00"
   },
   {
     year: "2025",
@@ -105,7 +110,8 @@ export const works = [
     enMood: "Love and Yemeni presence",
     arNote: "عمل بمشاركة سالم فدعق وعلا الناصري، يحافظ على الدفء ويمنح المناسبة حضورًا أوضح.",
     enNote: "A collaboration with Salem Fadak and Ola Al-Nasry, shaped around warmth and a clearer public presence.",
-    youtubeId: "baY_a6Ii_Rw"
+    youtubeId: "baY_a6Ii_Rw",
+    uploadDate: "2025-05-15T08:28:30-07:00"
   },
   {
     year: "2025",
@@ -117,7 +123,8 @@ export const works = [
     enMood: "Quiet confession",
     arNote: "أغنية تركز على الصوت الداخلي أكثر من أي زينة خارجية.",
     enNote: "A single that keeps its attention on the inner voice rather than outside ornament.",
-    youtubeId: "xN5a--A4Vns"
+    youtubeId: "xN5a--A4Vns",
+    uploadDate: "2025-03-01T04:48:14-08:00"
   },
   {
     year: "2023",
@@ -129,7 +136,8 @@ export const works = [
     enMood: "City and memory",
     arNote: "إصدار بصري يضع المكان في المقدمة ويترك للصوت أن يكمل الصورة.",
     enNote: "A visual release that puts place first and lets the voice finish the frame.",
-    youtubeId: "fIf5nXJnlhs"
+    youtubeId: "fIf5nXJnlhs",
+    uploadDate: "2023-04-28T09:00:10-07:00"
   },
   {
     year: "2023",
@@ -141,7 +149,8 @@ export const works = [
     enMood: "Compressed longing",
     arNote: "أغنية تعتمد على العاطفة القريبة والعبارة التي تبقى في الذاكرة.",
     enNote: "A close emotional song built around a phrase that lingers.",
-    youtubeId: "_QG-suWiOp8"
+    youtubeId: "_QG-suWiOp8",
+    uploadDate: "2023-01-04T08:00:10-08:00"
   },
   {
     year: "2022",
@@ -153,7 +162,8 @@ export const works = [
     enMood: "Soft romance",
     arNote: "أغنية قريبة من القلب وتناسب لحظة التعارف الأولى مع الفنان.",
     enNote: "A close-to-heart single that works as an easy first introduction to the artist.",
-    youtubeId: "PgdUNEWytHI"
+    youtubeId: "PgdUNEWytHI",
+    uploadDate: "2022-09-16T11:30:43-07:00"
   },
   {
     year: "2022",
@@ -165,7 +175,8 @@ export const works = [
     enMood: "Collective memory",
     arNote: "إعادة وصل للغناء اليمني بروح تصلح للمنصات والجلسات في وقت واحد.",
     enNote: "A bridge to Yemeni song memory, made for both platforms and rooms.",
-    youtubeId: "WAmHo2VZmA8"
+    youtubeId: "WAmHo2VZmA8",
+    uploadDate: "2022-07-01T11:00:23-07:00"
   },
   {
     year: "2022",
@@ -177,7 +188,8 @@ export const works = [
     enMood: "Light joy",
     arNote: "عمل يلتقط روح المناسبة ويحافظ على نبرة شعبية واضحة.",
     enNote: "A song that catches the spirit of celebration while keeping a clear folk tone.",
-    youtubeId: "eipMm2ftams"
+    youtubeId: "eipMm2ftams",
+    uploadDate: "2022-01-10T10:25:13-08:00"
   },
   {
     year: "2022",
@@ -189,7 +201,8 @@ export const works = [
     enMood: "A light rhythm of reconciliation",
     arNote: "عنوان واضح النبرة، يتحرك بين اللطف الشعبي والجملة التي تصل بسرعة.",
     enNote: "A direct, warm track that moves between folk ease and a phrase that lands quickly.",
-    youtubeId: "TwjU7BmK2Lo"
+    youtubeId: "TwjU7BmK2Lo",
+    uploadDate: "2021-12-30T08:17:03-08:00"
   },
   {
     year: "2021",
@@ -201,7 +214,8 @@ export const works = [
     enMood: "Emotional confession",
     arNote: "أغنية رسمية تبرز المساحة العاطفية والصوت المباشر.",
     enNote: "An official release that foregrounds the emotional range and direct vocal delivery.",
-    youtubeId: "Q-mkcDjyjug"
+    youtubeId: "Q-mkcDjyjug",
+    uploadDate: "2021-06-22T11:00:12-07:00"
   },
   {
     year: "2021",
@@ -213,7 +227,8 @@ export const works = [
     enMood: "Human and quiet",
     arNote: "عمل يميل إلى الفكرة والرسالة، ويكشف جانبًا أكثر تأملاً في حضور أحمد.",
     enNote: "A thoughtful release that leans toward message and reflection in Ahmed's voice.",
-    youtubeId: "9xwGXy5YjvA"
+    youtubeId: "9xwGXy5YjvA",
+    uploadDate: "2021-04-15T10:24:27-07:00"
   },
   {
     year: "2021",
@@ -225,7 +240,8 @@ export const works = [
     enMood: "Soft reproach",
     arNote: "أغنية قصيرة النفس، تضع العتب في جملة بسيطة وقريبة.",
     enNote: "A compact song that keeps its reproach simple, close, and melodic.",
-    youtubeId: "t_LzlTCj1J4"
+    youtubeId: "t_LzlTCj1J4",
+    uploadDate: "2021-01-14T06:56:42-08:00"
   },
   {
     year: "2020",
@@ -237,7 +253,8 @@ export const works = [
     enMood: "Intimate duet",
     arNote: "نسخة أكثر قربًا من الجلسة، تترك مساحة واضحة للصوتين والجيتار.",
     enNote: "A room-close version that gives the two voices and guitar more air.",
-    youtubeId: "2Gok_KrjX34"
+    youtubeId: "2Gok_KrjX34",
+    uploadDate: "2020-12-20T06:46:51-08:00"
   },
   {
     year: "2020",
@@ -249,7 +266,8 @@ export const works = [
     enMood: "Vocal duet",
     arNote: "حوار ناعم بين صوتين، مناسب لإظهار جانب أحمد العاطفي.",
     enNote: "A soft dialogue between two voices, showing Ahmed's romantic side.",
-    youtubeId: "ZCjSg0pPtxA"
+    youtubeId: "ZCjSg0pPtxA",
+    uploadDate: "2020-11-11T08:00:10-08:00"
   },
   {
     year: "2020",
@@ -261,7 +279,8 @@ export const works = [
     enMood: "Rhythm and celebration",
     arNote: "عنوان خفيف الحركة، يترك أثر الطرب من غير مبالغة في الزينة.",
     enNote: "A lively title that keeps the feeling of tarab without over-decoration.",
-    youtubeId: "IQzQ7HlioYA"
+    youtubeId: "IQzQ7HlioYA",
+    uploadDate: "2020-05-26T06:00:12-07:00"
   },
   {
     year: "2020",
@@ -273,7 +292,8 @@ export const works = [
     enMood: "Room to sing",
     arNote: "نسخة مرافقة تفتح العمل للغناء والتجربة خارج النسخة الأصلية.",
     enNote: "A companion version that opens the track for singing and practice beyond the original.",
-    youtubeId: "ABmnrj2xM7I"
+    youtubeId: "ABmnrj2xM7I",
+    uploadDate: "2020-04-03T09:11:12-07:00"
   },
   {
     year: "2020",
@@ -285,12 +305,41 @@ export const works = [
     enMood: "Dialect and character",
     arNote: "حضور لفظي واضح يمنح الأغنية شخصية محلية ومباشرة.",
     enNote: "A title with local character and a direct vocal personality.",
-    youtubeId: "ii9s2ZRlOyY"
+    youtubeId: "ii9s2ZRlOyY",
+    uploadDate: "2020-04-01T05:33:47-07:00"
   }
 ];
 
 export function getWorkKey(work) {
   return `${work.year}-${work.enTitle}`;
+}
+
+export function getWorkSlug(work) {
+  return `${work.year}-${work.enTitle}`
+    .toLowerCase()
+    .replace(/&/g, " and ")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+export function getWorkBySlug(slug) {
+  return works.find((work) => getWorkSlug(work) === slug);
+}
+
+export function getWorkPath(locale, work) {
+  return `${pageRoutes[locale].works}/${getWorkSlug(work)}`;
+}
+
+export function getYoutubeWatchUrl(work) {
+  return `https://www.youtube.com/watch?v=${work.youtubeId}`;
+}
+
+export function getYoutubeEmbedUrl(work) {
+  return `https://www.youtube-nocookie.com/embed/${work.youtubeId}`;
+}
+
+export function getYoutubeThumbnailUrl(work) {
+  return `https://i.ytimg.com/vi/${work.youtubeId}/hqdefault.jpg`;
 }
 
 export const content = {
@@ -801,6 +850,10 @@ function getSeoKeywords(locale, page) {
   return [...localized, ...shared, ...(pageKeywords[page] || [])];
 }
 
+function getEntitySameAs() {
+  return [...socialLinks.map((link) => link.href), youtubeChannelUrl];
+}
+
 export function getMetadata(locale, page) {
   const t = content[locale];
   const path = pageRoutes[locale][page];
@@ -871,7 +924,82 @@ export function getMetadata(locale, page) {
   };
 }
 
-function getBreadcrumbItems(locale, page) {
+export function getWorkMetadata(locale, work) {
+  const t = content[locale];
+  const copy = getWorkCopy(work, locale);
+  const title =
+    locale === "ar"
+      ? `${copy.title} | أحمد سيف`
+      : `${copy.title} | Ahmed Saif`;
+  const description =
+    locale === "ar"
+      ? `${copy.note} شاهد العمل الرسمي من أرشيف أحمد سيف الموسيقي.`
+      : `${copy.note} Watch the official work from Ahmed Saif's music catalog.`;
+  const path = getWorkPath(locale, work);
+  const imageUrl = getYoutubeThumbnailUrl(work);
+
+  return {
+    ...getMetadata(locale, "works"),
+    title,
+    description,
+    keywords: [
+      ...getSeoKeywords(locale, "works"),
+      copy.title,
+      copy.subtitle,
+      work.arTitle,
+      work.enTitle
+    ],
+    alternates: {
+      canonical: getAbsoluteUrl(path),
+      languages: {
+        ar: getAbsoluteUrl(getWorkPath("ar", work)),
+        en: getAbsoluteUrl(getWorkPath("en", work)),
+        "x-default": getAbsoluteUrl(getWorkPath("ar", work))
+      }
+    },
+    openGraph: {
+      title,
+      description,
+      url: getAbsoluteUrl(path),
+      siteName,
+      locale: locale === "ar" ? "ar_YE" : "en_US",
+      alternateLocale: locale === "ar" ? ["en_US"] : ["ar_YE"],
+      type: "video.other",
+      videos: [
+        {
+          url: getYoutubeEmbedUrl(work),
+          secureUrl: getYoutubeEmbedUrl(work),
+          type: "text/html",
+          width: 1280,
+          height: 720
+        }
+      ],
+      images: [
+        {
+          url: imageUrl,
+          width: 480,
+          height: 360,
+          alt: copy.title
+        }
+      ]
+    },
+    twitter: {
+      card: "summary_large_image",
+      site: "@a7mdsif",
+      creator: "@a7mdsif",
+      title,
+      description,
+      images: [
+        {
+          url: imageUrl,
+          alt: copy.title
+        }
+      ]
+    }
+  };
+}
+
+function getBreadcrumbItems(locale, page, work) {
   const t = content[locale];
   const homeLabel = t.nav.find((item) => item.page === "home")?.label || t.brandName;
   const currentLabel = t.nav.find((item) => item.page === page)?.label || t.brandName;
@@ -890,6 +1018,16 @@ function getBreadcrumbItems(locale, page) {
       position: 2,
       name: currentLabel,
       item: getAbsoluteUrl(pageRoutes[locale][page])
+    });
+  }
+
+  if (work) {
+    const copy = getWorkCopy(work, locale);
+    items.push({
+      "@type": "ListItem",
+      position: 3,
+      name: copy.title,
+      item: getAbsoluteUrl(getWorkPath(locale, work))
     });
   }
 
@@ -918,25 +1056,52 @@ function getMusicCatalogData(locale) {
         name: copy.title,
         alternateName: copy.subtitle,
         byArtist: { "@id": artistId },
-        datePublished: work.year,
+        datePublished: work.uploadDate,
         genre: copy.mood,
         description: copy.note,
-        url: getAbsoluteUrl(
-          `${pageRoutes[locale].works}?work=${encodeURIComponent(getWorkKey(work))}`
-        ),
-        sameAs: `https://www.youtube.com/watch?v=${work.youtubeId}`
+        url: getAbsoluteUrl(getWorkPath(locale, work)),
+        sameAs: getYoutubeWatchUrl(work),
+        subjectOf: { "@id": `${getAbsoluteUrl(getWorkPath(locale, work))}#video` }
       };
     })
   };
 }
 
-export function getStructuredData(locale, page = "home") {
+function getVideoObjectData(locale, work) {
+  const copy = getWorkCopy(work, locale);
+  const workUrl = getAbsoluteUrl(getWorkPath(locale, work));
+
+  return {
+    "@type": "VideoObject",
+    "@id": `${workUrl}#video`,
+    name: copy.title,
+    alternateName: copy.subtitle,
+    description: copy.note,
+    thumbnailUrl: [getYoutubeThumbnailUrl(work)],
+    uploadDate: work.uploadDate,
+    embedUrl: getYoutubeEmbedUrl(work),
+    url: workUrl,
+    sameAs: getYoutubeWatchUrl(work),
+    inLanguage: locale === "ar" ? "ar-YE" : "en-US",
+    publisher: { "@id": `${siteUrl}/#artist` },
+    creator: { "@id": `${siteUrl}/#artist` }
+  };
+}
+
+export function getStructuredData(locale, page = "home", work = null) {
   const isArabic = locale === "ar";
   const t = content[locale];
-  const pagePath = pageRoutes[locale][page] || pageRoutes[locale].home;
+  const pagePath = work ? getWorkPath(locale, work) : pageRoutes[locale][page] || pageRoutes[locale].home;
   const pageUrl = getAbsoluteUrl(pagePath);
-  const title = t.meta[page]?.title || t.meta.home.title;
-  const description = t.meta[page]?.description || t.meta.home.description;
+  const workCopy = work ? getWorkCopy(work, locale) : null;
+  const title = workCopy
+    ? locale === "ar"
+      ? `${workCopy.title} | أحمد سيف`
+      : `${workCopy.title} | Ahmed Saif`
+    : t.meta[page]?.title || t.meta.home.title;
+  const description = workCopy
+    ? workCopy.note
+    : t.meta[page]?.description || t.meta.home.description;
   const language = isArabic ? "ar-YE" : "en-US";
   const artistId = `${siteUrl}/#artist`;
   const studioId = `${siteUrl}/#studio`;
@@ -944,6 +1109,7 @@ export function getStructuredData(locale, page = "home") {
   const webpageId = `${pageUrl}#webpage`;
   const imageId = `${siteUrl}${siteImage.path}#primaryimage`;
   const breadcrumbId = `${pageUrl}#breadcrumb`;
+  const catalogId = `${getAbsoluteUrl(pageRoutes[locale].works)}#catalog`;
   const graph = [
     {
       "@type": "WebSite",
@@ -952,10 +1118,11 @@ export function getStructuredData(locale, page = "home") {
       name: siteName,
       alternateName: ["a7mdsif", "A7MD Studio"],
       inLanguage: ["ar-YE", "en-US"],
-      publisher: { "@id": artistId }
+      publisher: { "@id": studioId },
+      creator: { "@id": artistId }
     },
     {
-      "@type": "WebPage",
+      "@type": page === "about" ? "ProfilePage" : "WebPage",
       "@id": webpageId,
       url: pageUrl,
       name: title,
@@ -963,6 +1130,15 @@ export function getStructuredData(locale, page = "home") {
       inLanguage: language,
       isPartOf: { "@id": websiteId },
       about: { "@id": artistId },
+      publisher: { "@id": studioId },
+      dateModified: siteLastModified,
+      mainEntity: work
+        ? { "@id": `${pageUrl}#video` }
+        : page === "about" || page === "home"
+          ? { "@id": artistId }
+          : page === "works"
+            ? { "@id": catalogId }
+          : undefined,
       primaryImageOfPage: { "@id": imageId },
       breadcrumb: { "@id": breadcrumbId }
     },
@@ -987,7 +1163,7 @@ export function getStructuredData(locale, page = "home") {
       url: siteUrl,
       email: "collaboration@a7mdsif.com",
       image: getAbsoluteUrl("/ahmed-saif-profile.webp"),
-      sameAs: socialLinks.map((link) => link.href),
+      sameAs: getEntitySameAs(),
       affiliation: { "@id": studioId },
       homeLocation: {
         "@type": "Place",
@@ -1019,20 +1195,58 @@ export function getStructuredData(locale, page = "home") {
       "@type": "Organization",
       "@id": studioId,
       name: studioName,
+      alternateName: ["A7MD Studio", "a7mdsif"],
+      description: isArabic
+        ? "A7MD Studio مساحة أحمد سيف لصناعة اللحن والإيقاع والتعاونات الموسيقية."
+        : "A7MD Studio is Ahmed Saif's space for composition, rhythm, and music collaborations.",
       url: siteUrl,
       founder: { "@id": artistId },
       logo: getAbsoluteUrl("/favicon-square.webp"),
-      sameAs: socialLinks.map((link) => link.href)
+      email: "collaboration@a7mdsif.com",
+      sameAs: getEntitySameAs(),
+      contactPoint: [
+        {
+          "@type": "ContactPoint",
+          email: "collaboration@a7mdsif.com",
+          contactType: "collaborations and production",
+          availableLanguage: ["Arabic", "English"]
+        },
+        {
+          "@type": "ContactPoint",
+          email: "ahmed@a7mdsif.com",
+          contactType: "artist contact",
+          availableLanguage: ["Arabic", "English"]
+        }
+      ]
     },
     {
       "@type": "BreadcrumbList",
       "@id": breadcrumbId,
-      itemListElement: getBreadcrumbItems(locale, page)
+      itemListElement: getBreadcrumbItems(locale, page, work)
     }
   ];
 
-  if (page === "works") {
+  if (page === "works" && !work) {
     graph.push(getMusicCatalogData(locale));
+  }
+
+  if (work) {
+    graph.push(
+      {
+        "@type": "MusicRecording",
+        "@id": `${pageUrl}#recording`,
+        name: workCopy.title,
+        alternateName: workCopy.subtitle,
+        byArtist: { "@id": artistId },
+        datePublished: work.uploadDate,
+        genre: workCopy.mood,
+        description: workCopy.note,
+        url: pageUrl,
+        sameAs: getYoutubeWatchUrl(work),
+        subjectOf: { "@id": `${pageUrl}#video` }
+      },
+      getVideoObjectData(locale, work)
+    );
   }
 
   return {

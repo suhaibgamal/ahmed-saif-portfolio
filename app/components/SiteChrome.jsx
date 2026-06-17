@@ -62,10 +62,11 @@ export default function SiteChrome({
   children,
   headerMode = "solid",
   locale,
-  page
+  page,
+  work = null
 }) {
   const t = content[locale];
-  const structuredData = JSON.stringify(getStructuredData(locale, page)).replace(
+  const structuredData = JSON.stringify(getStructuredData(locale, page, work)).replace(
     /</g,
     "\\u003c"
   );

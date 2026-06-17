@@ -54,6 +54,7 @@ function YouTubeFacade({ work, title }) {
         <iframe
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowFullScreen
+          loading="lazy"
           referrerPolicy="strict-origin-when-cross-origin"
           src={embedSrc}
           title={title}
@@ -73,6 +74,7 @@ function YouTubeFacade({ work, title }) {
       <img
         alt=""
         className="work-player__thumb"
+        decoding="async"
         loading="lazy"
         src={getThumbnailUrl(work.youtubeId)}
       />

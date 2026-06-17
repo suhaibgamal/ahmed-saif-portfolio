@@ -50,6 +50,7 @@ export default function ArabicRootLayout({ children }) {
           crossOrigin="anonymous"
         />
         <link rel="dns-prefetch" href="https://i.ytimg.com" />
+        <link rel="dns-prefetch" href="https://www.youtube-nocookie.com" />
       </head>
       <body>{children}</body>
     </html>

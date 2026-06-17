@@ -85,7 +85,8 @@ export const works = [
     arNote: "الأغنية الرسمية من مسلسل الضايعة؛ تدخل من العبارة اليومية وتترك اللحن يقود المشهد.",
     enNote: "The official song from Al-Dhayeh, carrying a familiar phrase into a cinematic Yemeni pulse.",
     youtubeId: "6B7Fu1rritc",
-    uploadDate: "2026-02-18T13:55:31-08:00"
+    uploadDate: "2026-02-18T13:55:31-08:00",
+    durationSeconds: 199
   },
   {
     year: "2025",
@@ -98,7 +99,8 @@ export const works = [
     arNote: "حضور حي مع سالم فدعق وعلا الناصري، يضع الأغنية اليمنية في مساحة احتفالية مفتوحة.",
     enNote: "A live set with Salem Fadak and Ola Al-Nasry, placing Yemeni song in a wider ceremonial room.",
     youtubeId: "uLdbB2PRR_I",
-    uploadDate: "2025-09-26T09:57:36-07:00"
+    uploadDate: "2025-09-26T09:57:36-07:00",
+    durationSeconds: 739
   },
   {
     year: "2025",
@@ -111,7 +113,8 @@ export const works = [
     arNote: "عمل بمشاركة سالم فدعق وعلا الناصري، يحافظ على الدفء ويمنح المناسبة حضورًا أوضح.",
     enNote: "A collaboration with Salem Fadak and Ola Al-Nasry, shaped around warmth and a clearer public presence.",
     youtubeId: "baY_a6Ii_Rw",
-    uploadDate: "2025-05-15T08:28:30-07:00"
+    uploadDate: "2025-05-15T08:28:30-07:00",
+    durationSeconds: 215
   },
   {
     year: "2025",
@@ -124,7 +127,8 @@ export const works = [
     arNote: "أغنية تركز على الصوت الداخلي أكثر من أي زينة خارجية.",
     enNote: "A single that keeps its attention on the inner voice rather than outside ornament.",
     youtubeId: "xN5a--A4Vns",
-    uploadDate: "2025-03-01T04:48:14-08:00"
+    uploadDate: "2025-03-01T04:48:14-08:00",
+    durationSeconds: 138
   },
   {
     year: "2023",
@@ -137,7 +141,8 @@ export const works = [
     arNote: "إصدار بصري يضع المكان في المقدمة ويترك للصوت أن يكمل الصورة.",
     enNote: "A visual release that puts place first and lets the voice finish the frame.",
     youtubeId: "fIf5nXJnlhs",
-    uploadDate: "2023-04-28T09:00:10-07:00"
+    uploadDate: "2023-04-28T09:00:10-07:00",
+    durationSeconds: 218
   },
   {
     year: "2023",
@@ -150,7 +155,8 @@ export const works = [
     arNote: "أغنية تعتمد على العاطفة القريبة والعبارة التي تبقى في الذاكرة.",
     enNote: "A close emotional song built around a phrase that lingers.",
     youtubeId: "_QG-suWiOp8",
-    uploadDate: "2023-01-04T08:00:10-08:00"
+    uploadDate: "2023-01-04T08:00:10-08:00",
+    durationSeconds: 185
   },
   {
     year: "2022",
@@ -163,7 +169,8 @@ export const works = [
     arNote: "أغنية قريبة من القلب وتناسب لحظة التعارف الأولى مع الفنان.",
     enNote: "A close-to-heart single that works as an easy first introduction to the artist.",
     youtubeId: "PgdUNEWytHI",
-    uploadDate: "2022-09-16T11:30:43-07:00"
+    uploadDate: "2022-09-16T11:30:43-07:00",
+    durationSeconds: 289
   },
   {
     year: "2022",
@@ -176,7 +183,8 @@ export const works = [
     arNote: "إعادة وصل للغناء اليمني بروح تصلح للمنصات والجلسات في وقت واحد.",
     enNote: "A bridge to Yemeni song memory, made for both platforms and rooms.",
     youtubeId: "WAmHo2VZmA8",
-    uploadDate: "2022-07-01T11:00:23-07:00"
+    uploadDate: "2022-07-01T11:00:23-07:00",
+    durationSeconds: 409
   },
   {
     year: "2022",
@@ -189,7 +197,8 @@ export const works = [
     arNote: "عمل يلتقط روح المناسبة ويحافظ على نبرة شعبية واضحة.",
     enNote: "A song that catches the spirit of celebration while keeping a clear folk tone.",
     youtubeId: "eipMm2ftams",
-    uploadDate: "2022-01-10T10:25:13-08:00"
+    uploadDate: "2022-01-10T10:25:13-08:00",
+    durationSeconds: 153
   },
   {
     year: "2022",
@@ -202,7 +211,8 @@ export const works = [
     arNote: "عنوان واضح النبرة، يتحرك بين اللطف الشعبي والجملة التي تصل بسرعة.",
     enNote: "A direct, warm track that moves between folk ease and a phrase that lands quickly.",
     youtubeId: "TwjU7BmK2Lo",
-    uploadDate: "2021-12-30T08:17:03-08:00"
+    uploadDate: "2021-12-30T08:17:03-08:00",
+    durationSeconds: 185
   },
   {
     year: "2021",
@@ -215,7 +225,8 @@ export const works = [
     arNote: "أغنية رسمية تبرز المساحة العاطفية والصوت المباشر.",
     enNote: "An official release that foregrounds the emotional range and direct vocal delivery.",
     youtubeId: "Q-mkcDjyjug",
-    uploadDate: "2021-06-22T11:00:12-07:00"
+    uploadDate: "2021-06-22T11:00:12-07:00",
+    durationSeconds: 232
   },
   {
     year: "2021",
@@ -228,7 +239,8 @@ export const works = [
     arNote: "عمل يميل إلى الفكرة والرسالة، ويكشف جانبًا أكثر تأملاً في حضور أحمد.",
     enNote: "A thoughtful release that leans toward message and reflection in Ahmed's voice.",
     youtubeId: "9xwGXy5YjvA",
-    uploadDate: "2021-04-15T10:24:27-07:00"
+    uploadDate: "2021-04-15T10:24:27-07:00",
+    durationSeconds: 198
   },
   {
     year: "2021",
@@ -241,7 +253,8 @@ export const works = [
     arNote: "أغنية قصيرة النفس، تضع العتب في جملة بسيطة وقريبة.",
     enNote: "A compact song that keeps its reproach simple, close, and melodic.",
     youtubeId: "t_LzlTCj1J4",
-    uploadDate: "2021-01-14T06:56:42-08:00"
+    uploadDate: "2021-01-14T06:56:42-08:00",
+    durationSeconds: 120
   },
   {
     year: "2020",
@@ -254,7 +267,8 @@ export const works = [
     arNote: "نسخة أكثر قربًا من الجلسة، تترك مساحة واضحة للصوتين والجيتار.",
     enNote: "A room-close version that gives the two voices and guitar more air.",
     youtubeId: "2Gok_KrjX34",
-    uploadDate: "2020-12-20T06:46:51-08:00"
+    uploadDate: "2020-12-20T06:46:51-08:00",
+    durationSeconds: 120
   },
   {
     year: "2020",
@@ -267,7 +281,8 @@ export const works = [
     arNote: "حوار ناعم بين صوتين، مناسب لإظهار جانب أحمد العاطفي.",
     enNote: "A soft dialogue between two voices, showing Ahmed's romantic side.",
     youtubeId: "ZCjSg0pPtxA",
-    uploadDate: "2020-11-11T08:00:10-08:00"
+    uploadDate: "2020-11-11T08:00:10-08:00",
+    durationSeconds: 194
   },
   {
     year: "2020",
@@ -280,7 +295,8 @@ export const works = [
     arNote: "عنوان خفيف الحركة، يترك أثر الطرب من غير مبالغة في الزينة.",
     enNote: "A lively title that keeps the feeling of tarab without over-decoration.",
     youtubeId: "IQzQ7HlioYA",
-    uploadDate: "2020-05-26T06:00:12-07:00"
+    uploadDate: "2020-05-26T06:00:12-07:00",
+    durationSeconds: 183
   },
   {
     year: "2020",
@@ -293,7 +309,8 @@ export const works = [
     arNote: "نسخة مرافقة تفتح العمل للغناء والتجربة خارج النسخة الأصلية.",
     enNote: "A companion version that opens the track for singing and practice beyond the original.",
     youtubeId: "ABmnrj2xM7I",
-    uploadDate: "2020-04-03T09:11:12-07:00"
+    uploadDate: "2020-04-03T09:11:12-07:00",
+    durationSeconds: 70
   },
   {
     year: "2020",
@@ -306,7 +323,8 @@ export const works = [
     arNote: "حضور لفظي واضح يمنح الأغنية شخصية محلية ومباشرة.",
     enNote: "A title with local character and a direct vocal personality.",
     youtubeId: "ii9s2ZRlOyY",
-    uploadDate: "2020-04-01T05:33:47-07:00"
+    uploadDate: "2020-04-01T05:33:47-07:00",
+    durationSeconds: 65
   }
 ];
 
@@ -340,6 +358,23 @@ export function getYoutubeEmbedUrl(work) {
 
 export function getYoutubeThumbnailUrl(work) {
   return `https://i.ytimg.com/vi/${work.youtubeId}/hqdefault.jpg`;
+}
+
+export function getIsoDuration(seconds) {
+  const totalSeconds = Number(seconds);
+
+  if (!Number.isFinite(totalSeconds) || totalSeconds <= 0) {
+    return undefined;
+  }
+
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const remainingSeconds = totalSeconds % 60;
+  const hourPart = hours ? `${hours}H` : "";
+  const minutePart = minutes ? `${minutes}M` : "";
+  const secondPart = remainingSeconds ? `${remainingSeconds}S` : "";
+
+  return `PT${hourPart}${minutePart}${secondPart || (!hourPart && !minutePart ? "0S" : "")}`;
 }
 
 export const content = {
@@ -1057,6 +1092,7 @@ function getMusicCatalogData(locale) {
         alternateName: copy.subtitle,
         byArtist: { "@id": artistId },
         datePublished: work.uploadDate,
+        duration: getIsoDuration(work.durationSeconds),
         genre: copy.mood,
         description: copy.note,
         url: getAbsoluteUrl(getWorkPath(locale, work)),
@@ -1070,6 +1106,8 @@ function getMusicCatalogData(locale) {
 function getVideoObjectData(locale, work) {
   const copy = getWorkCopy(work, locale);
   const workUrl = getAbsoluteUrl(getWorkPath(locale, work));
+  const artistId = `${siteUrl}/#artist`;
+  const studioId = `${siteUrl}/#studio`;
 
   return {
     "@type": "VideoObject",
@@ -1079,12 +1117,14 @@ function getVideoObjectData(locale, work) {
     description: copy.note,
     thumbnailUrl: [getYoutubeThumbnailUrl(work)],
     uploadDate: work.uploadDate,
+    duration: getIsoDuration(work.durationSeconds),
     embedUrl: getYoutubeEmbedUrl(work),
     url: workUrl,
     sameAs: getYoutubeWatchUrl(work),
     inLanguage: locale === "ar" ? "ar-YE" : "en-US",
-    publisher: { "@id": `${siteUrl}/#artist` },
-    creator: { "@id": `${siteUrl}/#artist` }
+    isAccessibleForFree: true,
+    publisher: { "@id": studioId },
+    creator: { "@id": artistId }
   };
 }
 
@@ -1239,6 +1279,7 @@ export function getStructuredData(locale, page = "home", work = null) {
         alternateName: workCopy.subtitle,
         byArtist: { "@id": artistId },
         datePublished: work.uploadDate,
+        duration: getIsoDuration(work.durationSeconds),
         genre: workCopy.mood,
         description: workCopy.note,
         url: pageUrl,

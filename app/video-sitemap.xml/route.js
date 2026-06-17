@@ -31,6 +31,7 @@ function videoEntry(locale, work) {
 <video:description>${escapeXml(copy.note)}</video:description>
 <video:player_loc allow_embed="yes">${escapeXml(getYoutubeEmbedUrl(work))}</video:player_loc>
 <video:publication_date>${escapeXml(work.uploadDate)}</video:publication_date>
+<video:duration>${escapeXml(work.durationSeconds)}</video:duration>
 <video:family_friendly>yes</video:family_friendly>
 <video:uploader info="${escapeXml(youtubeChannelUrl)}">${escapeXml(siteName)}</video:uploader>
 </video:video>

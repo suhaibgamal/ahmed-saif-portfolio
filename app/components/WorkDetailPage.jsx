@@ -19,6 +19,26 @@ function formatUploadDate(locale, uploadDate) {
   }).format(new Date(uploadDate));
 }
 
+function formatDuration(locale, seconds) {
+  const totalSeconds = Number(seconds);
+
+  if (!Number.isFinite(totalSeconds) || totalSeconds <= 0) {
+    return locale === "ar" ? "غير محدد" : "Not listed";
+  }
+
+  const minutes = Math.floor(totalSeconds / 60);
+  const remainingSeconds = totalSeconds % 60;
+  const numberFormatter = new Intl.NumberFormat(locale === "ar" ? "ar-YE" : "en-US", {
+    minimumIntegerDigits: 2,
+    useGrouping: false
+  });
+  const minuteFormatter = new Intl.NumberFormat(locale === "ar" ? "ar-YE" : "en-US", {
+    useGrouping: false
+  });
+
+  return `${minuteFormatter.format(minutes)}:${numberFormatter.format(remainingSeconds)}`;
+}
+
 export default function WorkDetailPage({ locale, work }) {
   const t = content[locale];
   const copy = getWorkCopy(work, locale);
@@ -28,6 +48,7 @@ export default function WorkDetailPage({ locale, work }) {
   const watchLabel = locale === "ar" ? "شاهد على يوتيوب" : "Watch on YouTube";
   const catalogLabel = locale === "ar" ? "العودة إلى الأعمال" : "Back to works";
   const publishedLabel = locale === "ar" ? "تاريخ النشر" : "Published";
+  const durationLabel = locale === "ar" ? "مدة العمل" : "Duration";
   const roleLabel = locale === "ar" ? "نوع العمل" : "Work type";
   const nextLabel = locale === "ar" ? "العمل التالي" : "Next work";
   const previousLabel = locale === "ar" ? "العمل السابق" : "Previous work";
@@ -65,6 +86,7 @@ export default function WorkDetailPage({ locale, work }) {
             <iframe
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
+              loading="lazy"
               referrerPolicy="strict-origin-when-cross-origin"
               src={`${getYoutubeEmbedUrl(work)}?rel=0&modestbranding=1&playsinline=1`}
               title={copy.title}
@@ -76,6 +98,10 @@ export default function WorkDetailPage({ locale, work }) {
           <div className="work-detail-meta__item">
             <span>{publishedLabel}</span>
             <strong>{formatUploadDate(locale, work.uploadDate)}</strong>
+          </div>
+          <div className="work-detail-meta__item">
+            <span>{durationLabel}</span>
+            <strong>{formatDuration(locale, work.durationSeconds)}</strong>
           </div>
           <div className="work-detail-meta__item">
             <span>{roleLabel}</span>

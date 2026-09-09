@@ -417,150 +417,150 @@ export const content = {
       }
     },
     hero: {
-      kicker: "a7mdsif.com",
+      kicker: "الموقع الرسمي للفنان أحمد سيف",
       title: "أحمد سيف",
       role: "مغنٍ وملحن يمني",
       lead:
-        "أصنع الموسيقى من صدق الكلمة ونبض اللحن. من خلال A7MD Studio، أعمل على صياغة أغانٍ تجمع بين أصالة الهوية والروح المعاصرة.",
-      listen: "استمع على ساوند كلاود",
-      explore: "تصفح الأعمال",
-      tag: "صوت يمني / لحن معاصر / إنتاج موسيقي"
+        "أهلاً بكم.. أنا أحمد سيف. أحب الأغنية البسيطة اللي تدخل القلب بسرعة وتعلّق في البال؛ اللحن الصادق والإيقاع اللي يحركك بعيد عن أي تعقيد. من داخل A7MD Studio أشتغل على كل عمل من أول فكرة ولحن لحد التسجيل والتوزيع النهائي.",
+      listen: "اسمع جديدي على ساوند كلاود",
+      explore: "تصفح كل أعمالي",
+      tag: "صوت يمني / ألحان معاصرة / إنتاج استوديو"
     },
     stats: [
-      { value: "ملحن ومغنٍ", label: "شغف اللحن والأداء" },
-      { value: "a7mdsif", label: "الحساب الرسمي" },
-      { value: "A7MD Studio", label: "مساحة الإنتاج والصوت" }
+      { value: "ملحن ومغنٍ", label: "ألحان من القلب وأداء حي" },
+      { value: "A7MD Studio", label: "استوديو الإنتاج والتوزيع" },
+      { value: "+15 عمل فني", label: "أغانٍ وتترات ومشاركات دولية" }
     ],
     studio: {
-      eyebrow: "A7MD Studio",
-      title: "المساحة التي أبدأ فيها بصياغة اللحن وتشكيل هوية العمل.",
+      eyebrow: "استوديو A7MD Studio",
+      title: "المكان اللي يبدأ منه اللحن وتتولد فيه روح الأغنية.",
       body:
-        "A7MD Studio هو مساحتي الخاصة لبناء الأغنية من فكرتها الأولى. أعتبر اللحن هو الأساس الذي يمنح العمل روحه، وأتدخل في كل تفصيل إيقاعي وتوزيعي حتى تصل الأغنية بأصدق وأجمل صورة.",
+        "في الاستوديو حقي أشتغل على كل تفصيلة في الأغنية بنفسي. ما أكتفي بالغناء بس؛ أهتم ببناء اللحن من الصفر، واختيار النبض والإيقاع المناسب، وهندسة الصوت لحد ما يطلع العمل بالشكل اللي يرضي ذوقكم.",
       cards: [
         {
-          title: "التلحين",
-          body: "صياغة جملة لحنية قريبة من القلب، تترك للأداء مساحة طبيعية وبسيطة."
+          title: "التلحين وتأليف النغمات",
+          body: "صياغة جملة لحنية عذبة وسهلة الحفظ تلامس مشاعر السامع وتعيش معاه."
         },
         {
-          title: "الإيقاع والنبض",
-          body: "بناء إيقاع حيوي يعبر عن هوية الأغنية ويرسخها في الذاكرة."
+          title: "بناء الإيقاع والنبض",
+          body: "إيقاعات يمنية وعربية حية تعطي الأغنية طاقتها وحركتها الخاصة."
         },
         {
           title: "التوزيع والتوجيه الصوتي",
-          body: "الاهتمام بكل طبقة صوتية وتفصيل موسيقي ليخرج العمل متكاملًا."
+          body: "ترتيب الطبقات الموسيقية وتوجيه الصوت ليخرج العمل متكاملًا ونقيًا."
         }
       ]
     },
     credits: {
-      eyebrow: "الرؤية الموسيقية",
-      title: "كل عمل يبدأ من فكرة ولحن صادق.",
+      eyebrow: "فلسفتي الموسيقية",
+      title: "الأغنية الحقيقية تبدأ بلحن صادق وبسيط.",
       body:
-        "أرى الموسيقى تجربة إنسانية كاملة: في اختيار المقام، ووزن الإيقاع، والحفاظ على عمق الهوية اليمنية مع تقديمها بلمسة عصرية تناسب كل مستمع.",
+        "الموسيقى عندي مش استعراض طبقات صوتية؛ هي رسالة وإحساس. أحب أدمج التراث اليمني الجميل مع لمسات التوزيع الحديثة عشان تناسب كل الأذواق في كل مكان.",
       items: [
         {
-          title: "صدق اللحن",
-          body: "جمل موسيقية قريبة من الوجدان لا تحتاج إلى زخرفة مبالغ فيها."
+          title: "اللحن قبل كل شيء",
+          body: "إذا اللحن دخل قلبك من أول دقيقة، الأغنية كلها بتنجح."
         },
         {
-          title: "حيوية النبض",
-          body: "إيقاعات مدروسة تمنح العمل طاقته الخاصة وتحرك المشاعر."
+          title: "إيقاع يحركك",
+          body: "الإيقاع هو روح العمل اللي يخليك تعيش اللحظة والجو الموسيقي."
         },
         {
-          title: "التعاونات الفنية",
-          body: "مساحة مفتوحة للمشاريع والأصوات التي تبحث عن توقيع لحني متميز."
+          title: "تعاونات ومشاريع فنية",
+          body: "جاهز دائمًا لمشاريع التترات، الإعلانات، والتعاونات الغنائية المميزة."
         }
       ]
     },
     console: {
-      eyebrow: "فلسفة الصوت",
-      title: "أبني الأغنية بتأنٍ، من أول وتد لحني إلى اللمسة الأخيرة.",
+      eyebrow: "رؤية الصوت",
+      title: "أصنع الأغنية بحب، من أول دندنة لحد الماستر النهائي.",
       body:
-        "أتعامل مع العمل الموسيقي ككل لا يتجزأ: الكلمة، اللحن، والإيقاع، مع الحفاظ على صفاء الصوت ودفء الأداء.",
+        "أهتم بكل تفصيلة: اللحن، الكلمة، الإيقاع، ونبرة الأداء، عشان توصل الأغنية لأرواحكم من غير أي حاجز.",
       channels: [
-        { label: "اللحن", value: "محسوب بعناية" },
+        { label: "اللحن", value: "عذب وقريب" },
         { label: "الإيقاع", value: "نابض بالحياة" },
-        { label: "الأداء", value: "صادق ومباشر" },
-        { label: "الهوية", value: "يمنية معاصرة" }
+        { label: "الأداء", value: "صادق وعفوي" },
+        { label: "الهوية", value: "يمنية أصيلة" }
       ]
     },
     strip: {
-      label: "الآن على المنصات",
-      title: "أغانٍ تخرج من الجلسة وتحافظ على شخصيتها على كل منصة.",
+      label: "اسمع الآن",
+      title: "أعمالي متوفرة على جميع منصات الموسيقى بجودة عالية.",
       action: "افتح ساوند كلاود"
     },
     featuredWorks: {
-      eyebrow: "مختارات",
-      title: "أعمال تعرّفك على أحمد من أول مقطع.",
+      eyebrow: "أحدث الأعمال والمشاركات",
+      title: "أغانٍ قريبة من الناس ومحطات أعتز فيها.",
       body:
-        "هذا ليس أرشيفًا مرتبًا فقط. إنه مسار استماع يضع الأغاني ذات الحضور الأقوى أولًا، ثم يفتح الباب للأعمال الأقدم."
+        "من تتر مسلسل (الضايعة) لفعاليات (إكسبو أوساكا باليابان)، وأغاني مثل (شلني إب)، (محد داري)، و(فقدتش). اسمع وعيش الأجواء."
     },
     signature: {
-      eyebrow: "البصمة",
-      title: "ملحّن يعرف متى يترك الجملة تغني بنفسها.",
+      eyebrow: "بصمتي الفنية",
+      title: "أحب أترك أثر جميل يعلّق في ذاكرة كل من يسمعني.",
       body:
-        "أحمد لا يقدّم الصوت وحده. هو يصنع من الجملة، والإيقاع، والمزاج الغنائي مساحة واحدة لها شخصية واضحة.",
+        "في كل مشروع، أحرص إنه يحمل توقيعي الخاص: لحن يمني دافئ بلمسة حديثة وكلمة تلمس المشاعر.",
       layers: [
-        "مقام يمني لا يفقد حداثته",
-        "تلحين يخدم العبارة قبل الزخرفة",
-        "حس إنتاجي يجعل الأداء قريبًا من السامع",
-        "نسخة عربية وإنجليزية بروح واحدة"
+        "مقامات وألحان يمنية بروح شابة ومعاصرة",
+        "تلحين يخدم معنى الكلمة وإحساسها",
+        "تسجيل وإنتاج بأعلى نقاء وجودة صوتية",
+        "حضور في المسلسلات والمهرجانات والمنصات"
       ]
     },
     pageCards: {
-      eyebrow: "الموقع الكامل",
-      title: "أكثر من صفحة رئيسية",
+      eyebrow: "تصفح الموقع",
+      title: "عالمي الموسيقي",
       body:
-        "لكل صفحة وظيفة موسيقية واضحة: الاستماع، قراءة القصة، ثم الوصول إلى التواصل الرسمي.",
+        "تصفح كل أغانيا وإصداراتي، اعرف قصتي وشغفي، أو تواصل معي مباشرة للمشاريع والإنتاج.",
       items: [
         {
           page: "works",
           title: "الأعمال",
-          body: "كتالوج غني يبدأ بالأحدث ويتدرج إلى الأرشيف."
+          body: "دليل كامل لأحدث الأغاني الرسمية والأرشيف الفني."
         },
         {
           page: "about",
           title: "القصة",
-          body: "نبذة فنية وخط زمني يشرح ملامح الصوت."
+          body: "نبذة عن مشواري الفني وبداياتي في عالم الموسيقى."
         },
         {
           page: "contact",
           title: "التواصل",
-          body: "تعاونات، إنتاج، وتواصل رسمي مباشر."
+          body: "خط مباشر للتعاونات الفنية والإنتاج وتترات المسلسلات."
         }
       ]
     },
     worksPage: {
-      eyebrow: "الأعمال",
-      title: "الأغاني كأبواب صغيرة لعالم أحمد.",
+      eyebrow: "أعمالي",
+      title: "أغاني وإصدارات موسيقية من قلبي لكم.",
       body:
-        "الأرشيف هنا يقرأ كديسكوغرافيا حية: أحدث الإصدارات في المقدمة، ثم الأعمال التي صاغت صوت أحمد على امتداد السنوات.",
+        "هنا تجد كل أغانيا الرسمية والمشتركة، من أحدث إصدار إلى الأرشيف اللي بدأت منه.",
       latestLabel: "أحدث إصدار",
-      featuredLabel: "إصدار مقترح للبداية",
-      catalogLabel: "الأرشيف المختار",
-      cta: "لديك مشروع يحتاج صوت أحمد؟"
+      featuredLabel: "أغنية مقترحة للبداية",
+      catalogLabel: "دليل كل الأغاني",
+      cta: "عندك مسلسل أو عمل فني يحتاج لحن أو صوت مميز؟"
     },
     aboutPage: {
-      eyebrow: "القصة",
-      title: "فنان يكتب من المكان، ثم يترك الأغنية تسافر.",
+      eyebrow: "قصتي الفنية",
+      title: "الموسيقى شغفي.. واللحن طريقي للتواصل معكم.",
       body:
-        "أحمد سيف فنان يمني يعمل كمغنٍ وملحن وصانع إيقاع. في A7MD Studio يخرج العمل من الجملة الأولى ثم يكتمل بالصوت واللون والنبض.",
+        "أنا أحمد سيف.. مغنٍ وملحن يمني. بدأت رحلتي مدفوعًا بحب حقيقي للمقامات والألحان. في الاستوديو الخاص بي (A7MD Studio)، أشتغل على كل فكرة ولحن بروقان وصبر، لأني أؤمن إن الأغنية الصادقة ما تحتاج بهرجة زيادة—اللحن الطيب والكلمة النقية يدخلوا القلب مباشرة.",
       statement:
-        "الأغنية الجيدة لا ترفع صوتها كي تُسمع. هي فقط تترك جملة صادقة، ثم تبقى.",
+        "الأغنية الحلوة مش اللي ترفع صوتها، هي اللي تقول جملة صادقة وتبقى في بالك.",
       principles: [
         {
-          title: "ملحن قبل أن يكون صوتًا",
+          title: "اللحن أولًا",
           body:
-            "أحمد يتعامل مع اللحن بوصفه نقطة البداية، لا مجرد مقدمة قبل الغناء."
+            "اللحن هو الأساس اللي يقف عليه كل غناء وتوزيع.. أبدأ به دائمًا وأعطيه حقه."
         },
         {
           title: "A7MD Studio",
           body:
-            "من هنا تتكون كثير من ملامح العمل: الإيقاع، التوجيه، وقرار متى تظل الجملة بسيطة."
+            "مساحتي ومملكتي الموسيقية الخاصة للتأليف والتوزيع وهندسة الصوت."
         },
         {
-          title: "من صنعاء إلى الجمهور",
+          title: "أصالة يمنية وروح عصرية",
           body:
-            "الهوية اليمنية حاضرة بوضوح، لكن الصوت يتحرك بثقة داخل المشهد العربي الأوسع."
+            "أفتخر بأصالة نغماتنا اليمنية، وأحب أقدّمها للعالم العربي بأسلوب شبابي جديد."
         }
       ]
     },
@@ -633,150 +633,147 @@ export const content = {
       }
     },
     hero: {
-      kicker: "a7mdsif.com",
+      kicker: "Official Portfolio of Ahmed Saif",
       title: "Ahmed Saif",
-      role: "Yemeni singer & composer",
+      role: "Yemeni Singer & Composer",
       lead:
-        "I create music rooted in heartfelt melody and authentic pulse. Through A7MD Studio, I compose and produce songs that bridge Yemeni heritage with modern musical expression.",
+        "Hey there, I'm Ahmed Saif—a Yemeni singer, composer, and producer. I make music that feels real: memorable melodies, genuine feeling, and rhythms that move you. Out of A7MD Studio, I compose and craft every track from the very first chord to the final master.",
       listen: "Listen on SoundCloud",
-      explore: "Explore works",
-      tag: "Yemeni heritage / Modern composition / Studio craft"
+      explore: "Explore my works",
+      tag: "Yemeni roots / Contemporary melody / Studio craft"
     },
     stats: [
-      { value: "Singer & Composer", label: "Melody & performance" },
-      { value: "a7mdsif", label: "Official handle" },
-      { value: "A7MD Studio", label: "Production & sound room" }
+      { value: "Singer & Composer", label: "Melody, voice & rhythm" },
+      { value: "A7MD Studio", label: "My sound & production room" },
+      { value: "15+ Releases", label: "Soundtracks & world stages" }
     ],
     studio: {
       eyebrow: "A7MD Studio",
-      title: "The studio space where every melody begins and takes shape.",
+      title: "Where every melody takes flight and finds its pulse.",
       body:
-        "A7MD Studio is my creative workspace for composing, arranging rhythm, and crafting songs that carry a distinctive identity. I believe melody is the soul of any piece, and I stay immersed in every production layer to ensure it reaches listeners with clarity and emotion.",
+        "Inside A7MD Studio, I don't just step up to the mic—I compose, build the rhythm, and shape the entire sonic identity of every song from the ground up until it feels just right.",
       cards: [
         {
-          title: "Composition",
-          body: "Melodic lines that carry genuine emotion while keeping performance natural and sincere."
+          title: "Original Composition",
+          body: "Crafting memorable melodies that stay with listeners long after the song ends."
         },
         {
-          title: "Rhythm & Pulse",
-          body: "Dynamic rhythms that give each song its life and movement."
+          title: "Rhythm & Groove",
+          body: "Dynamic Arabic and Yemeni percussion that gives each song genuine energy."
         },
         {
-          title: "Arrangement & Direction",
-          body: "Shaping every sonic layer and vocal detail for a balanced, cohesive production."
+          title: "Vocal Production & Mix",
+          body: "Balancing every vocal layer and instrument for warmth, clarity, and punch."
         }
       ]
     },
     credits: {
-      eyebrow: "Artistic Vision",
-      title: "Every meaningful song begins with an honest melody.",
+      eyebrow: "My Philosophy",
+      title: "Great songs start with an honest, simple melody.",
       body:
-        "I view music as a deeply personal dialogue: balancing traditional melodic roots with contemporary taste, so every song feels both grounded and modern.",
+        "To me, music isn't about vocal acrobatics—it's about emotional connection. I love blending timeless Yemeni musical heritage with modern production that speaks to listeners everywhere.",
       items: [
         {
-          title: "Melodic Sincerity",
-          body: "Intimate phrasing that connects directly without unnecessary ornamentation."
+          title: "Melody First",
+          body: "If the melody hooks your heart right away, everything else falls into place."
         },
         {
-          title: "Rhythmic Vitality",
-          body: "Carefully calibrated beats that drive the emotion forward."
+          title: "Rhythm that Moves",
+          body: "Carefully calibrated beats that give life to every verse and chorus."
         },
         {
           title: "Artistic Collaborations",
-          body: "An open creative door for artists and productions seeking a distinct signature."
+          body: "Always open for TV soundtracks, brand scores, and original vocal projects."
         }
       ]
     },
     console: {
-      eyebrow: "Sound Philosophy",
-      title: "I craft each track with patience, from initial melody to final master.",
+      eyebrow: "Sound Approach",
+      title: "Crafting songs with care, from the first hum to final master.",
       body:
-        "I treat every project as an interconnected whole: lyric, melody, rhythm, and vocal presence working in complete harmony.",
+        "I treat every song as an intimate conversation: lyric, melody, beat, and vocal tone all serving the same emotional story.",
       channels: [
-        { label: "Melody", value: "Intentional" },
-        { label: "Rhythm", value: "Dynamic" },
-        { label: "Delivery", value: "Sincere" },
-        { label: "Identity", value: "Rooted & Modern" }
+        { label: "Melody", value: "Catchy & Honest" },
+        { label: "Rhythm", value: "Alive & Dynamic" },
+        { label: "Performance", value: "Warm & Direct" },
+        { label: "Identity", value: "Yemeni & Modern" }
       ]
     },
     strip: {
-      label: "Stream Now",
-      title: "My music is available on all major streaming platforms.",
+      label: "Streaming Now",
+      title: "Listen to my full discography on your favorite music platform.",
       action: "Open SoundCloud"
     },
     featuredWorks: {
-      eyebrow: "Featured Works",
-      title: "Selected releases and milestone performances.",
+      eyebrow: "Featured Releases",
+      title: "Milestone tracks and recent releases.",
       body:
-        "A curated selection representing my musical journey: official releases, soundtrack themes, and international stages."
+        "From the official theme of 'Al-Dhayeh' TV series to performing at Expo Osaka 2025 in Japan, plus crowd favorites like 'Shulany Ibb' and 'Ma Had Dari'."
     },
     signature: {
       eyebrow: "Signature",
-      title: "A genuine melody leaves an imprint that endures.",
+      title: "Leaving an honest, memorable imprint in every track.",
       body:
-        "In every project, I seek to give the song its own character, blending heritage with modern production.",
+        "Each release has its own soul: authentic Yemeni flavor, modern production, and lyrics that feel close to home.",
       layers: [
-        "Yemeni modal roots with contemporary phrasing",
-        "Composition driven by lyrical emotion",
-        "Production focused on vocal warmth and sonic clarity",
-        "Collaborations spanning official releases and live stages"
+        "Rich Yemeni heritage with contemporary youth energy",
+        "Melodies built around heartfelt emotion",
+        "High-definition production and warm vocal mixing",
+        "Soundtracks, international stages, and streaming platforms"
       ]
     },
     pageCards: {
-      eyebrow: "Full site",
-      title: "More than a homepage",
+      eyebrow: "Explore",
+      title: "My Musical Space",
       body:
-        "Each page has a musical job: listen to the work, understand the story, then reach the official channels.",
+        "Listen to my full discography, discover my story, or get in touch directly for collaborations.",
       items: [
         {
           page: "works",
           title: "Works",
-          body: "A fuller catalog, newest releases first, with the archive behind them."
+          body: "Complete catalog of official songs, soundtracks, and archive releases."
         },
         {
           page: "about",
           title: "Story",
-          body: "Artist note, timeline, and the shape of the sound."
+          body: "My musical path, studio background, and artistic philosophy."
         },
         {
           page: "contact",
           title: "Contact",
-          body: "Collaborations, production, and direct official contact."
+          body: "Official contact for soundtracks, production, and collaborations."
         }
       ]
     },
     worksPage: {
-      eyebrow: "Works",
-      title: "Songs and releases reflecting my artistic path.",
+      eyebrow: "Discography",
+      title: "Songs and releases made from the heart.",
       body:
-        "A living discography featuring recent official releases, collaborations, and defining catalog tracks.",
+        "A living archive of my musical releases: newest official tracks, collaborations, and archive milestones.",
       latestLabel: "Latest release",
       featuredLabel: "Suggested starting point",
-      catalogLabel: "Selected catalog",
-      cta: "Have a project that needs Ahmed's voice or composition?"
+      catalogLabel: "Full song catalog",
+      cta: "Have a series, film, or project that needs a custom song or melody?"
     },
     aboutPage: {
       eyebrow: "My Story",
-      title: "To me, music is a way to leave a genuine, lasting imprint.",
+      title: "Music is my life's passion, and melody is how I speak to you.",
       body:
-        "I am Ahmed Saif—a Yemeni singer and composer. Driven by a deep love for melody and rhythm, I compose and produce songs through A7MD Studio, focusing on authenticity, warmth, and music that speaks directly to the heart.",
+        "I'm Ahmed Saif—a Yemeni singer and composer. My musical journey started with a deep love for melodic rhythm and authentic songcraft. Inside A7MD Studio, I produce music with patience and care, because I believe an honest song doesn't need unnecessary noise—a beautiful melody and heartfelt lyrics speak straight to the heart.",
       statement:
-        "A true song doesn't need to shout to be heard; an honest melody and a heartfelt word are all it takes.",
+        "A truly great song doesn't need to shout; a sincere phrase that stays with you is all it takes.",
       principles: [
         {
           title: "Melody First",
-          body:
-            "I treat the melody as the foundation of everything, developing it before adding ornamentation."
+          body: "Melody is the foundation of everything. I build it with care before adding any ornament."
         },
         {
           title: "A7MD Studio",
-          body:
-            "My dedicated creative room for composing, recording, and shaping each track to its finest standard."
+          body: "My creative haven where I compose, arrange, and produce tracks from scratch."
         },
         {
           title: "Rooted Yet Global",
-          body:
-            "Proud of my Yemeni musical roots, while creating contemporary songs that resonate across the wider Arab world."
+          body: "Proud of Yemeni musical identity, bringing it to the modern Arab music scene."
         }
       ]
     },

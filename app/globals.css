@@ -161,6 +161,131 @@
   --portrait-shadow: 0 28px 70px -20px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(255, 255, 255, 0.15);
 }
 
+/* Style 6: Interactive Bento Grid (Modern Modular Dashboard) */
+[data-theme="style-6"] {
+  --theme-name: "Interactive Bento Grid";
+  --bg: #090d16;
+  --bg-raised: #0f172a;
+  --bg-soft: #1e293b;
+  --text: #f8fafc;
+  --muted: #94a3b8;
+  --muted-strong: #e2e8f0;
+  --line: rgba(59, 130, 246, 0.16);
+  --line-strong: rgba(59, 130, 246, 0.35);
+  --gold: #3b82f6;
+  --gold-soft: rgba(59, 130, 246, 0.14);
+  --teal: #06b6d4;
+  --teal-soft: rgba(6, 182, 212, 0.14);
+  --rust: #6366f1;
+  --accent: #3b82f6;
+  --accent-soft: rgba(59, 130, 246, 0.14);
+  --accent-glow: rgba(59, 130, 246, 0.28);
+  --hero-glow: radial-gradient(ellipse 60% 50% at 50% 30%, rgba(59, 130, 246, 0.18) 0%, rgba(9, 13, 22, 0) 70%);
+  --portrait-radius: 24px;
+  --portrait-border: 1px solid rgba(59, 130, 246, 0.35);
+  --portrait-shadow: 0 24px 60px -20px rgba(59, 130, 246, 0.3);
+}
+
+/* Style 7: High-Fashion Editorial Lookbook (Magazine Spread) */
+[data-theme="style-7"] {
+  --theme-name: "Editorial Lookbook";
+  --bg: #0f0d0e;
+  --bg-raised: #181516;
+  --bg-soft: #242022;
+  --text: #fdfaf7;
+  --muted: #b8aaa2;
+  --muted-strong: #eae2dc;
+  --line: rgba(194, 109, 83, 0.16);
+  --line-strong: rgba(194, 109, 83, 0.35);
+  --gold: #c26d53;
+  --gold-soft: rgba(194, 109, 83, 0.14);
+  --teal: #d4a373;
+  --teal-soft: rgba(212, 163, 115, 0.14);
+  --rust: #a8523b;
+  --accent: #c26d53;
+  --accent-soft: rgba(194, 109, 83, 0.14);
+  --accent-glow: rgba(194, 109, 83, 0.25);
+  --hero-glow: radial-gradient(ellipse 60% 50% at 50% 30%, rgba(194, 109, 83, 0.16) 0%, rgba(15, 13, 14, 0) 70%);
+  --portrait-radius: 8px;
+  --portrait-border: 1px solid rgba(194, 109, 83, 0.35);
+  --portrait-shadow: 0 24px 60px -20px rgba(194, 109, 83, 0.22);
+}
+
+/* Style 8: Analog Studio Console (Hardware Mixing Board & DAW) */
+[data-theme="style-8"] {
+  --theme-name: "Analog Studio Console";
+  --bg: #13100e;
+  --bg-raised: #1c1815;
+  --bg-soft: #28221e;
+  --text: #f7efe6;
+  --muted: #aba095;
+  --muted-strong: #ded4c8;
+  --line: rgba(234, 88, 12, 0.16);
+  --line-strong: rgba(234, 88, 12, 0.35);
+  --gold: #ea580c;
+  --gold-soft: rgba(234, 88, 12, 0.14);
+  --teal: #f59e0b;
+  --teal-soft: rgba(245, 158, 11, 0.14);
+  --rust: #c2410c;
+  --accent: #ea580c;
+  --accent-soft: rgba(234, 88, 12, 0.14);
+  --accent-glow: rgba(234, 88, 12, 0.28);
+  --hero-glow: radial-gradient(ellipse 60% 50% at 50% 30%, rgba(234, 88, 12, 0.18) 0%, rgba(19, 16, 14, 0) 70%);
+  --portrait-radius: 14px;
+  --portrait-border: 2px solid rgba(234, 88, 12, 0.35);
+  --portrait-shadow: 0 24px 60px -20px rgba(234, 88, 12, 0.25);
+}
+
+/* Style 9: Live Stage Headliner (Concert Aura & Tour) */
+[data-theme="style-9"] {
+  --theme-name: "Live Stage Headliner";
+  --bg: #07070d;
+  --bg-raised: #10101c;
+  --bg-soft: #19192b;
+  --text: #faf5ff;
+  --muted: #a8a3b8;
+  --muted-strong: #e9d5ff;
+  --line: rgba(168, 85, 247, 0.18);
+  --line-strong: rgba(168, 85, 247, 0.38);
+  --gold: #a855f7;
+  --gold-soft: rgba(168, 85, 247, 0.14);
+  --teal: #ec4899;
+  --teal-soft: rgba(236, 72, 153, 0.14);
+  --rust: #7e22ce;
+  --accent: #a855f7;
+  --accent-soft: rgba(168, 85, 247, 0.14);
+  --accent-glow: rgba(168, 85, 247, 0.30);
+  --hero-glow: radial-gradient(ellipse 70% 50% at 50% 20%, rgba(168, 85, 247, 0.22) 0%, rgba(7, 7, 13, 0) 70%);
+  --portrait-radius: 30px;
+  --portrait-border: 1px solid rgba(168, 85, 247, 0.45);
+  --portrait-shadow: 0 25px 65px -20px rgba(168, 85, 247, 0.35);
+}
+
+/* Style 10: Minimal Audio Canvas (Swiss Typographic Canvas) */
+[data-theme="style-10"] {
+  --theme-name: "Minimal Audio Canvas";
+  --bg: #000000;
+  --bg-raised: #0a0a0a;
+  --bg-soft: #141414;
+  --text: #ffffff;
+  --muted: #888888;
+  --muted-strong: #e0e0e0;
+  --line: rgba(255, 255, 255, 0.12);
+  --line-strong: rgba(16, 185, 129, 0.45);
+  --gold: #10b981;
+  --gold-soft: rgba(16, 185, 129, 0.14);
+  --teal: #34d399;
+  --teal-soft: rgba(52, 211, 153, 0.14);
+  --rust: #059669;
+  --accent: #10b981;
+  --accent-soft: rgba(16, 185, 129, 0.14);
+  --accent-glow: rgba(16, 185, 129, 0.25);
+  --hero-glow: radial-gradient(ellipse 60% 50% at 50% 30%, rgba(16, 185, 129, 0.14) 0%, rgba(0, 0, 0, 0) 70%);
+  --portrait-radius: 0px;
+  --portrait-border: 1px solid rgba(255, 255, 255, 0.5);
+  --portrait-shadow: 0 30px 70px -20px rgba(16, 185, 129, 0.25);
+}
+
 * {
   box-sizing: border-box;
 }
@@ -3108,4 +3233,489 @@ h6 {
     opacity: 1;
     transform: translateY(0) scale(1);
   }
+}
+
+
+/* ==========================================================================
+   STYLE 6: INTERACTIVE BENTO GRID LAYOUT
+   ========================================================================== */
+.bento-wrapper {
+  width: min(100% - 40px, var(--content));
+  margin: 40px auto 90px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 960px) {
+  .bento-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.bento-card {
+  position: relative;
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 30px;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bento-card:hover {
+  border-color: var(--line-strong);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+}
+
+.bento-card--hero-copy {
+  grid-column: span 7;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.bento-card--hero-portrait {
+  grid-column: span 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 30px;
+}
+
+@media (max-width: 960px) {
+  .bento-card--hero-copy,
+  .bento-card--hero-portrait {
+    grid-column: span 12;
+  }
+}
+
+.bento-portrait-box {
+  width: 240px;
+  height: 240px;
+  border-radius: 24px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  border: 2px solid var(--line-strong);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+}
+
+.bento-portrait-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bento-card--player {
+  grid-column: span 7;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: linear-gradient(135deg, var(--bg-raised) 0%, var(--bg-soft) 100%);
+}
+
+.bento-card--studio {
+  grid-column: span 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@media (max-width: 960px) {
+  .bento-card--player,
+  .bento-card--studio {
+    grid-column: span 12;
+  }
+}
+
+.bento-card--catalog {
+  grid-column: span 12;
+}
+
+.bento-card--contact {
+  grid-column: span 12;
+  background: linear-gradient(180deg, var(--bg-raised) 0%, var(--bg-soft) 100%);
+  text-align: center;
+  padding: 48px 30px;
+}
+
+.bento-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px;
+  background: var(--accent-soft);
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  width: fit-content;
+}
+
+/* ==========================================================================
+   STYLE 7: HIGH-FASHION EDITORIAL LOOKBOOK LAYOUT
+   ========================================================================== */
+.editorial-wrapper {
+  width: min(100% - 40px, var(--content));
+  margin: 50px auto 100px;
+}
+
+.editorial-hero {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 60px;
+  align-items: center;
+  padding-bottom: 80px;
+  border-bottom: 1px solid var(--line);
+}
+
+@media (max-width: 900px) {
+  .editorial-hero {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+.editorial-title {
+  font-size: clamp(40px, 7vw, 84px);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  margin: 0 0 24px;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+.editorial-portrait-frame {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+}
+
+.editorial-portrait-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.editorial-quote-strip {
+  padding: 60px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.editorial-quote-strip blockquote {
+  font-size: clamp(22px, 3.5vw, 36px);
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--text);
+  margin: 0;
+  border-inline-start: 4px solid var(--accent);
+  padding-inline-start: 24px;
+}
+
+.editorial-reel {
+  padding: 80px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.editorial-reel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+  margin-top: 36px;
+}
+
+.editorial-item {
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 24px;
+  text-decoration: none;
+  color: var(--text);
+  transition: opacity 0.2s ease;
+}
+
+.editorial-item:hover {
+  opacity: 0.8;
+}
+
+.editorial-item-num {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 8px;
+  display: block;
+}
+
+.editorial-item h3 {
+  font-size: 22px;
+  margin: 0 0 8px;
+}
+
+/* ==========================================================================
+   STYLE 8: ANALOG STUDIO CONSOLE LAYOUT
+   ========================================================================== */
+.studio-wrapper {
+  width: min(100% - 40px, var(--content));
+  margin: 40px auto 90px;
+}
+
+.studio-console-deck {
+  background: var(--bg-raised);
+  border: 2px solid var(--line-strong);
+  border-radius: 16px;
+  padding: 36px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), inset 0 0 40px rgba(0,0,0,0.5);
+  margin-bottom: 50px;
+}
+
+.studio-console-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+}
+
+.studio-led-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 4px 12px;
+  border-radius: 4px;
+  border: 1px solid var(--accent);
+}
+
+.studio-led-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent);
+  animation: studioPulse 1.5s infinite;
+}
+
+@keyframes studioPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.studio-console-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 40px;
+  align-items: center;
+}
+
+@media (max-width: 880px) {
+  .studio-console-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.studio-fader-strip {
+  display: flex;
+  gap: 16px;
+  background: var(--bg-soft);
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  margin-top: 24px;
+  justify-content: space-around;
+}
+
+.studio-fader-ch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.studio-fader-track {
+  width: 6px;
+  height: 90px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 3px;
+  position: relative;
+}
+
+.studio-fader-thumb {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 22px;
+  height: 14px;
+  background: var(--accent);
+  border-radius: 3px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+}
+
+.studio-fader-ch span {
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   STYLE 9: LIVE STAGE HEADLINER LAYOUT
+   ========================================================================== */
+.stage-wrapper {
+  width: min(100% - 40px, var(--content));
+  margin: 50px auto 100px;
+}
+
+.stage-hero {
+  position: relative;
+  text-align: center;
+  padding: 80px 20px;
+  background: radial-gradient(circle at 50% 10%, var(--accent-glow) 0%, transparent 65%);
+  border-radius: 24px;
+  border: 1px solid var(--line);
+  margin-bottom: 60px;
+}
+
+.stage-live-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 18px;
+  background: var(--accent-soft);
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 24px;
+}
+
+.stage-portrait-circle {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 24px;
+  border: 3px solid var(--accent);
+  box-shadow: 0 0 40px var(--accent-glow);
+}
+
+.stage-portrait-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.stage-setlist {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 36px;
+}
+
+.stage-setlist-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  text-decoration: none;
+  color: var(--text);
+  transition: all 0.25s ease;
+}
+
+.stage-setlist-item:hover {
+  background: var(--bg-soft);
+  border-color: var(--accent);
+  transform: translateX(4px);
+}
+
+[dir="rtl"] .stage-setlist-item:hover {
+  transform: translateX(-4px);
+}
+
+/* ==========================================================================
+   STYLE 10: MINIMAL AUDIO CANVAS LAYOUT
+   ========================================================================== */
+.canvas-wrapper {
+  width: min(100% - 40px, var(--content));
+  margin: 60px auto 120px;
+}
+
+.canvas-hero-title {
+  font-size: clamp(48px, 8.5vw, 110px);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  margin: 0 0 30px;
+  color: var(--text);
+}
+
+.canvas-intro-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: flex-start;
+  padding-bottom: 60px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 60px;
+}
+
+@media (max-width: 800px) {
+  .canvas-intro-row {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
+
+.canvas-track-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.canvas-track-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 26px 0;
+  border-bottom: 1px solid var(--line);
+  text-decoration: none;
+  color: var(--text);
+  transition: padding 0.2s ease, color 0.2s ease;
+}
+
+.canvas-track-row:hover {
+  color: var(--accent);
+  padding-inline-start: 16px;
+}
+
+.canvas-track-title {
+  font-size: clamp(24px, 4vw, 42px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.canvas-track-tag {
+  font-size: 14px;
+  color: var(--muted);
+  font-weight: 500;
 }

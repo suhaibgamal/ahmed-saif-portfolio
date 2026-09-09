@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, useSyncExternalStore } from "react";
-import { Palette, Check, ChevronDown, ChevronUp } from "lucide-react";
+import { Palette, Check, ChevronDown, ChevronUp, Layers } from "lucide-react";
 
 export const STYLES = [
   {
@@ -9,6 +9,7 @@ export const STYLES = [
     num: "1",
     nameAr: "الذهب المعتق",
     nameEn: "Obsidian Gold",
+    archetype: "classic",
     color: "#d4af37",
     desc: "Quiet Luxury Atelier"
   },
@@ -17,6 +18,7 @@ export const STYLES = [
     num: "2",
     nameAr: "النيلي السينمائي",
     nameEn: "Nocturne Indigo",
+    archetype: "classic",
     color: "#38bdf8",
     desc: "Cinematic Modernist"
   },
@@ -25,6 +27,7 @@ export const STYLES = [
     num: "3",
     nameAr: "العنبر الدافئ",
     nameEn: "Volcanic Amber",
+    archetype: "classic",
     color: "#f59e0b",
     desc: "Analog Boutique Studio"
   },
@@ -33,6 +36,7 @@ export const STYLES = [
     num: "4",
     nameAr: "المريمية والغموض",
     nameEn: "Forest Sage",
+    archetype: "classic",
     color: "#52b788",
     desc: "Organic Earth Depth"
   },
@@ -41,8 +45,54 @@ export const STYLES = [
     num: "5",
     nameAr: "المونوكروم البسيط",
     nameEn: "Monochrome Gallery",
+    archetype: "classic",
     color: "#ffffff",
     desc: "Swiss High-Fashion Minimal"
+  },
+  {
+    id: "style-6",
+    num: "6",
+    nameAr: "بنتو غريد التفاعلي",
+    nameEn: "Interactive Bento Grid",
+    archetype: "bento",
+    color: "#3b82f6",
+    desc: "Modern Modular Dashboard"
+  },
+  {
+    id: "style-7",
+    num: "7",
+    nameAr: "اللوكبـوك التحريري",
+    nameEn: "Editorial Lookbook",
+    archetype: "editorial",
+    color: "#c26d53",
+    desc: "High-Fashion Magazine Spread"
+  },
+  {
+    id: "style-8",
+    num: "8",
+    nameAr: "استوديو الكونسول التناظري",
+    nameEn: "Analog Studio Console",
+    archetype: "studio",
+    color: "#ea580c",
+    desc: "Hardware Mixing Board & DAW"
+  },
+  {
+    id: "style-9",
+    num: "9",
+    nameAr: "المسرح المباشر",
+    nameEn: "Live Stage Headliner",
+    archetype: "stage",
+    color: "#a855f7",
+    desc: "Stadium Concert & Tour Aura"
+  },
+  {
+    id: "style-10",
+    num: "10",
+    nameAr: "كانفاس الصوت والطباعة",
+    nameEn: "Minimal Audio Canvas",
+    archetype: "canvas",
+    color: "#10b981",
+    desc: "Pure Typography & Audio Waves"
   }
 ];
 
@@ -81,6 +131,10 @@ export default function StyleSwitcher({ defaultStyle = "style-1", locale = "ar" 
   useEffect(() => {
     if (typeof document !== "undefined") {
       document.documentElement.setAttribute("data-theme", currentStyle);
+      const activeObj = STYLES.find((s) => s.id === currentStyle);
+      if (activeObj) {
+        document.documentElement.setAttribute("data-archetype", activeObj.archetype);
+      }
     }
   }, [currentStyle]);
 
@@ -107,7 +161,7 @@ export default function StyleSwitcher({ defaultStyle = "style-1", locale = "ar" 
   return (
     <aside
       className="style-dock"
-      aria-label={isAr ? "مبدل تصاميم العميل" : "Design Variations Switcher"}
+      aria-label={isAr ? "مبدل تصاميم العميل الـ 10" : "10 Design Variations Switcher"}
       dir={isAr ? "rtl" : "ltr"}
     >
       <div className="style-dock__container">
@@ -115,13 +169,16 @@ export default function StyleSwitcher({ defaultStyle = "style-1", locale = "ar" 
           type="button"
           onClick={() => setIsOpen((prev) => !prev)}
           className="style-dock__toggle"
-          title={isAr ? "تبديل التصاميم المقترحة" : "Switch design variations"}
+          title={isAr ? "تبديل بين التصاميم الـ 10 المقترحة" : "Switch between 10 design proposals"}
           aria-expanded={isOpen}
         >
           <span className="style-dock__dot" style={{ backgroundColor: activeObj.color }} />
           <Palette size={15} aria-hidden="true" />
           <span className="style-dock__label">
-            {isAr ? `التصميم ${activeObj.num}: ${activeObj.nameAr}` : `Style ${activeObj.num}: ${activeObj.nameEn}`}
+            {isAr ? `تصميم ${activeObj.num}: ${activeObj.nameAr}` : `Design ${activeObj.num}: ${activeObj.nameEn}`}
+          </span>
+          <span className="style-dock__badge">
+            {activeObj.archetype}
           </span>
           {isOpen ? <ChevronDown size={14} /> : <ChevronUp size={14} />}
         </button>
@@ -129,7 +186,7 @@ export default function StyleSwitcher({ defaultStyle = "style-1", locale = "ar" 
         {isOpen && (
           <div className="style-dock__menu" role="menu">
             <div className="style-dock__menu-header">
-              <span>{isAr ? "اختر أحد التصاميم الـ 5 المقترحة:" : "Select one of 5 design proposals:"}</span>
+              <span>{isAr ? "اختر أحد التصاميم الـ 10 المختلفة كلياً:" : "Choose from 10 distinct design worlds:"}</span>
             </div>
             <div className="style-dock__options">
               {STYLES.map((style) => {
@@ -144,7 +201,10 @@ export default function StyleSwitcher({ defaultStyle = "style-1", locale = "ar" 
                   >
                     <span className="style-dock__color-swatch" style={{ backgroundColor: style.color }} />
                     <div className="style-dock__option-text">
-                      <strong>{isAr ? `${style.num}. ${style.nameAr}` : `${style.num}. ${style.nameEn}`}</strong>
+                      <div className="style-dock__option-row">
+                        <strong>{isAr ? `${style.num}. ${style.nameAr}` : `${style.num}. ${style.nameEn}`}</strong>
+                        <span className="style-dock__tag">{style.archetype}</span>
+                      </div>
                       <small>{style.desc}</small>
                     </div>
                     {isActive && <Check size={14} className="style-dock__check" />}

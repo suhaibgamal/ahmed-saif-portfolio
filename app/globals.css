@@ -3719,3 +3719,413 @@ h6 {
   color: var(--muted);
   font-weight: 500;
 }
+
+/* ==========================================================================
+   10 BESPOKE ARCHETYPE STYLES & SUBPAGE COMPONENT SYSTEM
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   ARCHETYPE 1: AUREATE LYRICIST (Royal Yemeni Maestro)
+   -------------------------------------------------------------------------- */
+.aureate-wrapper {
+  width: min(100% - 40px, var(--content));
+  margin: 60px auto 120px;
+}
+
+.aureate-hero {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 64px;
+  align-items: center;
+  padding: 60px 48px;
+  background: radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.12) 0%, transparent 60%),
+              linear-gradient(180deg, rgba(20, 18, 14, 0.9) 0%, rgba(10, 10, 12, 0.95) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 32px 8px 32px 8px;
+  box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.8), inset 0 0 40px rgba(212, 175, 55, 0.05);
+  margin-bottom: 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.aureate-hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #d4af37, transparent);
+}
+
+.aureate-crest {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 18px;
+  background: rgba(212, 175, 55, 0.12);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  border-radius: 999px;
+  color: #d4af37;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.aureate-portrait-frame {
+  position: relative;
+  border-radius: 200px 200px 16px 16px;
+  overflow: hidden;
+  border: 1.5px solid rgba(212, 175, 55, 0.45);
+  box-shadow: 0 20px 50px -10px rgba(212, 175, 55, 0.25);
+  aspect-ratio: 4 / 5;
+}
+
+.aureate-portrait-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.aureate-portrait-frame:hover img {
+  transform: scale(1.03);
+}
+
+.aureate-works-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 32px;
+  margin-top: 40px;
+}
+
+.aureate-work-card {
+  padding: 28px;
+  background: linear-gradient(180deg, rgba(26, 24, 20, 0.7) 0%, rgba(14, 14, 16, 0.85) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 16px 4px 16px 4px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.aureate-work-card:hover {
+  border-color: #d4af37;
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(212, 175, 55, 0.15);
+}
+
+.aureate-wax-seal {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #d4af37 0%, #997819 100%);
+  color: #120e06;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  box-shadow: 0 4px 14px rgba(212, 175, 55, 0.4);
+}
+
+/* --------------------------------------------------------------------------
+   ARCHETYPE 2: NOCTURNAL RESONANCE (Cyber Indigo & Glassmorphism)
+   -------------------------------------------------------------------------- */
+.nocturne-wrapper {
+  width: min(100% - 40px, var(--content));
+  margin: 60px auto 120px;
+}
+
+.nocturne-hero {
+  position: relative;
+  padding: 70px 48px;
+  background: rgba(11, 19, 41, 0.55);
+  backdrop-filter: blur(28px);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  border-radius: 24px;
+  box-shadow: 0 30px 90px -20px rgba(6, 9, 19, 0.9), 0 0 50px rgba(56, 189, 248, 0.1);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+  margin-bottom: 80px;
+  overflow: hidden;
+}
+
+.nocturne-orb {
+  position: absolute;
+  top: -100px;
+  inset-inline-end: -100px;
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.25) 0%, rgba(99, 102, 241, 0.1) 70%, transparent 100%);
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+.nocturne-glass-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 28px;
+}
+
+.nocturne-glass-card {
+  background: rgba(14, 23, 49, 0.45);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(56, 189, 248, 0.18);
+  border-radius: 18px;
+  padding: 26px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.nocturne-glass-card:hover {
+  border-color: rgba(56, 189, 248, 0.5);
+  background: rgba(17, 30, 66, 0.6);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 50px rgba(56, 189, 248, 0.2);
+}
+
+.nocturne-hologram-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+/* --------------------------------------------------------------------------
+   ARCHETYPE 3: ANALOG TAPE LOUNGE (Raw Acoustic Session)
+   -------------------------------------------------------------------------- */
+.tape-wrapper {
+  width: min(100% - 40px, var(--content));
+  margin: 60px auto 120px;
+}
+
+.tape-hero {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 60px;
+  align-items: center;
+  padding: 60px 48px;
+  background: #14100c;
+  border: 2px solid rgba(245, 158, 11, 0.28);
+  border-radius: 12px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+  margin-bottom: 80px;
+}
+
+.tape-polaroid {
+  background: #fbf7f0;
+  padding: 16px 16px 40px 16px;
+  border-radius: 4px;
+  box-shadow: 0 16px 36px rgba(0,0,0,0.6), 0 0 0 1px rgba(245, 158, 11, 0.2);
+  transform: rotate(-2deg);
+  transition: transform 0.3s ease;
+}
+
+.tape-polaroid:hover {
+  transform: rotate(0deg) scale(1.02);
+}
+
+.tape-polaroid img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 2px;
+  filter: sepia(0.2) contrast(1.05);
+}
+
+.tape-polaroid-caption {
+  margin-top: 14px;
+  font-family: monospace, serif;
+  font-size: 13px;
+  color: #2b2318;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.tape-cassette-card {
+  padding: 24px;
+  background: #1a1511;
+  border: 1px solid rgba(245, 158, 11, 0.22);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: all 0.25s ease;
+}
+
+.tape-cassette-card:hover {
+  border-color: #f59e0b;
+  background: #241c16;
+  transform: translateY(-3px);
+}
+
+/* --------------------------------------------------------------------------
+   ARCHETYPE 4: ATELIER FOREST (Architectural Swiss Grid & Terracotta)
+   -------------------------------------------------------------------------- */
+.atelier-wrapper {
+  width: min(100% - 40px, var(--content));
+  margin: 60px auto 120px;
+}
+
+.atelier-grid-hero {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 0;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #0d1712;
+  margin-bottom: 80px;
+}
+
+.atelier-hero-text {
+  padding: 64px 48px;
+  border-inline-end: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.atelier-hero-visual {
+  position: relative;
+  min-height: 440px;
+}
+
+.atelier-hero-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.atelier-mono-tag {
+  font-family: "Space Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: #52b788;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.atelier-catalog-row {
+  display: grid;
+  grid-template-columns: 80px 1fr auto;
+  gap: 24px;
+  align-items: center;
+  padding: 28px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  text-decoration: none;
+  color: var(--text);
+  transition: padding 0.25s ease, color 0.25s ease;
+}
+
+.atelier-catalog-row:hover {
+  padding-inline-start: 14px;
+  color: #52b788;
+}
+
+.atelier-catalog-num {
+  font-family: "Space Mono", monospace;
+  font-size: 20px;
+  color: #52b788;
+  font-weight: 700;
+}
+
+/* --------------------------------------------------------------------------
+   ARCHETYPE 5: MONOCHROME GALLERY (Brutalist Museum Archival)
+   -------------------------------------------------------------------------- */
+.gallery-wrapper {
+  width: min(100% - 40px, var(--content));
+  margin: 60px auto 120px;
+}
+
+.gallery-split-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  padding: 60px 0;
+  border-bottom: 2px solid #ffffff;
+  margin-bottom: 80px;
+}
+
+.gallery-giant-title {
+  font-size: clamp(52px, 8vw, 110px);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  margin: 0;
+  color: #ffffff;
+}
+
+.gallery-photo-plate {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border: 1px solid #ffffff;
+  padding: 12px;
+  background: #080808;
+}
+
+.gallery-photo-plate img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%) contrast(1.15);
+}
+
+.gallery-plate-tag {
+  position: absolute;
+  bottom: 20px;
+  inset-inline-start: 20px;
+  background: #ffffff;
+  color: #000000;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+}
+
+.gallery-exhibition-card {
+  padding: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: #000000;
+  transition: all 0.25s ease;
+}
+
+.gallery-exhibition-card:hover {
+  border-color: #ffffff;
+  background: #111111;
+  transform: translateY(-4px);
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE OVERRIDES FOR ALL 10
+   -------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .aureate-hero,
+  .nocturne-hero,
+  .tape-hero,
+  .atelier-grid-hero,
+  .gallery-split-hero {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 40px 24px;
+  }
+
+  .atelier-hero-text {
+    border-inline-end: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  }
+}

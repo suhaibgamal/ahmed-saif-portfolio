@@ -33,7 +33,7 @@ export const metadata = {
 
 export default function ArabicRootLayout({ children }) {
   return (
-    <html lang="ar" dir="rtl">
+    <html lang="ar" dir="rtl" data-theme="style-1" data-archetype="aureate">
       <head>
         <link
           rel="preload"

@@ -24,6 +24,7 @@ import {
   socialLinks
 } from "../data";
 import MobileNav from "./MobileNav";
+import StyleSwitcher from "./StyleSwitcher";
 
 export function OutboundIcon({ label }) {
   return (
@@ -174,6 +175,7 @@ export default function SiteChrome({
           </a>
         </div>
       </footer>
+      <StyleSwitcher locale={locale} />
     </div>
   );
 }

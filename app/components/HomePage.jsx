@@ -2,265 +2,239 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowUpRight,
-  AudioLines,
-  Drum,
-  Handshake,
   Headphones,
   Mail,
   Music2,
-  Music4,
   Play,
   Radio,
-  SlidersHorizontal
+  Sparkles
 } from "lucide-react";
 import {
   content,
   getLocalePath,
   getWorkCopy,
   getWorkPath,
+  socialLinks,
   works
 } from "../data";
-import { MeterStack, SonicSeal, StaffLines, Waveform } from "./MusicVisuals";
-import SiteChrome, { emailHref, OutboundIcon } from "./SiteChrome";
+import SiteChrome, { emailHref, SocialIcon } from "./SiteChrome";
 
 export default function HomePage({ locale }) {
   const t = content[locale];
   const featuredWorks = works.slice(0, 4);
 
   return (
-    <SiteChrome headerMode="overlay" locale={locale} page="home">
-      <section className="hero hero--cinematic" aria-labelledby="hero-title">
-        <Image
-          src="/ahmed-saif-hero.webp"
-          alt={t.heroAlt}
-          fill
-          priority
-          className="hero-image"
-          sizes="100vw"
-        />
-        <div className="hero-shade" aria-hidden="true" />
-        <StaffLines />
+    <SiteChrome headerMode="solid" locale={locale} page="home">
+      {/* ================================================================
+          ACT 1: HERO WITH PORTRAIT & 1ST-PERSON ARTIST VOICE
+          ================================================================ */}
+      <section className="hero-v2" aria-labelledby="hero-title">
+        <div className="hero-v2__ambient" aria-hidden="true" />
+        <div className="hero-v2__grid">
+          <div className="hero-v2__copy">
+            <div className="hero-v2__badge">
+              <span className="hero-v2__badge-dot" />
+              <span>{t.hero.role}</span>
+            </div>
 
-        <div className="hero-content">
-          <p className="eyebrow">{t.hero.kicker}</p>
-          <h1 id="hero-title">{t.hero.title}</h1>
-          <p className="role">{t.hero.role}</p>
-          <p className="lead">{t.hero.lead}</p>
+            <h1 id="hero-title" className="hero-v2__title">
+              {t.hero.title}
+            </h1>
 
-          <div className="hero-actions">
-            <a
-              className="button button-primary"
-              href="https://soundcloud.com/a7mdsif"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Play aria-hidden="true" size={18} fill="currentColor" />
-              <span>{t.hero.listen}</span>
-            </a>
-            <Link className="button button-secondary" href={getLocalePath(locale, "works")}>
-              <Music2 aria-hidden="true" size={18} />
-              <span>{t.hero.explore}</span>
-            </Link>
+            <p className="hero-v2__lead">{t.hero.lead}</p>
+
+            <div className="hero-v2__actions">
+              <a
+                className="button button-primary"
+                href="https://soundcloud.com/a7mdsif"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Play aria-hidden="true" size={17} fill="currentColor" />
+                <span>{t.hero.listen}</span>
+              </a>
+
+              <Link
+                className="button button-secondary"
+                href={getLocalePath(locale, "works")}
+              >
+                <Music2 aria-hidden="true" size={17} />
+                <span>{t.hero.explore}</span>
+              </Link>
+            </div>
+
+            <div className="hero-v2__stats" aria-label={t.hero.role}>
+              {t.stats.map((stat) => (
+                <div className="hero-v2__stat-item" key={stat.label}>
+                  <strong>{stat.value}</strong>
+                  <span>{stat.label}</span>
+                </div>
+              ))}
+            </div>
           </div>
 
-          <ul className="signal-list" aria-label={t.hero.role}>
-            {t.stats.map((stat) => (
-              <li key={stat.label}>
-                <strong>{stat.value}</strong>
-                <span>{stat.label}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <aside className="hero-instrument" aria-label={t.hero.tag}>
-          <SonicSeal label={t.hero.tag} />
-          <div className="hero-tag">
-            <span>{t.hero.tag}</span>
-            <Waveform dense />
+          <div className="hero-v2__visual">
+            <div className="hero-v2__portrait-frame">
+              <Image
+                src="/ahmed-saif-profile.webp"
+                alt={t.hero.title}
+                width={440}
+                height={440}
+                priority
+                className="hero-v2__portrait-img"
+                sizes="(max-width: 900px) 320px, 440px"
+              />
+              <div className="hero-v2__portrait-tag">
+                <span>A7MD Studio</span>
+              </div>
+            </div>
           </div>
-        </aside>
+        </div>
       </section>
 
-      <section className="platform-strip" aria-label={t.strip.label}>
-        <div className="strip-heading">
-          <span>{t.strip.label}</span>
-          <strong>{t.strip.title}</strong>
-        </div>
-        <Waveform />
-        <a
-          className="strip-link"
-          href="https://soundcloud.com/a7mdsif"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Headphones aria-hidden="true" size={18} />
-          <span>{t.strip.action}</span>
-          <OutboundIcon label={t.external} />
-        </a>
-      </section>
+      {/* ================================================================
+          ACT 2: FEATURED WORKS & LIVING DISCOGRAPHY
+          ================================================================ */}
+      <section className="act-section" aria-labelledby="featured-title">
+        <div className="act-section__inner">
+          <div className="act-header">
+            <p className="eyebrow">{t.featuredWorks.eyebrow}</p>
+            <h2 id="featured-title">{t.featuredWorks.title}</h2>
+            <p>{t.featuredWorks.body}</p>
+          </div>
 
-      <section className="section studio-brand-section" aria-labelledby="studio-brand-title">
-        <div className="studio-brand__visual">
-          <Image
-            src="/favicon.webp"
-            alt=""
-            width={132}
-            height={46}
-            sizes="132px"
-            className="studio-brand__logo"
-          />
-          <strong>A7MD Studio</strong>
-          <span>{t.brandLine}</span>
-        </div>
-
-        <div className="studio-brand__copy">
-          <p className="eyebrow">{t.studio.eyebrow}</p>
-          <h2 id="studio-brand-title">{t.studio.title}</h2>
-          <p>{t.studio.body}</p>
-          <div className="studio-card-grid">
-            {t.studio.cards.map((card, index) => {
-              const Icon = index === 0 ? AudioLines : index === 1 ? Drum : Music4;
+          <div className="act-works-grid">
+            {featuredWorks.map((work) => {
+              const copy = getWorkCopy(work, locale);
 
               return (
-                <article className="studio-card" key={card.title}>
-                  <Icon aria-hidden="true" size={22} strokeWidth={1.8} />
-                  <h3>{card.title}</h3>
-                  <p>{card.body}</p>
-                </article>
+                <Link
+                  className="act-work-card"
+                  href={getWorkPath(locale, work)}
+                  key={work.enTitle}
+                >
+                  <div className="act-work-card__top">
+                    <span className="act-work-card__year">{work.year}</span>
+                    <ArrowUpRight
+                      className="act-work-card__icon"
+                      aria-hidden="true"
+                      size={18}
+                    />
+                  </div>
+
+                  <div className="act-work-card__body">
+                    <h3>{copy.title}</h3>
+                    <span className="act-work-card__meta">
+                      {copy.type} · {copy.mood}
+                    </span>
+                  </div>
+                </Link>
               );
             })}
           </div>
-        </div>
-      </section>
 
-      <section className="section studio-section" aria-labelledby="studio-title">
-        <div className="section-heading">
-          <p className="eyebrow">{t.console.eyebrow}</p>
-          <h2 id="studio-title">{t.console.title}</h2>
-          <p>{t.console.body}</p>
-        </div>
-
-        <div className="studio-console">
-          <div className="console-copy">
-            <SlidersHorizontal aria-hidden="true" size={28} />
-            <h3>{t.signature.title}</h3>
-            <p>{t.signature.body}</p>
-          </div>
-          <MeterStack channels={t.console.channels} />
-        </div>
-      </section>
-
-      <section className="section works-feature" aria-labelledby="featured-title">
-        <div className="section-heading">
-          <p className="eyebrow">{t.featuredWorks.eyebrow}</p>
-          <h2 id="featured-title">{t.featuredWorks.title}</h2>
-          <p>{t.featuredWorks.body}</p>
-        </div>
-
-        <div className="track-grid">
-          {featuredWorks.map((work, index) => {
-            const copy = getWorkCopy(work, locale);
-
-            return (
-              <Link
-                className="track-card"
-                href={getWorkPath(locale, work)}
-                key={work.enTitle}
-              >
-                <span className="track-card__number">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <div>
-                  <p>{copy.mood}</p>
-                  <h3>{copy.title}</h3>
-                  <span>{copy.type}</span>
-                </div>
-                <ArrowUpRight aria-hidden="true" size={19} />
-              </Link>
-            );
-          })}
-        </div>
-
-        <div className="section-link-row">
-          <Link className="button button-secondary" href={getLocalePath(locale, "works")}>
-            <Radio aria-hidden="true" size={18} />
-            <span>{t.nav.find((item) => item.page === "works")?.label}</span>
-          </Link>
-        </div>
-      </section>
-
-      <section className="section signature-section" aria-labelledby="signature-title">
-        <div className="signature-copy">
-          <p className="eyebrow">{t.signature.eyebrow}</p>
-          <h2 id="signature-title">{t.signature.title}</h2>
-          <p>{t.signature.body}</p>
-        </div>
-        <div className="signature-score">
-          {t.signature.layers.map((layer, index) => (
-            <div className="score-line" key={layer}>
-              <span>{String(index + 1).padStart(2, "0")}</span>
-              <strong>{layer}</strong>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="section credits-section" aria-labelledby="credits-title">
-        <div className="section-heading compact">
-          <p className="eyebrow">{t.credits.eyebrow}</p>
-          <h2 id="credits-title">{t.credits.title}</h2>
-          <p>{t.credits.body}</p>
-        </div>
-        <div className="credit-grid">
-          {t.credits.items.map((item, index) => {
-            const Icon = index === 0 ? Music4 : index === 1 ? AudioLines : Handshake;
-
-            return (
-              <article className="credit-card" key={item.title}>
-                <Icon aria-hidden="true" size={24} strokeWidth={1.8} />
-                <h3>{item.title}</h3>
-                <p>{item.body}</p>
-              </article>
-            );
-          })}
-        </div>
-      </section>
-
-      <section className="section site-map-section" aria-labelledby="pages-title">
-        <div className="section-heading">
-          <p className="eyebrow">{t.pageCards.eyebrow}</p>
-          <h2 id="pages-title">{t.pageCards.title}</h2>
-          <p>{t.pageCards.body}</p>
-        </div>
-        <div className="page-card-grid">
-          {t.pageCards.items.map((item) => (
+          <div className="section-link-row">
             <Link
-              className="page-card"
-              href={getLocalePath(locale, item.page)}
-              key={item.page}
+              className="button button-secondary"
+              href={getLocalePath(locale, "works")}
             >
-              <span>{item.title}</span>
-              <p>{item.body}</p>
-              <ArrowUpRight aria-hidden="true" size={18} />
+              <Radio aria-hidden="true" size={17} />
+              <span>{t.worksPage.catalogLabel}</span>
+              <ArrowUpRight aria-hidden="true" size={16} />
             </Link>
-          ))}
+          </div>
         </div>
       </section>
 
-      <section className="section home-contact">
-        <div>
-          <p className="eyebrow">{t.contactPage.eyebrow}</p>
-          <h2>{t.worksPage.cta}</h2>
+      {/* ================================================================
+          ACT 3: UNIFIED ARTIST STORY & A7MD STUDIO CRAFT
+          ================================================================ */}
+      <section className="act-section" aria-labelledby="story-title">
+        <div className="act-section__inner">
+          <div className="act-story-card">
+            <div className="act-story-card__content">
+              <p className="eyebrow">{t.aboutPage.eyebrow}</p>
+              <h2 id="story-title">{t.aboutPage.title}</h2>
+              <p>{t.aboutPage.body}</p>
+
+              <blockquote className="artist-quote" style={{ marginTop: "24px" }}>
+                <p>{t.aboutPage.statement}</p>
+              </blockquote>
+
+              <div style={{ marginTop: "28px" }}>
+                <Link
+                  className="button button-secondary"
+                  href={getLocalePath(locale, "about")}
+                >
+                  <Sparkles aria-hidden="true" size={16} />
+                  <span>{t.nav.find((item) => item.page === "about")?.label}</span>
+                  <ArrowUpRight aria-hidden="true" size={16} />
+                </Link>
+              </div>
+            </div>
+
+            <div className="act-story-pillars">
+              {t.aboutPage.principles.map((principle, index) => (
+                <div className="act-story-pillar" key={principle.title}>
+                  <span className="act-story-pillar__num">
+                    0{index + 1}
+                  </span>
+                  <div>
+                    <h4>{principle.title}</h4>
+                    <p>{principle.body}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
-        <a
-          className="button button-primary"
-          href={emailHref(t.contactPage.primaryEmail, t.contactPage.subject)}
-        >
-          <Mail aria-hidden="true" size={18} />
-          <span>{t.contactPage.primaryAction}</span>
-        </a>
       </section>
+
+      {/* ================================================================
+          ACT 4: PLATFORMS PRESENCE & DIRECT COLLABORATION
+          ================================================================ */}
+      <section className="act-connect" aria-labelledby="connect-title">
+        <div className="act-section__inner">
+          <div className="act-connect__box">
+            <p className="eyebrow">{t.contactPage.eyebrow}</p>
+            <h2 id="connect-title">{t.worksPage.cta}</h2>
+            <p>{t.contactPage.body}</p>
+
+            <div className="act-platforms" aria-label={t.strip.label}>
+              {socialLinks
+                .filter((item) =>
+                  ["soundcloud", "spotify", "appleMusic", "anghami", "youtube"].includes(
+                    item.icon
+                  )
+                )
+                .map((platform) => (
+                  <a
+                    key={platform.label}
+                    href={platform.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="act-platform-link"
+                  >
+                    <SocialIcon name={platform.icon} size={16} />
+                    <span>{platform.label}</span>
+                  </a>
+                ))}
+            </div>
+
+            <a
+              className="button button-primary"
+              href={emailHref(
+                t.contactPage.primaryEmail,
+                t.contactPage.subject
+              )}
+            >
+              <Mail aria-hidden="true" size={17} />
+              <span>{t.contactPage.primaryAction}</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
     </SiteChrome>
   );
 }

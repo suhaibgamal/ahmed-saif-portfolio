@@ -1,377 +1,178 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import Link from "next/link";
-import {
-  ArrowUpRight,
-  Headphones,
-  Mail,
-  MessageSquare,
-  Mic,
-  Music2,
-  Phone,
-  Radio,
-  Send,
-  Sparkles
-} from "lucide-react";
-import { content, getLocalePath, socialLinks } from "../data";
-import { Waveform } from "./MusicVisuals";
-import SiteChrome, { emailHref, OutboundIcon, SocialIcon } from "./SiteChrome";
-import { useActiveTheme } from "./useActiveTheme";
+import React, { useState } from 'react';
+import { ArrowLeft, ArrowRight, Mail, Phone, MapPin, Send, MessageCircle } from "lucide-react";
+import { content, socialLinks } from "../data";
+import SiteChrome, { SocialIcon, emailHref } from "./SiteChrome";
 
-export default function ContactPage({ locale }) {
-  const { archetype: activeArchetype } = useActiveTheme();
+export default function ContactPage({ locale = "ar" }) {
   const t = content[locale];
-  const primaryHref = emailHref(
-    t.contactPage.primaryEmail,
-    t.contactPage.subject
-  );
-  const secondaryHref = emailHref(
-    t.contactPage.secondaryEmail,
-    t.contactPage.subject
-  );
+  const isAr = locale === "ar";
+  const ArrowIcon = isAr ? ArrowLeft : ArrowRight;
+  const [submitted, setSubmitted] = useState(false);
 
-  const archetype = (activeArchetype === "classic" || !activeArchetype) ? "aureate" : activeArchetype;
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSubmitted(true);
+  };
 
   return (
     <SiteChrome locale={locale} page="contact">
-      {/* ====================================================================
-          1. AUREATE LYRICIST (Style 1: Royal Concierge Liaison)
-          ==================================================================== */}
-      {archetype === "aureate" && (
-        <div className="aureate-wrapper">
-          <div className="aureate-hero" style={{ marginBottom: "60px" }}>
-            <div>
-              <span className="aureate-crest">
-                <Sparkles size={13} /> {locale === "ar" ? "حجوزات الأعمال والتواصل المباشر" : "Direct Concierge & Booking"}
-              </span>
-              <h1 style={{ fontSize: "clamp(34px, 5vw, 56px)", margin: "14px 0" }}>{t.contactPage.title}</h1>
-              <p style={{ fontSize: "17px", lineHeight: 1.8, color: "var(--muted-strong)", marginBottom: "32px" }}>
-                {t.contactPage.body}
-              </p>
-              <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-                <a className="button button-primary" href={primaryHref}>
-                  <Send size={16} />
-                  <span>{t.contactPage.primaryAction}</span>
-                </a>
-                <a className="button button-secondary" href={secondaryHref}>
-                  <Mail size={16} />
-                  <span>{t.contactPage.secondaryAction}</span>
-                </a>
-              </div>
+      <div className="py-12 md:py-20">
+        <div className="stage-container max-w-5xl">
+          {/* Header */}
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <div className="stage-badge mb-3">
+              <span className="w-2 h-2 rounded-full bg-[#00f0ff] stage-strobe" />
+              <span>{isAr ? "إدارة الجولات والإنتاج المباشر" : "TOUR MANAGEMENT & DIRECT BOOKING"}</span>
             </div>
-            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "20px" }}>
-              <div className="aureate-wax-seal">AS</div>
-              <strong style={{ fontSize: "18px", color: "var(--accent)" }}>{t.contactPage.primaryEmail}</strong>
-              <span style={{ fontSize: "14px", color: "var(--muted)" }}>A7MD Studio · Yemen / Global</span>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* ====================================================================
-          2. NOCTURNAL RESONANCE (Style 2: Cyber Terminal HUD)
-          ==================================================================== */}
-      {archetype === "nocturne" && (
-        <div className="nocturne-wrapper">
-          <div className="nocturne-hero" style={{ marginBottom: "60px" }}>
-            <div>
-              <span className="nocturne-hologram-tag">TRANSMISSION LINK // ONLINE</span>
-              <h1 style={{ fontSize: "clamp(34px, 5vw, 54px)", margin: "16px 0", color: "#f1f5f9" }}>{t.contactPage.title}</h1>
-              <p style={{ fontSize: "16px", lineHeight: 1.8, color: "var(--muted-strong)", marginBottom: "28px" }}>
-                {t.contactPage.body}
-              </p>
-              <div style={{ display: "flex", gap: "14px", flexWrap: "wrap" }}>
-                <a className="button button-primary" href={primaryHref}>
-                  <Send size={16} />
-                  <span>{t.contactPage.primaryAction}</span>
-                </a>
-                <a className="button button-secondary" href={secondaryHref}>
-                  <Mail size={16} />
-                  <span>{t.contactPage.secondaryAction}</span>
-                </a>
-              </div>
-            </div>
-            <div className="nocturne-glass-card" style={{ textAlign: "center" }}>
-              <span className="nocturne-hologram-tag" style={{ marginBottom: "14px" }}>BEACON FREQUENCY</span>
-              <strong style={{ fontSize: "18px", display: "block", color: "#38bdf8", margin: "10px 0" }}>
-                {t.contactPage.primaryEmail}
-              </strong>
-              <span style={{ fontSize: "13px", color: "var(--muted)" }}>Direct Producer Inquiries</span>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* ====================================================================
-          3. ANALOG TAPE LOUNGE (Style 3: Vintage Telegram Booking)
-          ==================================================================== */}
-      {archetype === "tape" && (
-        <div className="tape-wrapper">
-          <div className="tape-hero" style={{ marginBottom: "60px" }}>
-            <div>
-              <span style={{ fontSize: "12px", fontFamily: "monospace", color: "#f59e0b", background: "rgba(245, 158, 11, 0.15)", padding: "4px 10px", borderRadius: "4px" }}>
-                TELEGRAPH DISPATCH // BOOKING
-              </span>
-              <h1 style={{ fontSize: "clamp(30px, 4.5vw, 50px)", margin: "16px 0 12px" }}>{t.contactPage.title}</h1>
-              <p style={{ fontSize: "16px", lineHeight: 1.8, color: "var(--muted-strong)", marginBottom: "24px" }}>
-                {t.contactPage.body}
-              </p>
-              <div style={{ display: "flex", gap: "14px" }}>
-                <a className="button button-primary" href={primaryHref}>
-                  <Send size={16} />
-                  <span>{t.contactPage.primaryAction}</span>
-                </a>
-                <a className="button button-secondary" href={secondaryHref}>
-                  <Mail size={16} />
-                  <span>{t.contactPage.secondaryAction}</span>
-                </a>
-              </div>
-            </div>
-            <div className="tape-cassette-card" style={{ textAlign: "center" }}>
-              <span style={{ fontFamily: "monospace", fontSize: "12px", color: "#f59e0b" }}>OFFICIAL DISPATCH WIRE</span>
-              <strong style={{ fontSize: "18px", color: "#f5ede3", margin: "12px 0 6px", display: "block" }}>
-                {t.contactPage.primaryEmail}
-              </strong>
-              <span style={{ fontSize: "13px", color: "var(--muted)" }}>A7MD Studio Archive</span>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* ====================================================================
-          4. ATELIER FOREST (Style 4: Architectural Dispatch Box)
-          ==================================================================== */}
-      {archetype === "atelier" && (
-        <div className="atelier-wrapper">
-          <div className="atelier-grid-hero" style={{ marginBottom: "60px" }}>
-            <div className="atelier-hero-text">
-              <div>
-                <span className="atelier-mono-tag">DISPATCH TERMINAL // A7MD STUDIO</span>
-                <h1 style={{ fontSize: "clamp(34px, 5vw, 56px)", margin: "14px 0" }}>{t.contactPage.title}</h1>
-                <p style={{ fontSize: "16px", lineHeight: 1.8, color: "var(--muted-strong)", marginBottom: "24px" }}>
-                  {t.contactPage.body}
-                </p>
-              </div>
-              <div style={{ display: "flex", gap: "14px" }}>
-                <a className="button button-primary" href={primaryHref}>
-                  <Send size={16} />
-                  <span>{t.contactPage.primaryAction}</span>
-                </a>
-                <a className="button button-secondary" href={secondaryHref}>
-                  <Mail size={16} />
-                  <span>{t.contactPage.secondaryAction}</span>
-                </a>
-              </div>
-            </div>
-            <div style={{ padding: "48px", display: "flex", flexDirection: "column", justifyContent: "center", background: "#0a140e" }}>
-              <span className="atelier-mono-tag">COMMUNICATION VECTOR</span>
-              <strong style={{ fontSize: "20px", color: "#52b788", margin: "8px 0" }}>{t.contactPage.primaryEmail}</strong>
-              <span style={{ fontFamily: "Space Mono, monospace", fontSize: "13px", color: "var(--muted)" }}>
-                RESPONSIVENESS: 24-48 HOURS
-              </span>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* ====================================================================
-          5. MONOCHROME GALLERY (Style 5: Brutalist Acquisition Desk)
-          ==================================================================== */}
-      {archetype === "gallery" && (
-        <div className="gallery-wrapper">
-          <div className="gallery-split-hero" style={{ marginBottom: "60px" }}>
-            <div>
-              <span style={{ fontSize: "11px", letterSpacing: "3px", textTransform: "uppercase", color: "#a1a1aa", fontWeight: 800 }}>
-                ACQUISITION & INQUIRIES
-              </span>
-              <h1 className="gallery-giant-title" style={{ margin: "14px 0" }}>{t.contactPage.title}</h1>
-              <p style={{ fontSize: "16px", lineHeight: 1.8, color: "#a1a1aa", marginBottom: "30px" }}>
-                {t.contactPage.body}
-              </p>
-              <div style={{ display: "flex", gap: "14px" }}>
-                <a className="button button-primary" href={primaryHref}>
-                  <Send size={16} />
-                  <span>{t.contactPage.primaryAction}</span>
-                </a>
-                <a className="button button-secondary" href={secondaryHref}>
-                  <Mail size={16} />
-                  <span>{t.contactPage.secondaryAction}</span>
-                </a>
-              </div>
-            </div>
-            <div className="gallery-exhibition-card" style={{ textAlign: "center", padding: "50px 30px" }}>
-              <span style={{ fontSize: "11px", letterSpacing: "2px", color: "#71717a" }}>CURATORIAL DESK</span>
-              <strong style={{ fontSize: "22px", color: "#ffffff", display: "block", margin: "16px 0 8px" }}>
-                {t.contactPage.primaryEmail}
-              </strong>
-              <span style={{ fontSize: "13px", color: "#a1a1aa" }}>Direct Artist Representation</span>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* ====================================================================
-          6. NEO-BENTO SHOWCASE (Style 6: Modular Booking Widget)
-          ==================================================================== */}
-      {archetype === "bento" && (
-        <div className="bento-wrapper">
-          <div className="bento-grid" style={{ marginBottom: "50px" }}>
-            <div className="bento-card bento-card--hero-copy">
-              <span className="bento-tag"><Sparkles size={13} /> {locale === "ar" ? "تواصل مباشر" : "Direct Liaison"}</span>
-              <h1 className="hero-v2__title" style={{ fontSize: "clamp(28px, 4vw, 46px)", margin: "14px 0" }}>{t.contactPage.title}</h1>
-              <p className="hero-v2__lead" style={{ fontSize: "16px", margin: "0 0 24px" }}>{t.contactPage.body}</p>
-              <div className="hero-v2__actions">
-                <a className="button button-primary" href={primaryHref}>
-                  <Send size={16} />
-                  <span>{t.contactPage.primaryAction}</span>
-                </a>
-                <a className="button button-secondary" href={secondaryHref}>
-                  <Mail size={16} />
-                  <span>{t.contactPage.secondaryAction}</span>
-                </a>
-              </div>
-            </div>
-            <div className="bento-card bento-card--player" style={{ textAlign: "center" }}>
-              <span className="bento-tag"><Mail size={13} /> Studio Email</span>
-              <strong style={{ fontSize: "18px", margin: "16px 0 8px", display: "block" }}>{t.contactPage.primaryEmail}</strong>
-              <p style={{ fontSize: "13px", color: "var(--muted)" }}>A7MD Studio · Direct Inbox</p>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* ====================================================================
-          7. EDITORIAL LOOKBOOK (Style 7: Luxury Magazine Colophon)
-          ==================================================================== */}
-      {archetype === "editorial" && (
-        <div className="editorial-wrapper">
-          <div className="editorial-hero" style={{ marginBottom: "60px" }}>
-            <div className="editorial-hero-content" style={{ maxWidth: "700px" }}>
-              <span style={{ fontSize: "11px", letterSpacing: "2px", textTransform: "uppercase", color: "var(--accent)", fontWeight: 700 }}>
-                COLOPHON // REPRESENTATION & INQUIRIES
-              </span>
-              <h1 className="editorial-display-title" style={{ fontSize: "clamp(34px, 5.5vw, 58px)", margin: "14px 0" }}>{t.contactPage.title}</h1>
-              <p style={{ fontSize: "18px", lineHeight: 1.8, color: "var(--muted-strong)", marginBottom: "30px" }}>
-                {t.contactPage.body}
-              </p>
-              <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-                <a className="button button-primary" href={primaryHref}>
-                  <Send size={16} />
-                  <span>{t.contactPage.primaryAction}</span>
-                </a>
-                <a className="button button-secondary" href={secondaryHref}>
-                  <Mail size={16} />
-                  <span>{t.contactPage.secondaryAction}</span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* ====================================================================
-          8. ANALOG STUDIO CONSOLE (Style 8: Hardware Patchbay Connector)
-          ==================================================================== */}
-      {archetype === "studio" && (
-        <div className="studio-wrapper">
-          <div className="studio-console-deck" style={{ marginBottom: "50px" }}>
-            <div className="studio-console-header">
-              <span style={{ fontFamily: "monospace", fontSize: "12px", color: "var(--accent)", fontWeight: 700 }}>
-                PATCHBAY ROUTING CHANNEL · A7MD STUDIO
-              </span>
-            </div>
-            <h1 style={{ fontSize: "clamp(30px, 4.5vw, 50px)", margin: "16px 0 10px" }}>{t.contactPage.title}</h1>
-            <p style={{ fontSize: "16px", lineHeight: 1.75, color: "var(--muted-strong)", marginBottom: "24px" }}>
-              {t.contactPage.body}
+            <h1 className="text-3xl sm:text-5xl font-black text-white mb-4">
+              {isAr ? "تنسيق الحفلات والمهرجانات الحية" : "Book Concerts & Festivals"}
+            </h1>
+            <p className="text-base text-[#94a3b8]">
+              {isAr
+                ? "تواصل مباشرة مع إدارة أحمد سيف لتنسيق العروض الموسيقية، حفلات المهرجانات، والمشاريع الأوركسترالية الكبرى."
+                : "Direct liaison for concert organizers, festival directors, and cultural event commissions."}
             </p>
-            <div style={{ display: "flex", gap: "14px" }}>
-              <a className="button button-primary" href={primaryHref}>
-                <Send size={16} />
-                <span>{t.contactPage.primaryAction}</span>
-              </a>
-              <a className="button button-secondary" href={secondaryHref}>
-                <Mail size={16} />
-                <span>{t.contactPage.secondaryAction}</span>
-              </a>
+          </div>
+
+          {/* Booking Card */}
+          <div className="relative rounded-3xl bg-gradient-to-b from-[#0e1628] to-[#070b14] border-2 border-[#38bdf8]/40 shadow-[0_0_50px_rgba(0,240,255,0.15)] overflow-hidden">
+            {/* Top Bar */}
+            <div className="flex items-center justify-between px-6 py-4 bg-[#05080f] border-b border-[#38bdf8]/20">
+              <div className="flex items-center gap-2">
+                <span className="w-3 h-3 rounded-full bg-[#00f0ff] stage-strobe" />
+                <span className="text-xs font-mono font-bold text-white uppercase tracking-widest">
+                  STAGE PASS · OFFICIAL BOOKING LIAISON
+                </span>
+              </div>
+              <div className="text-xs font-mono text-[#38bdf8]">TOUR REF: 2025/2026</div>
+            </div>
+
+            <div className="p-6 sm:p-10 grid grid-cols-1 md:grid-cols-12 gap-8">
+              {/* Quick Contacts */}
+              <div className="md:col-span-5 space-y-6 border-b md:border-b-0 md:border-r border-white/10 pb-6 md:pb-0 md:pr-8">
+                <div className="space-y-1">
+                  <div className="text-xs font-mono text-[#00f0ff] uppercase">{isAr ? "المقر الرئيسي" : "Base Station"}</div>
+                  <div className="text-sm font-bold text-white">{isAr ? "اليمن / القاهرة" : "Yemen / Cairo"}</div>
+                </div>
+
+                <div className="space-y-1">
+                  <div className="text-xs font-mono text-[#00f0ff] uppercase">{isAr ? "البريد الإلكتروني للإدارة" : "Official Management"}</div>
+                  <a
+                    href={emailHref("contact@a7mdsif.com", isAr ? "حجز حفل مباشر" : "Live Concert Booking")}
+                    className="text-sm font-mono text-[#38bdf8] hover:text-white transition-colors block"
+                  >
+                    contact@a7mdsif.com
+                  </a>
+                </div>
+
+                <div className="space-y-1">
+                  <div className="text-xs font-mono text-[#00f0ff] uppercase">{isAr ? "قنوات التواصل" : "Official Channels"}</div>
+                  <div className="flex flex-wrap gap-2 pt-2">
+                    {socialLinks.slice(0, 5).map((s) => (
+                      <a
+                        key={s.label}
+                        href={s.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="w-9 h-9 rounded-xl bg-[#080d17] border border-white/10 flex items-center justify-center text-[#94a3b8] hover:text-[#00f0ff] hover:border-[#00f0ff]/40 transition-all"
+                        aria-label={s.label}
+                      >
+                        <SocialIcon name={s.icon} size={16} />
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Form */}
+              <div className="md:col-span-7">
+                {submitted ? (
+                  <div className="p-8 rounded-2xl bg-[#00f0ff]/10 border border-[#00f0ff]/40 text-center space-y-3">
+                    <div className="w-12 h-12 rounded-full bg-[#00f0ff]/20 text-[#00f0ff] flex items-center justify-center mx-auto text-xl font-bold">
+                      ✓
+                    </div>
+                    <h3 className="text-lg font-bold text-white">
+                      {isAr ? "تم استلام طلب الحجز بنجاح" : "Stage Request Received"}
+                    </h3>
+                    <p className="text-xs text-[#94a3b8]">
+                      {isAr
+                        ? "ستقوم إدارة الجولات بمراجعة الرايدر والمواعيد والتواصل معكم خلال 24 ساعة."
+                        : "Tour management will review dates and technical requirements and contact you within 24 hours."}
+                    </p>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-xs font-mono text-[#94a3b8] mb-1">
+                          {isAr ? "اسم الجهة المنظمة / المهرجان" : "Organizer / Festival Name"}
+                        </label>
+                        <input
+                          type="text"
+                          required
+                          className="w-full px-3 py-2 rounded-lg bg-[#070b14] border border-white/10 text-white text-xs focus:border-[#00f0ff] outline-none"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-mono text-[#94a3b8] mb-1">
+                          {isAr ? "البريد الإلكتروني" : "Contact Email"}
+                        </label>
+                        <input
+                          type="email"
+                          required
+                          className="w-full px-3 py-2 rounded-lg bg-[#070b14] border border-white/10 text-white text-xs focus:border-[#00f0ff] outline-none"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-xs font-mono text-[#94a3b8] mb-1">
+                          {isAr ? "تاريخ الحفل المقترح" : "Target Event Date"}
+                        </label>
+                        <input
+                          type="date"
+                          className="w-full px-3 py-2 rounded-lg bg-[#070b14] border border-white/10 text-white text-xs focus:border-[#00f0ff] outline-none"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-mono text-[#94a3b8] mb-1">
+                          {isAr ? "المدينة والمسرح" : "City & Venue"}
+                        </label>
+                        <input
+                          type="text"
+                          placeholder={isAr ? "مثال: مسرح دبي أوبرا" : "e.g. Dubai Opera"}
+                          className="w-full px-3 py-2 rounded-lg bg-[#070b14] border border-white/10 text-white text-xs focus:border-[#00f0ff] outline-none"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-mono text-[#94a3b8] mb-1">
+                        {isAr ? "تفاصيل الطلب والرايدر" : "Event Scope & Requirements"}
+                      </label>
+                      <textarea
+                        rows={4}
+                        placeholder={isAr ? "اذكر نوع الحفل (أوركسترا كاملة، تخت شرقي، عزف منفرد)..." : "Specify ensemble size, set duration, etc."}
+                        className="w-full px-3 py-2 rounded-lg bg-[#070b14] border border-white/10 text-white text-xs focus:border-[#00f0ff] outline-none"
+                      />
+                    </div>
+
+                    <button
+                      type="submit"
+                      className="w-full py-3 rounded-xl bg-gradient-to-r from-[#0284c7] to-[#00f0ff] text-[#06080d] font-bold text-xs uppercase tracking-wider shadow-lg hover:opacity-95 transition-opacity"
+                    >
+                      {isAr ? "إرسال طلب الحجز المباشر" : "Submit Stage Request"}
+                    </button>
+                  </form>
+                )}
+              </div>
             </div>
           </div>
         </div>
-      )}
-
-      {/* ====================================================================
-          9. LIVE STAGE HEADLINER (Style 9: Backstage Pass & Promoter Desk)
-          ==================================================================== */}
-      {archetype === "stage" && (
-        <div className="stage-wrapper">
-          <div className="stage-hero" style={{ marginBottom: "50px" }}>
-            <span className="stage-live-pill">BACKSTAGE BOOKING & TOUR PROMOTER PORTAL</span>
-            <h1 style={{ fontSize: "clamp(34px, 6vw, 60px)", margin: "14px 0" }}>{t.contactPage.title}</h1>
-            <p style={{ fontSize: "17px", lineHeight: 1.8, color: "var(--muted-strong)", maxWidth: "620px", margin: "0 auto 28px" }}>
-              {t.contactPage.body}
-            </p>
-            <div style={{ display: "flex", justifyContent: "center", gap: "14px" }}>
-              <a className="button button-primary" href={primaryHref}>
-                <Send size={16} />
-                <span>{t.contactPage.primaryAction}</span>
-              </a>
-              <a className="button button-secondary" href={secondaryHref}>
-                <Mail size={16} />
-                <span>{t.contactPage.secondaryAction}</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* ====================================================================
-          10. MINIMAL AUDIO CANVAS (Style 10: Zen Contact Prompt)
-          ==================================================================== */}
-      {archetype === "canvas" && (
-        <div className="canvas-wrapper">
-          <header style={{ paddingBottom: "40px", borderBottom: "1px solid var(--line)", marginBottom: "50px" }}>
-            <h1 className="canvas-hero-title">{t.contactPage.title}</h1>
-            <p style={{ fontSize: "18px", lineHeight: 1.8, color: "var(--muted-strong)", maxWidth: "650px", margin: "0 0 28px" }}>
-              {t.contactPage.body}
-            </p>
-            <div style={{ display: "flex", gap: "14px" }}>
-              <a className="button button-primary" href={primaryHref}>
-                <Send size={16} />
-                <span>{t.contactPage.primaryAction}</span>
-              </a>
-              <a className="button button-secondary" href={secondaryHref}>
-                <Mail size={16} />
-                <span>{t.contactPage.secondaryAction}</span>
-              </a>
-            </div>
-          </header>
-        </div>
-      )}
-
-      {/* Social Links Hub */}
-      <section className="section contact-hub" aria-label={t.socialLabel} style={{ marginTop: "60px" }}>
-        <div className="section-heading compact">
-          <p className="eyebrow">{t.brandName}</p>
-          <h2>{t.strip.title}</h2>
-        </div>
-        <div className="social-grid social-grid--large">
-          {socialLinks.map((link) => (
-            <a
-              className="social-link"
-              href={link.href}
-              key={link.label}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span className="social-link__icon" aria-hidden="true">
-                <SocialIcon name={link.icon} size={18} />
-              </span>
-              <strong>{link.label}</strong>
-              <OutboundIcon label={t.external} />
-            </a>
-          ))}
-        </div>
-      </section>
+      </div>
     </SiteChrome>
   );
 }

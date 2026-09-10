@@ -33,7 +33,7 @@ export const metadata = {
 
 export default function EnglishRootLayout({ children }) {
   return (
-    <html lang="en" dir="ltr" data-theme="style-1" data-archetype="aureate">
+    <html lang="en" dir="ltr">
       <head>
         <link
           rel="preload"

@@ -24,7 +24,6 @@ import {
   socialLinks
 } from "../data";
 import MobileNav from "./MobileNav";
-import StyleSwitcher from "./StyleSwitcher";
 
 export function OutboundIcon({ label }) {
   return (
@@ -49,7 +48,6 @@ const socialIconMap = {
 
 export function SocialIcon({ name, size = 18 }) {
   const Icon = socialIconMap[name] || ExternalLink;
-
   return <Icon aria-hidden="true" size={size} strokeWidth={1.8} />;
 }
 
@@ -61,7 +59,6 @@ export { Menu, X, Languages };
 
 export default function SiteChrome({
   children,
-  headerMode = "solid",
   locale,
   page,
   work = null
@@ -73,11 +70,7 @@ export default function SiteChrome({
   );
 
   return (
-    <div
-      className={`site-shell ${headerMode === "solid" ? "site-shell--inner" : ""}`}
-      dir={t.dir}
-      lang={t.locale}
-    >
+    <div className="sultani-shell" dir={t.dir} lang={t.locale}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: structuredData }}
@@ -87,96 +80,98 @@ export default function SiteChrome({
         {locale === "ar" ? "انتقل إلى المحتوى" : "Skip to content"}
       </a>
 
-      <header
-        className={`site-header ${headerMode === "solid" ? "site-header--solid" : ""}`}
-        aria-label={t.navLabel}
-      >
-        <Link className="brand-link" href={getLocalePath(locale, "home")}>
-          <span className="brand-mark brand-mark--logo" aria-hidden="true">
-            <Image
-              alt=""
-              className="brand-logo-image"
-              height={28}
-              sizes="84px"
-              src="/favicon.webp"
-              width={84}
-            />
-          </span>
-          <span>
-            <strong>{t.brandName}</strong>
-            <small>{t.brandLine}</small>
-          </span>
-        </Link>
+      <header className="sultani-header" aria-label={t.navLabel}>
+        <div className="sultani-header-inner">
+          <Link className="sultani-brand" href={getLocalePath(locale, "home")}>
+            <div className="sultani-brand-crest">
+              <Image
+                alt=""
+                className="sultani-brand-img"
+                height={32}
+                sizes="64px"
+                src="/favicon.webp"
+                width={32}
+              />
+            </div>
+            <div className="sultani-brand-text">
+              <span className="sultani-brand-name">{t.brandName}</span>
+              <span className="sultani-brand-title">
+                {locale === "ar" ? "مؤلف ومغنٍ يمني" : "Maestro & Composer"}
+              </span>
+            </div>
+          </Link>
 
-        <nav className="nav-links">
-          {t.nav.map((item) => (
-            <Link
-              aria-current={item.page === page ? "page" : undefined}
-              className={item.page === page ? "is-active" : undefined}
-              href={getLocalePath(locale, item.page)}
-              key={item.page}
-            >
-              {item.label}
+          <nav className="sultani-nav" aria-label={t.navLabel}>
+            {t.nav.map((item) => (
+              <Link
+                aria-current={item.page === page ? "page" : undefined}
+                className={`sultani-nav-link ${item.page === page ? "is-active" : ""}`}
+                href={getLocalePath(locale, item.page)}
+                key={item.page}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+
+          <div className="sultani-header-actions">
+            <Link className="sultani-lang-btn" href={getSwitchPath(locale, page)}>
+              <Languages aria-hidden="true" size={16} strokeWidth={1.8} />
+              <span>{t.switchLabel}</span>
             </Link>
-          ))}
-        </nav>
 
-        <Link className="language-link language-link--desktop" href={getSwitchPath(locale, page)}>
-          <Languages aria-hidden="true" size={17} strokeWidth={1.8} />
-          <span>{t.switchLabel}</span>
-        </Link>
-
-        <MobileNav
-          closeLabel={locale === "ar" ? "إغلاق القائمة" : "Close menu"}
-          openLabel={locale === "ar" ? "فتح القائمة" : "Open menu"}
-          externalLabel={t.external}
-          brandName={t.brandName}
-          navLabel={t.navLabel}
-          switchLabel={t.switchLabel}
-          locale={locale}
-          page={page}
-          switchHref={getSwitchPath(locale, page)}
-          navLinks={t.nav.map((item) => ({
-            page: item.page,
-            label: item.label,
-            href: getLocalePath(locale, item.page)
-          }))}
-          socialLinks={socialLinks.slice(0, 5)}
-        />
+            <MobileNav
+              closeLabel={locale === "ar" ? "إغلاق القائمة" : "Close menu"}
+              openLabel={locale === "ar" ? "فتح القائمة" : "Open menu"}
+              externalLabel={t.external}
+              brandName={t.brandName}
+              navLabel={t.navLabel}
+              switchLabel={t.switchLabel}
+              locale={locale}
+              page={page}
+              switchHref={getSwitchPath(locale, page)}
+              navLinks={t.nav.map((item) => ({
+                page: item.page,
+                label: item.label,
+                href: getLocalePath(locale, item.page)
+              }))}
+              socialLinks={socialLinks.slice(0, 5)}
+            />
+          </div>
+        </div>
       </header>
 
-      <main id="main" className="site-main">{children}</main>
+      <main id="main" className="sultani-main">{children}</main>
 
-      <footer className="site-footer">
-        <div>
-          <strong>{t.footer.line}</strong>
-          <span>{t.footer.credit}</span>
-        </div>
-        <div className="footer-social" aria-label={t.socialLabel}>
-          {socialLinks.map((link) => (
+      <footer className="sultani-footer">
+        <div className="sultani-footer-inner">
+          <div className="sultani-footer-copy">
+            <p className="sultani-footer-quote">{t.footer.line}</p>
+            <p className="sultani-footer-sub">{t.footer.credit}</p>
+          </div>
+          <div className="sultani-footer-social" aria-label={t.socialLabel}>
+            {socialLinks.map((link) => (
+              <a
+                href={link.href}
+                key={link.label}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${link.label} - ${t.external}`}
+                className="sultani-social-icon"
+              >
+                <SocialIcon name={link.icon} size={16} />
+              </a>
+            ))}
             <a
-              href={link.href}
-              key={link.label}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`${link.label} - ${t.external}`}
+              href={emailHref(t.contactPage.primaryEmail, t.contactPage.subject)}
+              aria-label={t.contactPage.primaryAction}
+              className="sultani-social-icon"
             >
-              <SocialIcon name={link.icon} size={16} />
+              <Mail aria-hidden="true" size={16} />
             </a>
-          ))}
-          <a
-            href={emailHref(
-              t.contactPage.primaryEmail,
-              t.contactPage.subject
-            )}
-            aria-label={t.contactPage.primaryAction}
-          >
-            <Mail aria-hidden="true" size={16} />
-          </a>
+          </div>
         </div>
       </footer>
-      <StyleSwitcher locale={locale} />
     </div>
   );
 }
-

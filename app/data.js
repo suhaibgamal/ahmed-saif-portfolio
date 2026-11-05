@@ -73,7 +73,7 @@ export const socialLinks = [
   }
 ];
 
-export const works = [
+const worksData = [
   {
     year: "2026",
     arTitle: "يا مدوّر الحاجة - مسلسل الضايعة",
@@ -327,6 +327,8 @@ export const works = [
     durationSeconds: 65
   }
 ];
+
+export const works = worksData.map((work) => ({ ...work, slug: getWorkSlug(work) }));
 
 export function getWorkKey(work) {
   return `${work.year}-${work.enTitle}`;

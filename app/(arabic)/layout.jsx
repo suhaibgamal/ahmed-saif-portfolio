@@ -1,9 +1,27 @@
 import "../globals.css";
+import { Amiri, IBM_Plex_Sans_Arabic } from "next/font/google";
 import { siteName, siteUrl, studioName } from "../data";
 
+const displayFont = Amiri({
+  subsets: ["arabic", "latin"],
+  weight: ["400", "700"],
+  variable: "--font-display",
+  display: "swap"
+});
+
+const sansFont = IBM_Plex_Sans_Arabic({
+  subsets: ["arabic", "latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-sans",
+  display: "swap"
+});
+
 export const viewport = {
-  colorScheme: "dark",
-  themeColor: "#070a0a",
+  colorScheme: "dark light",
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#0c0b09" },
+    { media: "(prefers-color-scheme: light)", color: "#faf7f1" }
+  ],
   width: "device-width",
   initialScale: 1
 };
@@ -31,24 +49,29 @@ export const metadata = {
   }
 };
 
+const themeInitScript = `
+(function() {
+  try {
+    var saved = localStorage.getItem("a7md-mode-style-1");
+    var mode = (saved === "light" || saved === "dark") ? saved : "dark";
+    document.documentElement.setAttribute("data-mode", mode);
+  } catch (e) {
+    document.documentElement.setAttribute("data-mode", "dark");
+  }
+})();
+`;
+
 export default function ArabicRootLayout({ children }) {
   return (
-    <html lang="ar" dir="rtl">
+    <html
+      lang="ar"
+      dir="rtl"
+      data-mode="dark"
+      suppressHydrationWarning
+      className={`${displayFont.variable} ${sansFont.variable}`}
+    >
       <head>
-        <link
-          rel="preload"
-          href="/fonts/alexandria-arabic.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="/fonts/alexandria-latin.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         <link rel="dns-prefetch" href="https://i.ytimg.com" />
         <link rel="dns-prefetch" href="https://www.youtube-nocookie.com" />
       </head>

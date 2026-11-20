@@ -1,83 +1,81 @@
-import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, Play, Sparkles } from "lucide-react";
-import { content, getLocalePath, works } from "../data";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import {
+  content,
+  getLocalePath,
+  getWorkCopy,
+  getWorkKey,
+  getWorkPath,
+  works
+} from "../data";
 import SiteChrome from "./SiteChrome";
+import WorkVideoCatalog from "./WorkVideoCatalog";
+
+function classifyWork(work) {
+  const type = work.enType.toLowerCase();
+  if (type.includes("series") || type.includes("live") || type.includes("collaborative")) {
+    return "milestones";
+  }
+  if (type.includes("video") || type.includes("gharaa") || type.includes("medley")) {
+    return "visual";
+  }
+  return "singles";
+}
 
 export default function WorksPage({ locale = "ar" }) {
   const t = content[locale];
   const isAr = locale === "ar";
-  const ArrowIcon = isAr ? ArrowLeft : ArrowRight;
+  const DirectionalArrow = isAr ? ArrowLeft : ArrowRight;
+
+  const tracks = works.map((work) => {
+    const copy = getWorkCopy(work, locale);
+    return {
+      key: getWorkKey(work),
+      year: work.year,
+      youtubeId: work.youtubeId,
+      durationSeconds: work.durationSeconds,
+      category: classifyWork(work),
+      title: copy.title,
+      subtitle: copy.subtitle,
+      type: copy.type,
+      mood: copy.mood,
+      note: copy.note,
+      href: getWorkPath(locale, work)
+    };
+  });
 
   return (
     <SiteChrome locale={locale} page="works">
-      <div className="sultani-page-header">
-        <div className="sultani-container">
-          <div className="sultani-hero-badge">
-            <Sparkles size={14} className="sultani-gold-icon" />
-            <span>{isAr ? "الأرشيف الصوتي الكامل" : "Complete Audio Catalog"}</span>
-          </div>
-          <h1 className="sultani-page-title">
-            {isAr ? "الأعمال الموسيقية والتترات" : "Musical Compositions & Scores"}
-          </h1>
-          <p className="sultani-page-desc">
-            {isAr
-              ? "مجموعة مختارة من الألحان، الأغاني المستقلة، وتترات الدراما التي لحنها وغناها أحمد سيف عبر مسيرته الفنية."
-              : "A curated collection of original melodies, independent single releases, and television serial soundtracks crafted by Ahmed Saif."}
-          </p>
+      <section className="sov-page-head">
+        <div className="sov-container">
+          <p className="eyebrow">{t.worksPage.eyebrow}</p>
+          <h1 className="sov-page-title">{t.worksPage.title}</h1>
+          <p className="sov-page-lead">{t.worksPage.body}</p>
         </div>
-      </div>
+      </section>
 
-      <section className="sultani-section">
-        <div className="sultani-container">
-          <div className="sultani-catalog-grid">
-            {works.map((work, index) => (
-              <article key={work.slug} className="sultani-catalog-card">
-                <div className="sultani-catalog-media">
-                  <Image
-                    src={work.image}
-                    alt={isAr ? work.arTitle : work.enTitle}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 420px"
-                    className="sultani-catalog-img"
-                  />
-                  <div className="sultani-catalog-overlay" />
-                  <div className="sultani-catalog-opus-badge">
-                    OPUS #{String(index + 1).padStart(2, "0")}
-                  </div>
-                </div>
+      <WorkVideoCatalog
+        tracks={tracks}
+        locale={locale}
+        featuredLabel={t.worksPage.featuredLabel}
+        catalogLabel={t.worksPage.catalogLabel}
+        detailLabel={isAr ? "تفاصيل العمل" : "Release details"}
+        closeLabel={isAr ? "إغلاق المشغل" : "Close player"}
+      />
 
-                <div className="sultani-catalog-body">
-                  <div className="sultani-catalog-meta">
-                    <span className="sultani-catalog-category">
-                      {isAr ? work.category : work.categoryEn}
-                    </span>
-                    <span className="sultani-catalog-year">{work.year}</span>
-                  </div>
-
-                  <h2 className="sultani-catalog-title">
-                    <Link href={`${getLocalePath(locale, "works")}/${work.slug}`}>
-                      {isAr ? work.arTitle : work.enTitle}
-                    </Link>
-                  </h2>
-
-                  <p className="sultani-catalog-desc">
-                    {isAr ? work.description : work.descriptionEn}
-                  </p>
-
-                  <div className="sultani-catalog-footer">
-                    <Link
-                      href={`${getLocalePath(locale, "works")}/${work.slug}`}
-                      className="sultani-catalog-btn"
-                    >
-                      <Play size={14} fill="currentColor" />
-                      <span>{isAr ? "الاستماع والتفاصيل" : "Audition & Notes"}</span>
-                    </Link>
-                  </div>
-                </div>
-              </article>
-            ))}
+      <section className="sov-section sov-section--subtle-band">
+        <div className="sov-container sov-inline-cta">
+          <div>
+            <p className="eyebrow">{t.contactPage.eyebrow}</p>
+            <h2 className="sov-h3">{t.worksPage.cta}</h2>
           </div>
+          <Link
+            className="btn btn-primary"
+            href={getLocalePath(locale, "contact")}
+          >
+            <span>{t.contactPage.primaryAction}</span>
+            <DirectionalArrow size={16} aria-hidden="true" />
+          </Link>
         </div>
       </section>
     </SiteChrome>

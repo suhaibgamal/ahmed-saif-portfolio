@@ -1,6 +1,21 @@
 import "./globals.css";
 import Link from "next/link";
-import { Home, ArrowUpRight } from "lucide-react";
+import { Amiri, IBM_Plex_Sans_Arabic } from "next/font/google";
+import { ArrowUpRight, Home } from "lucide-react";
+
+const displayFont = Amiri({
+  subsets: ["arabic", "latin"],
+  weight: ["400", "700"],
+  variable: "--font-display",
+  display: "swap"
+});
+
+const sansFont = IBM_Plex_Sans_Arabic({
+  subsets: ["arabic", "latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-sans",
+  display: "swap"
+});
 
 export const metadata = {
   title: "404 | Ahmed Saif",
@@ -13,37 +28,26 @@ export const metadata = {
 
 export default function GlobalNotFound() {
   return (
-    <html lang="ar" dir="rtl">
-      <head>
-        <link
-          rel="preload"
-          href="/fonts/alexandria-arabic.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="/fonts/alexandria-latin.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-      </head>
+    <html
+      lang="ar"
+      dir="rtl"
+      data-mode="dark"
+      className={`${displayFont.variable} ${sansFont.variable}`}
+    >
       <body>
-        <div className="site-shell site-shell--inner" dir="rtl" lang="ar">
+        <div className="site-shell" dir="rtl" lang="ar">
           <main className="not-found">
             <p className="eyebrow">404</p>
             <h1>الصفحة غير موجودة</h1>
-            <p>Page not found</p>
-            <div className="hero-actions">
-              <Link className="button button-primary" href="/">
-                <Home aria-hidden="true" size={18} />
-                <span>الرئيسية</span>
+            <p className="not-found__sub">Page not found</p>
+            <div className="action-row">
+              <Link className="btn btn-primary" href="/">
+                <Home aria-hidden="true" size={16} />
+                <span>العودة للرئيسية</span>
               </Link>
-              <Link className="button button-secondary" href="/en">
+              <Link className="btn btn-secondary" href="/en">
                 <span>English Home</span>
-                <ArrowUpRight aria-hidden="true" size={18} />
+                <ArrowUpRight aria-hidden="true" size={16} />
               </Link>
             </div>
           </main>

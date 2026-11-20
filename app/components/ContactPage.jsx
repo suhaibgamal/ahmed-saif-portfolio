@@ -1,125 +1,97 @@
-import { ArrowLeft, ArrowRight, Mail, Send, Disc, MessageCircle } from "lucide-react";
+import { ArrowUpRight, Mail } from "lucide-react";
 import { content, socialLinks } from "../data";
-import SiteChrome, { SocialIcon, emailHref } from "./SiteChrome";
+import CopyNoteButton from "./CopyNoteButton";
+import SiteChrome, { emailHref, SocialIcon } from "./SiteChrome";
 
 export default function ContactPage({ locale = "ar" }) {
   const t = content[locale];
   const isAr = locale === "ar";
-  const ArrowIcon = isAr ? ArrowLeft : ArrowRight;
 
   return (
     <SiteChrome locale={locale} page="contact">
-      <div className="tape-page-header">
-        <div className="tape-container">
-          <div className="tape-session-badge">
-            <Disc size={14} className="tape-amber-icon tape-spin-slow" />
-            <span>{isAr ? "مكتب الحجز والتكليف الفني // استوديو A7MD" : "STUDIO BOOKING & COMMISSION DESK"}</span>
-          </div>
-          <h1 className="tape-page-title">
-            {isAr ? "طلب عمل موسيقي أو حجز حفل" : "Studio Booking & Artistic Commissions"}
-          </h1>
-          <p className="tape-page-desc">
-            {isAr
-              ? "لطلبات تلحين تترات الدراما، إنتاج الأغاني الفردية، وحجز الحفلات والمهرجانات الموسيقية."
-              : "Direct correspondence for original soundtrack scoring, bespoke singles production, and live stage appearances."}
-          </p>
+      <section className="kin-page-head">
+        <div className="kin-wrap">
+          <p className="kin-eyebrow">{t.contactPage.eyebrow}</p>
+          <h1 className="kin-page-title">{t.contactPage.title}</h1>
+          <p className="kin-hero__lead">{t.contactPage.body}</p>
         </div>
-      </div>
+      </section>
 
-      <section className="tape-section">
-        <div className="tape-container">
-          <div className="tape-contact-grid">
-            {/* Letterpress Card */}
-            <div className="tape-letterpress-card">
-              <div className="tape-stamp-decor">
-                <span className="tape-stamp-text">OFFICIAL DESPATCH</span>
-                <span className="tape-stamp-code">A7MD-01</span>
-              </div>
-
-              <h3 className="tape-contact-heading">
-                {isAr ? "المكتب الفني والمراسلات" : "Official Studio Liaison"}
-              </h3>
-              <p className="tape-contact-sub">
-                {isAr
-                  ? "يسعدني استقبال استفساراتكم حول المشروعات الغنائية وتفاصيل الإنتاج الموسيقي."
-                  : "We welcome direct correspondence regarding television themes, single releases, and concert curation."}
+      <section className="kin-section">
+        <div className="kin-wrap">
+          <div className="kin-stationery-grid">
+            <div className="kin-stationery">
+              <p className="kin-eyebrow">
+                {isAr ? "مكتب الإنتاج والتلحين" : "Production & Composition"}
               </p>
-
-              <div className="tape-contact-row">
-                <Mail size={16} className="tape-amber-icon" />
+              <h2 dir="ltr">{t.contactPage.primaryEmail}</h2>
+              <p>
+                {isAr
+                  ? "للمشاريع الغنائية، تترات المسلسلات، الألحان الخاصة، والتراخيص."
+                  : "For original songs, drama themes, studio commissions, and licensing."}
+              </p>
+              <div className="kin-actions">
                 <a
+                  className="kin-btn kin-btn--primary"
                   href={emailHref(t.contactPage.primaryEmail, t.contactPage.subject)}
-                  className="tape-contact-link"
                 >
-                  {t.contactPage.primaryEmail}
+                  <Mail size={14} aria-hidden="true" />
+                  <span>{t.contactPage.primaryAction}</span>
                 </a>
-              </div>
-
-              <div className="tape-contact-row">
-                <MessageCircle size={16} className="tape-amber-icon" />
-                <a
-                  href="https://wa.me/967770000000"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="tape-contact-link"
-                >
-                  {isAr ? "محادثة مباشرة عبر واتساب المكتب" : "Direct WhatsApp Booking Chat"}
-                </a>
-              </div>
-
-              <div className="tape-contact-cta-block">
-                <a
-                  href={emailHref(t.contactPage.primaryEmail, t.contactPage.subject)}
-                  className="tape-btn-amber"
-                >
-                  <span>{isAr ? "إرسال رسالة رسمية للمكتب" : "Send Studio Telegram"}</span>
-                  <Send size={15} />
-                </a>
-              </div>
-
-              {/* Social channels */}
-              <div className="tape-social-box">
-                <h4>{isAr ? "منصات الاستماع والتواصل" : "Streaming & Social Repertoire"}</h4>
-                <div className="tape-social-pills">
-                  {socialLinks.map((link) => (
-                    <a
-                      href={link.href}
-                      key={link.label}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="tape-social-pill"
-                    >
-                      <SocialIcon name={link.icon} size={15} />
-                      <span>{link.label}</span>
-                    </a>
-                  ))}
-                </div>
+                <CopyNoteButton email={t.contactPage.primaryEmail} locale={locale} />
               </div>
             </div>
 
-            {/* Studio Guarantee Box */}
-            <div className="tape-guarantee-box">
-              <span className="tape-stamp-label">{isAr ? "معايير الجلسة" : "Session Quality"}</span>
-              <h3 className="tape-guarantee-title">
-                {isAr ? "ضمانات الإنتاج في استوديو A7MD" : "A7MD Studio Session Standards"}
-              </h3>
-              <p className="tape-guarantee-body">
-                {isAr
-                  ? "كل عمل ننتجه يتم تسجيله ومراجعته بدقة، مع توفير تراكات التوزيع المنفصلة (Stems)، نوتات العزف، وحقوق الملكية الفكرية الموثقة رسمياً."
-                  : "All commissioned music is recorded with high-end analog preamps, offering full multi-track stems, arrangement sheets, and comprehensive copyright licensing."}
+            <div className="kin-stationery">
+              <p className="kin-eyebrow">
+                {isAr ? "التواصل الشخصي" : "Direct Artist Note"}
               </p>
-
-              <div className="tape-guarantee-stats">
-                <div className="tape-g-stat">
-                  <strong>100%</strong>
-                  <small>{isAr ? "تسجيل حي نقي" : "Acoustic Clarity"}</small>
-                </div>
-                <div className="tape-g-stat">
-                  <strong>48h</strong>
-                  <small>{isAr ? "سرعة الاستجابة" : "Office Response"}</small>
-                </div>
+              <h2 dir="ltr">{t.contactPage.secondaryEmail}</h2>
+              <p>
+                {isAr
+                  ? "للمشاركات الدولية، الأمسيات الموسيقية، والحوارات الإعلامية."
+                  : "For festival appearances, live performances, and cultural press."}
+              </p>
+              <div className="kin-actions">
+                <a
+                  className="kin-btn kin-btn--primary"
+                  href={emailHref(t.contactPage.secondaryEmail, t.contactPage.subject)}
+                >
+                  <Mail size={14} aria-hidden="true" />
+                  <span>{t.contactPage.secondaryAction}</span>
+                </a>
+                <CopyNoteButton email={t.contactPage.secondaryEmail} locale={locale} />
               </div>
             </div>
+          </div>
+
+          <div className="kin-scopes">
+            {t.contactPage.cards.map((item) => (
+              <span className="kin-scope-tag" key={item}>
+                {item}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="kin-section kin-section--oat">
+        <div className="kin-wrap">
+          <p className="kin-eyebrow">{t.socialLabel}</p>
+          <div className="kin-platforms">
+            {socialLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="kin-platform-link"
+              >
+                <SocialIcon name={link.icon} size={15} />
+                <span>{link.label}</span>
+                <ArrowUpRight size={13} aria-hidden="true" />
+              </a>
+            ))}
           </div>
         </div>
       </section>

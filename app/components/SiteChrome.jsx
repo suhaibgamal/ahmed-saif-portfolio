@@ -1,8 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import {
   Cloud,
-  Disc,
   Disc3,
   ExternalLink,
   Facebook,
@@ -10,12 +8,9 @@ import {
   Instagram,
   Languages,
   Mail,
-  Menu,
   Music2,
   Radio,
-  Sliders,
   Twitter,
-  X,
   Youtube
 } from "lucide-react";
 import {
@@ -26,15 +21,7 @@ import {
   socialLinks
 } from "../data";
 import MobileNav from "./MobileNav";
-
-export function OutboundIcon({ label }) {
-  return (
-    <>
-      <ExternalLink aria-hidden="true" size={16} strokeWidth={1.8} />
-      <span className="sr-only">{label}</span>
-    </>
-  );
-}
+import ThemeToggle from "./ThemeToggle";
 
 const socialIconMap = {
   youtube: Youtube,
@@ -48,128 +35,139 @@ const socialIconMap = {
   soundcloud: Cloud
 };
 
-export function SocialIcon({ name, size = 18 }) {
+export function SocialIcon({ name, size = 16 }) {
   const Icon = socialIconMap[name] || ExternalLink;
-  return <Icon aria-hidden="true" size={size} strokeWidth={1.8} />;
+  return <Icon aria-hidden="true" size={size} strokeWidth={1.7} />;
 }
 
 export function emailHref(email, subject) {
   return `mailto:${email}?subject=${encodeURIComponent(subject)}`;
 }
 
-export { Menu, X, Languages };
-
-export default function SiteChrome({
-  children,
-  locale,
-  page,
-  work = null
-}) {
+export default function SiteChrome({ children, locale, page, work = null }) {
   const t = content[locale];
-  const structuredData = JSON.stringify(getStructuredData(locale, page, work)).replace(
-    /</g,
-    "\\u003c"
-  );
+  const isAr = locale === "ar";
+  const structuredData = JSON.stringify(
+    getStructuredData(locale, page, work)
+  ).replace(/</g, "\\u003c");
+
+  const railSocials = socialLinks.slice(0, 6);
 
   return (
-    <div className="tape-shell" dir={t.dir} lang={t.locale}>
+    <div className="kin-layout" dir={t.dir} lang={t.locale}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: structuredData }}
       />
 
       <a className="skip-link" href="#main">
-        {locale === "ar" ? "انتقل إلى المحتوى" : "Skip to content"}
+        {isAr ? "انتقل إلى المحتوى" : "Skip to content"}
       </a>
 
-      <header className="tape-header" aria-label={t.navLabel}>
-        <div className="tape-header-inner">
-          <Link className="tape-brand" href={getLocalePath(locale, "home")}>
-            <div className="tape-brand-spool">
-              <Disc size={20} className="tape-amber-icon tape-spin" />
-            </div>
-            <div className="tape-brand-info">
-              <span className="tape-brand-name">{t.brandName}</span>
-              <span className="tape-brand-label">REEL TAPE SESSIONS // A7MD</span>
-            </div>
+      {/* Persistent Desktop Side-Rail */}
+      <aside className="kin-rail" aria-label={t.navLabel}>
+        <div className="kin-rail__top">
+          <Link className="kin-rail__brand" href={getLocalePath(locale, "home")}>
+            <strong>{t.brandName}</strong>
+            <span>{isAr ? "صنعاء · استوديو A7MD" : "Sana'a · A7MD Studio"}</span>
           </Link>
 
-          <nav className="tape-nav" aria-label={t.navLabel}>
+          <nav className="kin-rail__nav" aria-label={t.navLabel}>
             {t.nav.map((item) => (
               <Link
-                aria-current={item.page === page ? "page" : undefined}
-                className={`tape-nav-link ${item.page === page ? "is-active" : ""}`}
-                href={getLocalePath(locale, item.page)}
                 key={item.page}
+                href={getLocalePath(locale, item.page)}
+                aria-current={item.page === page ? "page" : undefined}
+                className={`kin-rail__link ${item.page === page ? "is-active" : ""}`}
               >
-                {item.label}
+                <span className="kin-rail__dot" aria-hidden="true" />
+                <span>{item.label}</span>
               </Link>
             ))}
           </nav>
+        </div>
 
-          <div className="tape-header-actions">
-            <Link className="tape-lang-btn" href={getSwitchPath(locale, page)}>
-              <Languages aria-hidden="true" size={15} strokeWidth={1.8} />
+        <div className="kin-rail__bottom">
+          <div className="kin-rail__controls">
+            <ThemeToggle locale={locale} showLabel />
+            <Link className="kin-rail-lang" href={getSwitchPath(locale, page)}>
+              <Languages size={14} aria-hidden="true" />
               <span>{t.switchLabel}</span>
             </Link>
-
-            <MobileNav
-              closeLabel={locale === "ar" ? "إغلاق القائمة" : "Close menu"}
-              openLabel={locale === "ar" ? "فتح القائمة" : "Open menu"}
-              externalLabel={t.external}
-              brandName={t.brandName}
-              navLabel={t.navLabel}
-              switchLabel={t.switchLabel}
-              locale={locale}
-              page={page}
-              switchHref={getSwitchPath(locale, page)}
-              navLinks={t.nav.map((item) => ({
-                page: item.page,
-                label: item.label,
-                href: getLocalePath(locale, item.page)
-              }))}
-              socialLinks={socialLinks.slice(0, 5)}
-            />
-          </div>
-        </div>
-      </header>
-
-      <main id="main" className="tape-main">{children}</main>
-
-      <footer className="tape-footer">
-        <div className="tape-footer-inner">
-          <div className="tape-footer-analog">
-            <div className="tape-counter-badge">
-              <span className="tape-dot-red" />
-              <span>SIDE A // TAPE COUNTER: 04:20</span>
-            </div>
-            <p className="tape-footer-quote">{t.footer.line}</p>
-            <p className="tape-footer-sub">{t.footer.credit}</p>
           </div>
 
-          <div className="tape-footer-social" aria-label={t.socialLabel}>
-            {socialLinks.map((link) => (
+          <div className="kin-rail-socials" aria-label={t.socialLabel}>
+            {railSocials.map((link) => (
               <a
-                href={link.href}
                 key={link.label}
+                href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`${link.label} - ${t.external}`}
-                className="tape-social-icon"
               >
-                <SocialIcon name={link.icon} size={16} />
+                <SocialIcon name={link.icon} size={15} />
               </a>
             ))}
             <a
               href={emailHref(t.contactPage.primaryEmail, t.contactPage.subject)}
               aria-label={t.contactPage.primaryAction}
-              className="tape-social-icon"
             >
-              <Mail aria-hidden="true" size={16} />
+              <Mail size={15} aria-hidden="true" />
             </a>
           </div>
+          <p className="kin-rail__credit">{t.footer.credit}</p>
         </div>
-      </footer>
+      </aside>
+
+      {/* Mobile Top Header */}
+      <header className="kin-mobile-bar" aria-label={t.navLabel}>
+        <Link className="kin-mobile-bar__brand" href={getLocalePath(locale, "home")}>
+          <strong>{t.brandName}</strong>
+          <span>A7MD Studio</span>
+        </Link>
+        <div className="kin-mobile-bar__actions">
+          <ThemeToggle locale={locale} />
+          <MobileNav
+            closeLabel={isAr ? "إغلاق القائمة" : "Close menu"}
+            openLabel={isAr ? "فتح القائمة" : "Open menu"}
+            externalLabel={t.external}
+            brandName={t.brandName}
+            navLabel={t.navLabel}
+            switchLabel={t.switchLabel}
+            locale={locale}
+            page={page}
+            switchHref={getSwitchPath(locale, page)}
+            navLinks={t.nav.map((item) => ({
+              page: item.page,
+              label: item.label,
+              href: getLocalePath(locale, item.page)
+            }))}
+            socialLinks={railSocials}
+          />
+        </div>
+      </header>
+
+      <div className="kin-content-column">
+        <main id="main" className="kin-main">
+          {children}
+        </main>
+
+        <footer className="kin-footer">
+          <div className="kin-wrap kin-footer__inner">
+            <div>
+              <strong>{t.footer.line}</strong>
+              <p>{t.footer.credit}</p>
+            </div>
+            <div className="kin-footer__links">
+              {t.nav.map((item) => (
+                <Link key={item.page} href={getLocalePath(locale, item.page)}>
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </footer>
+      </div>
     </div>
   );
 }

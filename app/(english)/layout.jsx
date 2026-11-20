@@ -1,9 +1,20 @@
 import "../globals.css";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import { siteName, siteUrl, studioName } from "../data";
 
+const sansFont = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-sans",
+  display: "swap"
+});
+
 export const viewport = {
-  colorScheme: "dark",
-  themeColor: "#070a0a",
+  colorScheme: "light dark",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#fbfbfd" },
+    { media: "(prefers-color-scheme: dark)", color: "#0b0f17" }
+  ],
   width: "device-width",
   initialScale: 1
 };
@@ -31,24 +42,29 @@ export const metadata = {
   }
 };
 
+const themeInitScript = `
+(function() {
+  try {
+    var saved = localStorage.getItem("a7md-mode-style-2");
+    var mode = (saved === "light" || saved === "dark") ? saved : "light";
+    document.documentElement.setAttribute("data-mode", mode);
+  } catch (e) {
+    document.documentElement.setAttribute("data-mode", "light");
+  }
+})();
+`;
+
 export default function EnglishRootLayout({ children }) {
   return (
-    <html lang="en" dir="ltr">
+    <html
+      lang="en"
+      dir="ltr"
+      data-mode="light"
+      suppressHydrationWarning
+      className={sansFont.variable}
+    >
       <head>
-        <link
-          rel="preload"
-          href="/fonts/alexandria-arabic.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="/fonts/alexandria-latin.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         <link rel="dns-prefetch" href="https://i.ytimg.com" />
         <link rel="dns-prefetch" href="https://www.youtube-nocookie.com" />
       </head>

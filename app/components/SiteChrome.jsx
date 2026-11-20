@@ -1,7 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
 import {
-  Activity,
   Cloud,
   Disc3,
   ExternalLink,
@@ -10,12 +8,9 @@ import {
   Instagram,
   Languages,
   Mail,
-  Menu,
   Music2,
   Radio,
-  RadioTower,
   Twitter,
-  X,
   Youtube
 } from "lucide-react";
 import {
@@ -26,15 +21,7 @@ import {
   socialLinks
 } from "../data";
 import MobileNav from "./MobileNav";
-
-export function OutboundIcon({ label }) {
-  return (
-    <>
-      <ExternalLink aria-hidden="true" size={16} strokeWidth={1.8} />
-      <span className="sr-only">{label}</span>
-    </>
-  );
-}
+import ThemeToggle from "./ThemeToggle";
 
 const socialIconMap = {
   youtube: Youtube,
@@ -48,77 +35,62 @@ const socialIconMap = {
   soundcloud: Cloud
 };
 
-export function SocialIcon({ name, size = 18 }) {
+export function SocialIcon({ name, size = 16 }) {
   const Icon = socialIconMap[name] || ExternalLink;
-  return <Icon aria-hidden="true" size={size} strokeWidth={1.8} />;
+  return <Icon aria-hidden="true" size={size} strokeWidth={1.75} />;
 }
 
 export function emailHref(email, subject) {
   return `mailto:${email}?subject=${encodeURIComponent(subject)}`;
 }
 
-export { Menu, X, Languages };
-
-export default function SiteChrome({
-  children,
-  locale,
-  page,
-  work = null
-}) {
+export default function SiteChrome({ children, locale, page, work = null }) {
   const t = content[locale];
-  const structuredData = JSON.stringify(getStructuredData(locale, page, work)).replace(
-    /</g,
-    "\\u003c"
-  );
+  const isAr = locale === "ar";
+  const structuredData = JSON.stringify(
+    getStructuredData(locale, page, work)
+  ).replace(/</g, "\\u003c");
 
   return (
-    <div className="cyber-shell" dir={t.dir} lang={t.locale}>
+    <div className="air-shell" dir={t.dir} lang={t.locale}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: structuredData }}
       />
 
       <a className="skip-link" href="#main">
-        {locale === "ar" ? "انتقل إلى المحتوى" : "Skip to content"}
+        {isAr ? "انتقل إلى المحتوى" : "Skip to content"}
       </a>
 
-      <header className="cyber-header" aria-label={t.navLabel}>
-        <div className="cyber-header-inner">
-          <Link className="cyber-brand" href={getLocalePath(locale, "home")}>
-            <div className="cyber-brand-pulse">
-              <span className="cyber-pulse-dot" />
-              <Activity size={18} className="cyber-cyan-icon" />
-            </div>
-            <div className="cyber-brand-info">
-              <span className="cyber-brand-name">{t.brandName}</span>
-              <span className="cyber-brand-freq">96kHz // DSP STUDIO</span>
-            </div>
+      <header className="air-nav-bar" aria-label={t.navLabel}>
+        <div className="air-container air-nav-bar__inner">
+          <Link className="air-brand" href={getLocalePath(locale, "home")}>
+            <span className="air-brand__dot" aria-hidden="true" />
+            <strong>{t.brandName}</strong>
           </Link>
 
-          <nav className="cyber-nav" aria-label={t.navLabel}>
+          <nav className="air-nav" aria-label={t.navLabel}>
             {t.nav.map((item) => (
               <Link
-                aria-current={item.page === page ? "page" : undefined}
-                className={`cyber-nav-link ${item.page === page ? "is-active" : ""}`}
-                href={getLocalePath(locale, item.page)}
                 key={item.page}
+                href={getLocalePath(locale, item.page)}
+                aria-current={item.page === page ? "page" : undefined}
+                className={`air-nav__link ${item.page === page ? "is-active" : ""}`}
               >
-                <span className="cyber-link-bracket">[</span>
                 {item.label}
-                <span className="cyber-link-bracket">]</span>
               </Link>
             ))}
           </nav>
 
-          <div className="cyber-header-actions">
-            <Link className="cyber-lang-btn" href={getSwitchPath(locale, page)}>
-              <Languages aria-hidden="true" size={15} strokeWidth={1.8} />
+          <div className="air-nav-tools">
+            <ThemeToggle locale={locale} />
+            <Link className="air-lang-pill" href={getSwitchPath(locale, page)}>
+              <Languages size={14} aria-hidden="true" />
               <span>{t.switchLabel}</span>
             </Link>
-
             <MobileNav
-              closeLabel={locale === "ar" ? "إغلاق القائمة" : "Close menu"}
-              openLabel={locale === "ar" ? "فتح القائمة" : "Open menu"}
+              closeLabel={isAr ? "إغلاق القائمة" : "Close menu"}
+              openLabel={isAr ? "فتح القائمة" : "Open menu"}
               externalLabel={t.external}
               brandName={t.brandName}
               navLabel={t.navLabel}
@@ -131,45 +103,60 @@ export default function SiteChrome({
                 label: item.label,
                 href: getLocalePath(locale, item.page)
               }))}
-              socialLinks={socialLinks.slice(0, 5)}
+              socialLinks={socialLinks.slice(0, 6)}
             />
           </div>
         </div>
       </header>
 
-      <main id="main" className="cyber-main">{children}</main>
+      <main id="main" className="air-main">
+        {children}
+      </main>
 
-      <footer className="cyber-footer">
-        <div className="cyber-footer-inner">
-          <div className="cyber-footer-telemetry">
-            <div className="cyber-telemetry-badge">
-              <span className="cyber-status-live" />
-              <span>{locale === "ar" ? "حالة الاستوديو: نشط ويسجل" : "SYSTEM: ACTIVE 96kHz"}</span>
+      <footer className="air-footer">
+        <div className="air-container">
+          <div className="air-footer__top">
+            <div>
+              <strong className="air-footer__brand">{t.brandName}</strong>
+              <p className="air-footer__desc">
+                {isAr
+                  ? "صوت يمني معاصر، تلحين وإنتاج موسيقي من A7MD Studio."
+                  : "Contemporary Yemeni voice, composition & studio production from A7MD Studio."}
+              </p>
             </div>
-            <p className="cyber-footer-quote">{t.footer.line}</p>
-            <p className="cyber-footer-sub">{t.footer.credit}</p>
+
+            <div className="air-footer__links">
+              {t.nav.map((item) => (
+                <Link key={item.page} href={getLocalePath(locale, item.page)}>
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+
+            <div className="air-footer__socials" aria-label={t.socialLabel}>
+              {socialLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${link.label} - ${t.external}`}
+                >
+                  <SocialIcon name={link.icon} size={15} />
+                </a>
+              ))}
+              <a
+                href={emailHref(t.contactPage.primaryEmail, t.contactPage.subject)}
+                aria-label={t.contactPage.primaryAction}
+              >
+                <Mail size={15} aria-hidden="true" />
+              </a>
+            </div>
           </div>
 
-          <div className="cyber-footer-social" aria-label={t.socialLabel}>
-            {socialLinks.map((link) => (
-              <a
-                href={link.href}
-                key={link.label}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`${link.label} - ${t.external}`}
-                className="cyber-social-icon"
-              >
-                <SocialIcon name={link.icon} size={16} />
-              </a>
-            ))}
-            <a
-              href={emailHref(t.contactPage.primaryEmail, t.contactPage.subject)}
-              aria-label={t.contactPage.primaryAction}
-              className="cyber-social-icon"
-            >
-              <Mail aria-hidden="true" size={16} />
-            </a>
+          <div className="air-footer__bottom">
+            <span>{t.footer.line}</span>
+            <span>{t.footer.credit}</span>
           </div>
         </div>
       </footer>

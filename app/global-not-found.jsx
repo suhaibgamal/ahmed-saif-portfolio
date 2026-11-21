@@ -1,53 +1,52 @@
 import "./globals.css";
 import Link from "next/link";
-import { Home, ArrowUpRight } from "lucide-react";
+import { Almarai, Noto_Kufi_Arabic } from "next/font/google";
+import { ArrowUpRight, Home } from "lucide-react";
+
+const displayFont = Noto_Kufi_Arabic({
+  subsets: ["arabic", "latin"],
+  weight: ["500", "700"],
+  variable: "--font-display",
+  display: "swap"
+});
+
+const sansFont = Almarai({
+  subsets: ["arabic", "latin"],
+  weight: ["400", "700"],
+  variable: "--font-sans",
+  display: "swap"
+});
 
 export const metadata = {
   title: "404 | Ahmed Saif",
   description: "الصفحة غير موجودة — Page not found",
-  robots: {
-    index: false,
-    follow: false
-  }
+  robots: { index: false, follow: false }
 };
 
 export default function GlobalNotFound() {
   return (
-    <html lang="ar" dir="rtl">
-      <head>
-        <link
-          rel="preload"
-          href="/fonts/alexandria-arabic.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="/fonts/alexandria-latin.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-      </head>
+    <html
+      lang="ar"
+      dir="rtl"
+      data-mode="dark"
+      className={`${displayFont.variable} ${sansFont.variable}`}
+    >
       <body>
-        <div className="site-shell site-shell--inner" dir="rtl" lang="ar">
-          <main className="not-found">
-            <p className="eyebrow">404</p>
-            <h1>الصفحة غير موجودة</h1>
-            <p>Page not found</p>
-            <div className="hero-actions">
-              <Link className="button button-primary" href="/">
-                <Home aria-hidden="true" size={18} />
-                <span>الرئيسية</span>
-              </Link>
-              <Link className="button button-secondary" href="/en">
-                <span>English Home</span>
-                <ArrowUpRight aria-hidden="true" size={18} />
-              </Link>
-            </div>
-          </main>
-        </div>
+        <main className="gal-not-found" dir="rtl" lang="ar">
+          <p className="gal-caption">404</p>
+          <h1>الصفحة غير موجودة</h1>
+          <p>Page not found</p>
+          <div className="gal-actions">
+            <Link className="gal-btn gal-btn--solid" href="/">
+              <Home size={15} aria-hidden="true" />
+              <span>الرئيسية</span>
+            </Link>
+            <Link className="gal-btn gal-btn--line" href="/en">
+              <span>English Home</span>
+              <ArrowUpRight size={15} aria-hidden="true" />
+            </Link>
+          </div>
+        </main>
       </body>
     </html>
   );

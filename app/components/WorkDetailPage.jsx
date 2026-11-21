@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, ExternalLink, Music2, Play } from "lucide-react";
+import { ArrowLeft, ArrowRight, ExternalLink, Music2 } from "lucide-react";
 import {
   content,
   getLocalePath,
@@ -19,70 +19,38 @@ function formatUploadDate(locale, uploadDate) {
   }).format(new Date(uploadDate));
 }
 
-function formatDuration(locale, seconds) {
-  const totalSeconds = Number(seconds);
-
-  if (!Number.isFinite(totalSeconds) || totalSeconds <= 0) {
-    return locale === "ar" ? "غير محدد" : "Not listed";
-  }
-
-  const minutes = Math.floor(totalSeconds / 60);
-  const remainingSeconds = totalSeconds % 60;
-  const numberFormatter = new Intl.NumberFormat(locale === "ar" ? "ar-YE" : "en-US", {
-    minimumIntegerDigits: 2,
-    useGrouping: false
-  });
-  const minuteFormatter = new Intl.NumberFormat(locale === "ar" ? "ar-YE" : "en-US", {
-    useGrouping: false
-  });
-
-  return `${minuteFormatter.format(minutes)}:${numberFormatter.format(remainingSeconds)}`;
+function formatDuration(seconds) {
+  const m = Math.floor(seconds / 60);
+  const s = String(seconds % 60).padStart(2, "0");
+  return `${m}:${s}`;
 }
 
-export default function WorkDetailPage({ locale, work }) {
+export default function WorkDetailPage({ locale = "ar", work }) {
   const t = content[locale];
+  const isAr = locale === "ar";
   const copy = getWorkCopy(work, locale);
-  const currentIndex = works.findIndex((item) => item.youtubeId === work.youtubeId);
-  const previousWork = works[currentIndex - 1];
-  const nextWork = works[currentIndex + 1];
-  const watchLabel = locale === "ar" ? "شاهد على يوتيوب" : "Watch on YouTube";
-  const catalogLabel = locale === "ar" ? "العودة إلى الأعمال" : "Back to works";
-  const publishedLabel = locale === "ar" ? "تاريخ النشر" : "Published";
-  const durationLabel = locale === "ar" ? "مدة العمل" : "Duration";
-  const roleLabel = locale === "ar" ? "نوع العمل" : "Work type";
-  const nextLabel = locale === "ar" ? "العمل التالي" : "Next work";
-  const previousLabel = locale === "ar" ? "العمل السابق" : "Previous work";
+  const idx = works.findIndex((item) => item.youtubeId === work.youtubeId);
+  const prev = works[idx - 1];
+  const next = works[idx + 1];
 
   return (
     <SiteChrome locale={locale} page="works" work={work}>
-      <article className="work-detail">
-        <section className="work-detail-hero">
-          <div className="work-detail__copy">
-            <Link className="text-link" href={getLocalePath(locale, "works")}>
-              {locale === "ar" ? <ArrowRight size={17} /> : <ArrowLeft size={17} />}
-              <span>{catalogLabel}</span>
-            </Link>
-            <p className="eyebrow">{work.year} / {copy.type}</p>
-            <h1>{copy.title}</h1>
-            <p>{copy.note}</p>
-            <div className="hero-actions">
-              <a
-                className="button button-primary"
-                href={getYoutubeWatchUrl(work)}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <ExternalLink aria-hidden="true" size={18} />
-                <span>{watchLabel}</span>
-              </a>
-              <Link className="button button-secondary" href={getLocalePath(locale, "contact")}>
-                <Music2 aria-hidden="true" size={18} />
-                <span>{t.contactPage.primaryAction}</span>
-              </Link>
-            </div>
-          </div>
+      <article className="gal-detail">
+        <div className="gal-wrap">
+          <Link className="gal-text-link" href={getLocalePath(locale, "works")}>
+            {isAr ? <ArrowRight size={15} aria-hidden="true" /> : <ArrowLeft size={15} aria-hidden="true" />}
+            <span>{isAr ? "العودة للأرشيف" : "Back to archive"}</span>
+          </Link>
 
-          <div className="work-detail__player" aria-label={copy.title}>
+          <header className="gal-detail__head">
+            <p className="gal-caption">
+              {work.year} · {copy.type}
+            </p>
+            <h1 className="gal-page-title">{copy.title}</h1>
+            <p className="gal-lead">{copy.note}</p>
+          </header>
+
+          <div className="gal-screening__frame gal-detail__frame">
             <iframe
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
@@ -92,51 +60,61 @@ export default function WorkDetailPage({ locale, work }) {
               title={copy.title}
             />
           </div>
-        </section>
 
-        <section className="section work-detail-meta">
-          <div className="work-detail-meta__item">
-            <span>{publishedLabel}</span>
-            <strong>{formatUploadDate(locale, work.uploadDate)}</strong>
-          </div>
-          <div className="work-detail-meta__item">
-            <span>{durationLabel}</span>
-            <strong>{formatDuration(locale, work.durationSeconds)}</strong>
-          </div>
-          <div className="work-detail-meta__item">
-            <span>{roleLabel}</span>
-            <strong>{copy.type}</strong>
-          </div>
-          <div className="work-detail-meta__item">
-            <span>{locale === "ar" ? "المزاج" : "Mood"}</span>
-            <strong>{copy.mood}</strong>
-          </div>
-        </section>
+          <dl className="gal-detail__specs">
+            <div>
+              <dt>{isAr ? "النشر" : "Published"}</dt>
+              <dd>{formatUploadDate(locale, work.uploadDate)}</dd>
+            </div>
+            <div>
+              <dt>{isAr ? "المدة" : "Duration"}</dt>
+              <dd>{formatDuration(work.durationSeconds)}</dd>
+            </div>
+            <div>
+              <dt>{isAr ? "النوع" : "Format"}</dt>
+              <dd>{copy.type}</dd>
+            </div>
+            <div>
+              <dt>{isAr ? "المزاج" : "Atmosphere"}</dt>
+              <dd>{copy.mood}</dd>
+            </div>
+          </dl>
 
-        <nav className="section work-detail-nav" aria-label={locale === "ar" ? "التنقل بين الأعمال" : "Work navigation"}>
-          {previousWork ? (
-            <Link href={getWorkPath(locale, previousWork)}>
-              <span>{previousLabel}</span>
-              <strong>{getWorkCopy(previousWork, locale).title}</strong>
+          <div className="gal-actions">
+            <a
+              className="gal-btn gal-btn--solid"
+              href={getYoutubeWatchUrl(work)}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <ExternalLink size={15} aria-hidden="true" />
+              <span>{isAr ? "شاهد على يوتيوب" : "Watch on YouTube"}</span>
+            </a>
+            <Link className="gal-btn gal-btn--line" href={getLocalePath(locale, "contact")}>
+              <Music2 size={15} aria-hidden="true" />
+              <span>{t.contactPage.primaryAction}</span>
             </Link>
-          ) : (
-            <span />
-          )}
+          </div>
 
-          <Link className="work-detail-nav__center" href={getLocalePath(locale, "works")}>
-            <Play aria-hidden="true" size={16} fill="currentColor" />
-            <span>{t.worksPage.catalogLabel}</span>
-          </Link>
-
-          {nextWork ? (
-            <Link href={getWorkPath(locale, nextWork)}>
-              <span>{nextLabel}</span>
-              <strong>{getWorkCopy(nextWork, locale).title}</strong>
-            </Link>
-          ) : (
-            <span />
-          )}
-        </nav>
+          <nav className="gal-pager" aria-label={isAr ? "التنقل بين الأعمال" : "Work navigation"}>
+            {prev ? (
+              <Link className="gal-pager__item" href={getWorkPath(locale, prev)}>
+                <span>{isAr ? "الأحدث" : "Newer"}</span>
+                <strong>{getWorkCopy(prev, locale).title}</strong>
+              </Link>
+            ) : (
+              <span />
+            )}
+            {next ? (
+              <Link className="gal-pager__item gal-pager__item--end" href={getWorkPath(locale, next)}>
+                <span>{isAr ? "السابق" : "Earlier"}</span>
+                <strong>{getWorkCopy(next, locale).title}</strong>
+              </Link>
+            ) : (
+              <span />
+            )}
+          </nav>
+        </div>
       </article>
     </SiteChrome>
   );

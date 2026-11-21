@@ -1,208 +1,181 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, Play, Eye, Minus, Square } from "lucide-react";
-import { content, getLocalePath, works } from "../data";
-import SiteChrome from "./SiteChrome";
+import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
+import {
+  content,
+  getLocalePath,
+  getWorkCopy,
+  getWorkPath,
+  socialLinks,
+  works
+} from "../data";
+import GalleryExhibition from "./GalleryExhibition";
+import SiteChrome, { SocialIcon } from "./SiteChrome";
 
 export default function HomePage({ locale = "ar" }) {
   const t = content[locale];
   const isAr = locale === "ar";
-  const ArrowIcon = isAr ? ArrowLeft : ArrowRight;
+  const DirectionalArrow = isAr ? ArrowLeft : ArrowRight;
 
-  const romanNumerals = ["I", "II", "III", "IV"];
-  const featuredWorks = works.slice(0, 4);
+  const exhibitionWorks = [works[0], works[1], works[4], works[5]].map((work) => {
+    const copy = getWorkCopy(work, locale);
+    return {
+      youtubeId: work.youtubeId,
+      year: work.year,
+      durationSeconds: work.durationSeconds,
+      title: copy.title,
+      type: copy.type,
+      mood: copy.mood,
+      note: copy.note,
+      href: getWorkPath(locale, work)
+    };
+  });
+
+  const streaming = socialLinks.filter((s) =>
+    ["youtube", "spotify", "appleMusic", "anghami", "soundcloud"].includes(s.icon)
+  );
 
   return (
     <SiteChrome locale={locale} page="home">
-      {/* 1. Stark Brutalist Hero */}
-      <section className="gallery-hero">
-        <div className="gallery-container">
-          <div className="gallery-hero-grid">
-            <div className="gallery-hero-content">
-              <div className="gallery-curatorial-tag">
-                <span className="gallery-tag-sq" />
-                <span>{isAr ? "معرض فني ومتحف موسيقي // استوديو A7MD" : "CURATORIAL ARCHIVE // PERMANENT COLLECTION"}</span>
-              </div>
+      {/* 1. Monumental Poster Opening & Silver-Gelatin Portrait */}
+      <section className="gal-hero">
+        <div className="gal-wrap">
+          <div className="gal-poster-head">
+            <p className="gal-caption">
+              {isAr
+                ? "معرض الصوت والذاكرة · ٢٠٢٠ – ٢٠٢٦"
+                : "Sound & Memory Monograph · 2020 – 2026"}
+            </p>
+            <h1 className="gal-poster-title">{t.hero.title}</h1>
+          </div>
 
-              <h1 className="gallery-hero-title">
-                {isAr ? (
-                  <>
-                    أصالة اللحن في مساحة بيضاء وسوداء.. <br />
-                    <span className="gallery-white-text">أحمد سيف</span>
-                  </>
-                ) : (
-                  <>
-                    Stark Acoustic Purity.. <br />
-                    <span className="gallery-white-text">Ahmed Saif</span>
-                  </>
-                )}
-              </h1>
-
-              <p className="gallery-hero-bio">
-                {isAr
-                  ? "أهلاً بكم.. أنا أحمد سيف. مغنٍ وملحّن يمني، أؤمن بالأغنية الصادقة الخالية من الزوائد، التي تدخل القلب مباشرة. من استوديو A7MD نصنع كل نغمة بحساب فني دقيق، لنقدم التراث اليمني برؤية معاصرة رفيعة المستوى."
-                  : "Welcome.. I am Ahmed Saif, a contemporary Yemeni sound artist and composer. I strip away the superfluous to arrive at raw melodic truth: honoring ancient Arabian maqam traditions within an uncompromising modern frame."}
-              </p>
-
-              <div className="gallery-hero-actions">
+          <div className="gal-hero-split">
+            <div className="gal-hero-copy">
+              <p className="gal-hero-role">{t.hero.role}</p>
+              <p className="gal-lead">{t.hero.lead}</p>
+              <div className="gal-actions">
+                <a className="gal-btn gal-btn--solid" href="#exhibition">
+                  <span>{isAr ? "ادخل قاعة العرض" : "Enter screening room"}</span>
+                  <DirectionalArrow size={15} aria-hidden="true" />
+                </a>
                 <Link
+                  className="gal-btn gal-btn--line"
                   href={getLocalePath(locale, "works")}
-                  className="gallery-btn-white"
                 >
-                  <span>{isAr ? "معاينة المعرض الموسيقي" : "View Exhibition Catalog"}</span>
-                  <ArrowIcon size={16} />
-                </Link>
-                <Link
-                  href={getLocalePath(locale, "contact")}
-                  className="gallery-btn-outline"
-                >
-                  <span>{isAr ? "طلب تكليف فني رسمي" : "Artistic Commission"}</span>
+                  <span>{t.hero.explore}</span>
                 </Link>
               </div>
 
-              {/* Museum Metrics */}
-              <div className="gallery-metrics-row">
-                <div className="gallery-metric-box">
-                  <span className="gallery-m-num">18+</span>
-                  <span className="gallery-m-lbl">{isAr ? "مؤلفة مسجلة" : "Archived Works"}</span>
-                </div>
-                <div className="gallery-metric-box">
-                  <span className="gallery-m-num">A7MD</span>
-                  <span className="gallery-m-lbl">{isAr ? "استوديو خاص" : "Private Studio"}</span>
-                </div>
-                <div className="gallery-metric-box">
-                  <span className="gallery-m-num">2025</span>
-                  <span className="gallery-m-lbl">{isAr ? "إكسبو أوساكا اليابان" : "Osaka Expo '25"}</span>
-                </div>
-              </div>
+              <dl className="gal-metrics">
+                {t.stats.map((stat) => (
+                  <div key={stat.value}>
+                    <dt>{stat.label}</dt>
+                    <dd>{stat.value}</dd>
+                  </div>
+                ))}
+              </dl>
             </div>
 
-            {/* Stark Gallery Frame */}
-            <div className="gallery-hero-media">
-              <div className="gallery-monochrome-frame">
-                <div className="gallery-portrait-inner">
-                  <Image
-                    src="/ahmed-saif-profile.webp"
-                    alt="Ahmed Saif - الفنان أحمد سيف"
-                    fill
-                    priority
-                    sizes="(max-width: 768px) 90vw, 440px"
-                    className="gallery-portrait-img"
-                  />
-                  <div className="gallery-portrait-tint" />
-                </div>
-                <div className="gallery-caption-bar">
-                  <span className="gallery-fig">FIG. 01</span>
-                  <span>AHMED SAIF — SOUND ARTIST & VOCALIST</span>
-                </div>
-              </div>
-            </div>
+            <figure className="gal-portrait-frame">
+              <Image
+                src="/ahmed-saif-profile.webp"
+                alt={t.hero.title}
+                width={560}
+                height={620}
+                priority
+                sizes="(max-width: 900px) 100vw, 44vw"
+                className="gal-silver-img"
+              />
+              <figcaption>
+                <span>{t.hero.title}</span>
+                <span>{isAr ? "صنعاء · A7MD Studio" : "Sana'a · A7MD Studio"}</span>
+              </figcaption>
+            </figure>
           </div>
         </div>
       </section>
 
-      {/* 2. Curatorial Exhibition Grid */}
-      <section className="gallery-section">
-        <div className="gallery-container">
-          <div className="gallery-section-header">
-            <span className="gallery-pretitle">{isAr ? "المعروضات الفنية المختارة" : "PERMANENT EXHIBITION PLATES"}</span>
-            <h2 className="gallery-title">{isAr ? "أعمال نُقشت في الوجدان" : "Selected Archival Compositions"}</h2>
-            <p className="gallery-subtitle">
-              {isAr
-                ? "مقطوعات تمثل خلاصة التجربة اللحنية والغنائية لأحمد سيف، معروضة بتوثيقها الفني الكامل."
-                : "Masterworks representing the pinnacle of Yemeni vocal composition, presented in full curatorial detail."}
-            </p>
+      {/* 2. Exhibition Screening Room (2x2 Silver-to-Color Plates) */}
+      <section className="gal-section" id="exhibition">
+        <div className="gal-wrap">
+          <div className="gal-section-head">
+            <div>
+              <p className="gal-caption">{t.featuredWorks.eyebrow}</p>
+              <h2 className="gal-h2">{t.featuredWorks.title}</h2>
+            </div>
+            <Link className="gal-text-link" href={getLocalePath(locale, "works")}>
+              <span>{isAr ? "الأرشيف الكامل (١٨)" : "Full archive (18)"}</span>
+              <ArrowUpRight size={15} aria-hidden="true" />
+            </Link>
           </div>
 
-          <div className="gallery-plates-grid">
-            {featuredWorks.map((work, index) => (
-              <div key={work.slug} className="gallery-plate-card">
-                <div className="gallery-plate-top">
-                  <span className="gallery-plate-roman">{romanNumerals[index] || `NO. ${index + 1}`}</span>
-                  <span className="gallery-plate-year">{work.year}</span>
-                </div>
+          <GalleryExhibition tracks={exhibitionWorks} locale={locale} />
+        </div>
+      </section>
 
-                <div className="gallery-plate-media">
-                  <Image
-                    src={work.image}
-                    alt={isAr ? work.arTitle : work.enTitle}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 540px"
-                    className="gallery-plate-img"
-                  />
-                  <div className="gallery-plate-mask" />
-                </div>
+      {/* 3. Sculptural Statement & Wide Monochrome Oud Interlude */}
+      <section className="gal-section gal-section--plinth">
+        <div className="gal-wrap">
+          <blockquote className="gal-statement">
+            “{t.aboutPage.statement}”
+          </blockquote>
 
-                <div className="gallery-plate-body">
-                  <span className="gallery-plate-cat">{isAr ? work.category : work.categoryEn}</span>
-                  <h3 className="gallery-plate-title">
-                    {isAr ? work.arTitle : work.enTitle}
-                  </h3>
-                  <p className="gallery-plate-desc">
-                    {isAr ? work.description : work.descriptionEn}
-                  </p>
+          <figure className="gal-wide-plate">
+            <Image
+              src="/ahmed-saif-hero.webp"
+              alt={t.heroAlt}
+              width={1600}
+              height={760}
+              sizes="(max-width: 900px) 100vw, 1180px"
+              className="gal-silver-img"
+            />
+          </figure>
 
-                  <div className="gallery-plate-action">
-                    <Link
-                      href={`${getLocalePath(locale, "works")}/${work.slug}`}
-                      className="gallery-plate-link"
-                    >
-                      <span>{isAr ? "فحص اللوحة الصوتية" : "Inspect Plate"}</span>
-                      <ArrowIcon size={14} />
-                    </Link>
-                  </div>
-                </div>
+          <div className="gal-studio-notes">
+            {t.studio.cards.map((card) => (
+              <div className="gal-studio-note" key={card.title}>
+                <h3>{card.title}</h3>
+                <p>{card.body}</p>
               </div>
             ))}
           </div>
+        </div>
+      </section>
 
-          <div className="gallery-center-action">
-            <Link href={getLocalePath(locale, "works")} className="gallery-btn-outline">
-              <span>{isAr ? "معاينة أرشيف المعرض بالكامل (18+ عمل)" : "Open Complete Museum Archive (18+ Works)"}</span>
-              <ArrowIcon size={16} />
+      {/* 4. Listening Directory & Gallery Representation */}
+      <section className="gal-section">
+        <div className="gal-wrap gal-closing">
+          <div>
+            <p className="gal-caption">{t.strip.label}</p>
+            <h2 className="gal-h2">{t.strip.title}</h2>
+            <div className="gal-platforms">
+              {streaming.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="gal-platform-item"
+                >
+                  <SocialIcon name={item.icon} size={15} />
+                  <span>{item.label}</span>
+                  <ArrowUpRight size={13} aria-hidden="true" />
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <div className="gal-closing__panel">
+            <p className="gal-caption">{t.contactPage.eyebrow}</p>
+            <h3>{t.contactPage.title}</h3>
+            <p>{t.contactPage.body}</p>
+            <Link
+              className="gal-btn gal-btn--solid"
+              href={getLocalePath(locale, "contact")}
+            >
+              <span>{t.contactPage.primaryAction}</span>
+              <DirectionalArrow size={15} aria-hidden="true" />
             </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. Curatorial Essay */}
-      <section className="gallery-section gallery-section-alt">
-        <div className="gallery-container">
-          <div className="gallery-essay-box">
-            <span className="gallery-essay-num">ESSAY // I</span>
-            <h3 className="gallery-essay-title">
-              {isAr ? "في نقد الزوائد: جمالية النغمة البسيطة" : "On the Abolition of Fluff: The Power of Honest Song"}
-            </h3>
-            <p className="gallery-essay-text">
-              {isAr
-                ? "في عالم يعج بالضجيج والمؤثرات المصطنعة، تنبع قوة الفن من الشجاعة في التجريد.. عندما تعزف العود بصوت نقي وتغني بصدق، تصل الرسالة إلى أعمق زوايا القلب دون الحاجة إلى طبقات متراكمة من الإبهار البصري أو الصوتي الزائف."
-                : "In a landscape cluttered with digital noise, true artistic authority lies in deliberate restraint. Stripped to its core acoustic resonance, Yemeni melody possesses a timeless emotional clarity."}
-            </p>
-            <div className="gallery-essay-author">
-              <strong>{isAr ? "أحمد سيف" : "Ahmed Saif"}</strong>
-              <span>{isAr ? "موسيقي ومؤلف، استوديو A7MD" : "Composer & Producer, A7MD Studio"}</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. Gallery Liaison Desk CTA */}
-      <section className="gallery-section">
-        <div className="gallery-container">
-          <div className="gallery-liaison-card">
-            <span className="gallery-liaison-tag">COMMISSION DESK // 2026</span>
-            <h2>{isAr ? "هل تبحث عن عمل فني بتوقيع موسيقي خاص؟" : "Commission a Curated Sound Piece"}</h2>
-            <p>
-              {isAr
-                ? "المكتب الفني متاح للمؤسسات الثقافية، شركات الإنتاج التلفزيوني، والمهرجانات الدولية لتنسيق المشاريع والأعمال الخاصة."
-                : "The curatorial liaison office is open for cultural institutions, television networks, and international festival commissions."}
-            </p>
-            <div className="gallery-liaison-action">
-              <Link href={getLocalePath(locale, "contact")} className="gallery-btn-white">
-                <span>{isAr ? "التواصل مع مكتب الأرشيف" : "Initiate Curatorial Dialogue"}</span>
-                <ArrowIcon size={16} />
-              </Link>
-            </div>
           </div>
         </div>
       </section>

@@ -1,82 +1,75 @@
-import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, Play, Eye } from "lucide-react";
-import { content, getLocalePath, works } from "../data";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import {
+  content,
+  getLocalePath,
+  getWorkCopy,
+  getWorkKey,
+  getWorkPath,
+  works
+} from "../data";
 import SiteChrome from "./SiteChrome";
+import WorkVideoCatalog from "./WorkVideoCatalog";
+
+function classify(work) {
+  const type = work.enType.toLowerCase();
+  if (type.includes("series") || type.includes("live") || type.includes("collaborative")) {
+    return "stage";
+  }
+  if (type.includes("video") || type.includes("gharaa") || type.includes("medley")) {
+    return "visual";
+  }
+  return "singles";
+}
 
 export default function WorksPage({ locale = "ar" }) {
   const t = content[locale];
   const isAr = locale === "ar";
-  const ArrowIcon = isAr ? ArrowLeft : ArrowRight;
+  const DirectionalArrow = isAr ? ArrowLeft : ArrowRight;
+
+  const tracks = works.map((work) => {
+    const copy = getWorkCopy(work, locale);
+    return {
+      key: getWorkKey(work),
+      year: work.year,
+      youtubeId: work.youtubeId,
+      durationSeconds: work.durationSeconds,
+      category: classify(work),
+      title: copy.title,
+      subtitle: copy.subtitle,
+      type: copy.type,
+      mood: copy.mood,
+      note: copy.note,
+      href: getWorkPath(locale, work)
+    };
+  });
 
   return (
     <SiteChrome locale={locale} page="works">
-      <div className="gallery-page-header">
-        <div className="gallery-container">
-          <div className="gallery-curatorial-tag">
-            <span className="gallery-tag-sq" />
-            <span>{isAr ? "الأرشيف المتحفي الكامل // المعروضات" : "COMPLETE PERMANENT EXHIBITION ARCHIVE"}</span>
-          </div>
-          <h1 className="gallery-page-title">
-            {isAr ? "أرشيف المعرض والأعمال الموسيقية" : "Exhibition Catalog & Archival Scores"}
-          </h1>
-          <p className="gallery-page-desc">
-            {isAr
-              ? "مجموعة المقطوعات الموسيقية والأغاني الفردية وتترات الدراما المسجلة في استوديو A7MD، موثقة بأعلى معايير التنسيق المتحفي."
-              : "The complete archival catalog of musical compositions, television soundtracks, and studio master recordings by Ahmed Saif."}
-          </p>
+      <section className="gal-page-head">
+        <div className="gal-wrap">
+          <p className="gal-caption">{t.worksPage.eyebrow}</p>
+          <h1 className="gal-page-title">{t.worksPage.title}</h1>
+          <p className="gal-lead">{t.worksPage.body}</p>
         </div>
-      </div>
+      </section>
 
-      <section className="gallery-section">
-        <div className="gallery-container">
-          <div className="gallery-catalog-grid">
-            {works.map((work, index) => (
-              <article key={work.slug} className="gallery-catalog-card">
-                <div className="gallery-catalog-top">
-                  <span className="gallery-catalog-plate">PLATE #{String(index + 1).padStart(2, "0")}</span>
-                  <span className="gallery-catalog-year">{work.year}</span>
-                </div>
+      <WorkVideoCatalog
+        tracks={tracks}
+        locale={locale}
+        detailLabel={isAr ? "صفحة العمل" : "Release sheet"}
+      />
 
-                <div className="gallery-catalog-media">
-                  <Image
-                    src={work.image}
-                    alt={isAr ? work.arTitle : work.enTitle}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 420px"
-                    className="gallery-catalog-img"
-                  />
-                  <div className="gallery-catalog-mask" />
-                </div>
-
-                <div className="gallery-catalog-body">
-                  <span className="gallery-catalog-cat">
-                    {isAr ? work.category : work.categoryEn}
-                  </span>
-
-                  <h2 className="gallery-catalog-title">
-                    <Link href={`${getLocalePath(locale, "works")}/${work.slug}`}>
-                      {isAr ? work.arTitle : work.enTitle}
-                    </Link>
-                  </h2>
-
-                  <p className="gallery-catalog-desc">
-                    {isAr ? work.description : work.descriptionEn}
-                  </p>
-
-                  <div className="gallery-catalog-footer">
-                    <Link
-                      href={`${getLocalePath(locale, "works")}/${work.slug}`}
-                      className="gallery-catalog-btn"
-                    >
-                      <span>{isAr ? "معاينة الوثيقة الفنية" : "Examine Plate"}</span>
-                      <ArrowIcon size={14} />
-                    </Link>
-                  </div>
-                </div>
-              </article>
-            ))}
+      <section className="gal-section gal-section--plinth">
+        <div className="gal-wrap gal-cta-inline">
+          <div>
+            <p className="gal-caption">{t.contactPage.eyebrow}</p>
+            <h2 className="gal-h2">{t.worksPage.cta}</h2>
           </div>
+          <Link className="gal-btn gal-btn--solid" href={getLocalePath(locale, "contact")}>
+            <span>{t.contactPage.primaryAction}</span>
+            <DirectionalArrow size={15} aria-hidden="true" />
+          </Link>
         </div>
       </section>
     </SiteChrome>

@@ -1,53 +1,52 @@
 import "./globals.css";
 import Link from "next/link";
-import { Home, ArrowUpRight } from "lucide-react";
+import { El_Messiri, Readex_Pro } from "next/font/google";
+import { ArrowUpRight, Home } from "lucide-react";
+
+const displayFont = El_Messiri({
+  subsets: ["arabic", "latin"],
+  weight: ["500", "700"],
+  variable: "--font-display",
+  display: "swap"
+});
+
+const sansFont = Readex_Pro({
+  subsets: ["arabic", "latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-sans",
+  display: "swap"
+});
 
 export const metadata = {
   title: "404 | Ahmed Saif",
   description: "الصفحة غير موجودة — Page not found",
-  robots: {
-    index: false,
-    follow: false
-  }
+  robots: { index: false, follow: false }
 };
 
 export default function GlobalNotFound() {
   return (
-    <html lang="ar" dir="rtl">
-      <head>
-        <link
-          rel="preload"
-          href="/fonts/alexandria-arabic.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="/fonts/alexandria-latin.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-      </head>
+    <html
+      lang="ar"
+      dir="rtl"
+      data-mode="dark"
+      className={`${displayFont.variable} ${sansFont.variable}`}
+    >
       <body>
-        <div className="site-shell site-shell--inner" dir="rtl" lang="ar">
-          <main className="not-found">
-            <p className="eyebrow">404</p>
-            <h1>الصفحة غير موجودة</h1>
-            <p>Page not found</p>
-            <div className="hero-actions">
-              <Link className="button button-primary" href="/">
-                <Home aria-hidden="true" size={18} />
-                <span>الرئيسية</span>
-              </Link>
-              <Link className="button button-secondary" href="/en">
-                <span>English Home</span>
-                <ArrowUpRight aria-hidden="true" size={18} />
-              </Link>
-            </div>
-          </main>
-        </div>
+        <main className="sym-not-found" dir="rtl" lang="ar">
+          <p className="sym-kicker">404</p>
+          <h1>الصفحة غير موجودة</h1>
+          <p>Page not found</p>
+          <div className="sym-actions">
+            <Link className="sym-btn sym-btn--gold" href="/">
+              <Home size={15} aria-hidden="true" />
+              <span>الرئيسية</span>
+            </Link>
+            <Link className="sym-btn sym-btn--outline" href="/en">
+              <span>English Home</span>
+              <ArrowUpRight size={15} aria-hidden="true" />
+            </Link>
+          </div>
+        </main>
       </body>
     </html>
   );

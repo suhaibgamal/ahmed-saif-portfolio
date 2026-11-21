@@ -1,127 +1,95 @@
-import { ArrowLeft, ArrowRight, Mail, Send, Bookmark, MessageCircle } from "lucide-react";
+import { ArrowUpRight, Mail } from "lucide-react";
 import { content, socialLinks } from "../data";
-import SiteChrome, { SocialIcon, emailHref } from "./SiteChrome";
+import CopyEditorialButton from "./CopyEditorialButton";
+import SiteChrome, { emailHref, SocialIcon } from "./SiteChrome";
 
 export default function ContactPage({ locale = "ar" }) {
   const t = content[locale];
   const isAr = locale === "ar";
-  const ArrowIcon = isAr ? ArrowLeft : ArrowRight;
 
   return (
     <SiteChrome locale={locale} page="contact">
-      <div className="lookbook-page-header">
-        <div className="lookbook-container">
-          <div className="lookbook-cover-badge">
-            <span className="lookbook-crimson-dot" />
-            <span>{isAr ? "الصالون الفني ومكتب التكليف // A7MD" : "HAUTE SALON // COMMISSION DESK"}</span>
-          </div>
-          <h1 className="lookbook-page-title">
-            {isAr ? "تواصل للتعاون الفني والإنتاج" : "Artistic Commissioning & Inquiries"}
-          </h1>
-          <p className="lookbook-page-desc">
-            {isAr
-              ? "لطلبات تلحين تترات الدراما، إنتاج الأغاني الفردية، وحجز الحفلات والمهرجانات الموسيقية."
-              : "Direct channels for television drama scoring commissions, bespoke musical productions, concert appearances, and press inquiries."}
-          </p>
+      <section className="ed-page-head">
+        <div className="ed-wrap">
+          <p className="ed-kicker">{t.contactPage.eyebrow}</p>
+          <h1 className="ed-page-title">{t.contactPage.title}</h1>
+          <p className="ed-cover__deck">{t.contactPage.body}</p>
         </div>
-      </div>
+      </section>
 
-      <section className="lookbook-section">
-        <div className="lookbook-container">
-          <div className="lookbook-contact-grid">
-            {/* Main Salon Card */}
-            <div className="lookbook-salon-box">
-              <div className="lookbook-salon-top">
-                <span className="lookbook-salon-code">VIP LIAISON // 2026</span>
-                <span className="lookbook-salon-status">DIRECT DISPATCH</span>
-              </div>
-
-              <div className="lookbook-salon-body">
-                <h3 className="lookbook-salon-heading">
-                  {isAr ? "المكتب الفني والمراسلات" : "Direct Production Dispatch"}
-                </h3>
-                <p className="lookbook-salon-desc">
-                  {isAr
-                    ? "أرسل تفاصيل مشروعك وسيقوم فريق الاستوديو بالرد عليك في غضون 48 ساعة."
-                    : "Transmit your project brief for immediate scheduling, stems delivery specs, or performance fee schedules."}
-                </p>
-
-                <div className="lookbook-contact-row">
-                  <Mail size={16} className="lookbook-crimson-icon" />
-                  <a
-                    href={emailHref(t.contactPage.primaryEmail, t.contactPage.subject)}
-                    className="lookbook-contact-link"
-                  >
-                    {t.contactPage.primaryEmail}
-                  </a>
-                </div>
-
-                <div className="lookbook-contact-row">
-                  <MessageCircle size={16} className="lookbook-crimson-icon" />
-                  <a
-                    href="https://wa.me/967770000000"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="lookbook-contact-link"
-                  >
-                    {isAr ? "محادثة مباشرة عبر واتساب الاستوديو" : "Direct WhatsApp Office Channel"}
-                  </a>
-                </div>
-
-                <div className="lookbook-salon-cta">
-                  <a
-                    href={emailHref(t.contactPage.primaryEmail, t.contactPage.subject)}
-                    className="lookbook-btn-crimson"
-                  >
-                    <span>{isAr ? "إرسال رسالة رسمية" : "Dispatch Inquiry"}</span>
-                    <Send size={15} />
-                  </a>
-                </div>
-              </div>
-
-              {/* Social Channels */}
-              <div className="lookbook-social-section">
-                <h4>{isAr ? "المنصات الرقمية والتواصل" : "Digital Channels & Streaming"}</h4>
-                <div className="lookbook-social-grid">
-                  {socialLinks.map((link) => (
-                    <a
-                      href={link.href}
-                      key={link.label}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="lookbook-social-chip"
-                    >
-                      <SocialIcon name={link.icon} size={15} />
-                      <span>{link.label}</span>
-                    </a>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Studio Guarantee Box */}
-            <div className="lookbook-guarantee-box">
-              <span className="lookbook-pretitle">{isAr ? "معايير الاستوديو" : "HAUTE STANDARDS"}</span>
-              <h3 className="lookbook-guarantee-title">
-                {isAr ? "معايير الإنتاج في استوديو A7MD" : "A7MD Production Standards"}
-              </h3>
-              <p className="lookbook-guarantee-body">
-                {isAr
-                  ? "يتم التعامل مع كافة المشاريع بسرية واحترافية، مع توفير تراكات التوزيع المنفصلة وحقوق الملكية الفكرية."
-                  : "All commissioned works receive bespoke artistic treatment, full acoustic orchestration, live session musicianship, and master delivery in broadcast-ready formats."}
+      <section className="ed-section">
+        <div className="ed-wrap">
+          <div className="ed-contact-pair">
+            <div className="ed-contact-sheet">
+              <p className="ed-kicker">
+                {isAr ? "مكتب الإنتاج والتعاون" : "Production & Commissions"}
               </p>
-
-              <div className="lookbook-guarantee-metrics">
-                <div className="lookbook-g-metric">
-                  <strong>48h</strong>
-                  <small>{isAr ? "متوسط سرعة الرد" : "Response Time"}</small>
-                </div>
-                <div className="lookbook-g-metric">
-                  <strong>100%</strong>
-                  <small>{isAr ? "توثيق ملكية وحقوق" : "Full Rights"}</small>
-                </div>
+              <h2 dir="ltr">{t.contactPage.primaryEmail}</h2>
+              <p>
+                {isAr
+                  ? "لتترات المسلسلات، التلحين، الإنتاج الموسيقي، والتراخيص."
+                  : "For screen themes, original composition, studio production, and licensing."}
+              </p>
+              <div className="ed-actions">
+                <a
+                  className="ed-btn ed-btn--primary"
+                  href={emailHref(t.contactPage.primaryEmail, t.contactPage.subject)}
+                >
+                  <Mail size={14} aria-hidden="true" />
+                  <span>{t.contactPage.primaryAction}</span>
+                </a>
+                <CopyEditorialButton email={t.contactPage.primaryEmail} locale={locale} />
               </div>
             </div>
+
+            <div className="ed-contact-sheet">
+              <p className="ed-kicker">
+                {isAr ? "التواصل المباشر والصحافة" : "Artist Desk & Press"}
+              </p>
+              <h2 dir="ltr">{t.contactPage.secondaryEmail}</h2>
+              <p>
+                {isAr
+                  ? "للمهرجانات الدولية، الحفلات، واللقاءات الإعلامية."
+                  : "For festival appearances, live performances, and press."}
+              </p>
+              <div className="ed-actions">
+                <a
+                  className="ed-btn ed-btn--primary"
+                  href={emailHref(t.contactPage.secondaryEmail, t.contactPage.subject)}
+                >
+                  <Mail size={14} aria-hidden="true" />
+                  <span>{t.contactPage.secondaryAction}</span>
+                </a>
+                <CopyEditorialButton email={t.contactPage.secondaryEmail} locale={locale} />
+              </div>
+            </div>
+          </div>
+
+          <div className="ed-scopes">
+            {t.contactPage.cards.map((scope) => (
+              <div key={scope}>{scope}</div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="ed-section ed-section--tint">
+        <div className="ed-wrap">
+          <p className="ed-kicker">{t.socialLabel}</p>
+          <div className="ed-platforms">
+            {socialLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ed-platform-link"
+              >
+                <SocialIcon name={link.icon} size={15} />
+                <span>{link.label}</span>
+                <ArrowUpRight size={13} aria-hidden="true" />
+              </a>
+            ))}
           </div>
         </div>
       </section>

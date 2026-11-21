@@ -1,205 +1,184 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, Play, Sparkles, Bookmark, Heart, Star } from "lucide-react";
-import { content, getLocalePath, works } from "../data";
-import SiteChrome from "./SiteChrome";
+import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
+import {
+  content,
+  getLocalePath,
+  getWorkCopy,
+  getWorkPath,
+  socialLinks,
+  works
+} from "../data";
+import EditorialLookbook from "./EditorialLookbook";
+import SiteChrome, { SocialIcon } from "./SiteChrome";
 
 export default function HomePage({ locale = "ar" }) {
   const t = content[locale];
   const isAr = locale === "ar";
-  const ArrowIcon = isAr ? ArrowLeft : ArrowRight;
+  const DirectionalArrow = isAr ? ArrowLeft : ArrowRight;
 
-  const featuredWorks = works.slice(0, 4);
+  const lookbookTracks = [works[0], works[1], works[2], works[4]].map((work) => {
+    const copy = getWorkCopy(work, locale);
+    return {
+      youtubeId: work.youtubeId,
+      year: work.year,
+      durationSeconds: work.durationSeconds,
+      title: copy.title,
+      type: copy.type,
+      mood: copy.mood,
+      note: copy.note,
+      href: getWorkPath(locale, work)
+    };
+  });
+
+  const streaming = socialLinks.filter((s) =>
+    ["youtube", "spotify", "appleMusic", "anghami", "soundcloud"].includes(s.icon)
+  );
 
   return (
     <SiteChrome locale={locale} page="home">
-      {/* 1. Haute Editorial Cover Hero */}
-      <section className="lookbook-hero">
-        <div className="lookbook-container">
-          <div className="lookbook-hero-grid">
-            <div className="lookbook-hero-content">
-              <div className="lookbook-cover-badge">
-                <span className="lookbook-crimson-dot" />
-                <span>{isAr ? "غلاف العدد الفني // إصدار 2026" : "COVER STORY // HAUTE REPERTOIRE"}</span>
-              </div>
-
-              <h1 className="lookbook-hero-title">
-                {isAr ? (
-                  <>
-                    أصواتٌ من وادي النغم.. <br />
-                    <span className="lookbook-crimson-text">أحمد سيف</span>
-                  </>
-                ) : (
-                  <>
-                    The Haute Melodic Voice.. <br />
-                    <span className="lookbook-crimson-text">Ahmed Saif</span>
-                  </>
-                )}
-              </h1>
-
-              <p className="lookbook-hero-bio">
+      {/* 1. Magazine Cover Spread Hero */}
+      <section className="ed-cover">
+        <div className="ed-wrap">
+          <div className="ed-cover__grid">
+            <div className="ed-cover__editorial">
+              <p className="ed-kicker">
                 {isAr
-                  ? "أهلاً بكم.. أنا أحمد سيف. مغنٍ وملحّن يمني، أرى في الأغنية لوحة بصرية ومشاعر حية تدخل القلب وتعلّق في البال. من استوديو A7MD نصنع كل نغمة بشغف يجمع بين فخامة التراث اليمني وأناقة التوزيع الموسيقي العصري."
-                  : "Welcome.. I am Ahmed Saif, composer and vocalist. I craft music as haute couture soundscapes: weaving historic Yemeni modal poetry with modern cinematic grandeur."}
+                  ? "ملف العدد · صوتٌ يمانيّ في فضاءٍ معاصر"
+                  : "Cover Feature · A Yemeni Voice in Modern Form"}
               </p>
-
-              <div className="lookbook-hero-actions">
+              <h1 className="ed-cover__title">
+                {isAr
+                  ? "حين يصبح اللحن الصادق لغةً تعبر المكان والزمن."
+                  : "When an honest melody speaks beyond border and era."}
+              </h1>
+              <p className="ed-cover__deck">{t.hero.lead}</p>
+              <div className="ed-actions">
+                <a className="ed-btn ed-btn--primary" href="#lookbook">
+                  <span>{isAr ? "افتح ملف الاستماع" : "Open listening folio"}</span>
+                  <DirectionalArrow size={15} aria-hidden="true" />
+                </a>
                 <Link
+                  className="ed-btn ed-btn--outline"
                   href={getLocalePath(locale, "works")}
-                  className="lookbook-btn-crimson"
                 >
-                  <span>{isAr ? "تصفح لوك بوك الأعمال" : "Open Lookbook Collection"}</span>
-                  <ArrowIcon size={16} />
-                </Link>
-                <Link
-                  href={getLocalePath(locale, "contact")}
-                  className="lookbook-btn-outline"
-                >
-                  <span>{isAr ? "حجز موعد واستفسار" : "VIP Commission"}</span>
+                  <span>{t.hero.explore}</span>
                 </Link>
               </div>
 
-              {/* Lookbook Specs Strip */}
-              <div className="lookbook-specs-strip">
-                <div className="lookbook-spec-unit">
-                  <span className="lookbook-spec-val">18+</span>
-                  <span className="lookbook-spec-lbl">{isAr ? "إصدار وتتر مسجل" : "Cataloged Releases"}</span>
-                </div>
-                <div className="lookbook-spec-unit">
-                  <span className="lookbook-spec-val">A7MD</span>
-                  <span className="lookbook-spec-lbl">{isAr ? "استوديو الإنتاج الخاص" : "Private Sound Lab"}</span>
-                </div>
-                <div className="lookbook-spec-unit">
-                  <span className="lookbook-spec-val">OSAKA</span>
-                  <span className="lookbook-spec-lbl">{isAr ? "إكسبو 2025 اليابان" : "World Expo '25"}</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Editorial Portrait Spread */}
-            <div className="lookbook-hero-media">
-              <div className="lookbook-cover-frame">
-                <div className="lookbook-portrait-inner">
-                  <Image
-                    src="/ahmed-saif-profile.webp"
-                    alt="Ahmed Saif - الفنان أحمد سيف"
-                    fill
-                    priority
-                    sizes="(max-width: 768px) 90vw, 440px"
-                    className="lookbook-portrait-img"
-                  />
-                  <div className="lookbook-cover-gradient" />
-                </div>
-                <div className="lookbook-cover-callout">
-                  <span className="lookbook-issue-tag">ISSUE 26</span>
-                  <strong>{isAr ? "أحمد سيف: فخامة النغم اليمني" : "AHMED SAIF: HAUTE COUTURE ACOUSTICS"}</strong>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 2. Lookbook Works Collection */}
-      <section className="lookbook-section">
-        <div className="lookbook-container">
-          <div className="lookbook-section-header">
-            <span className="lookbook-pretitle">{isAr ? "مجموعة الأعمال الفنية" : "THE LOOKBOOK COLLECTION"}</span>
-            <h2 className="lookbook-title">{isAr ? "أعمال بتوقيع فني متميز" : "Selected Repertoire Looks"}</h2>
-            <p className="lookbook-subtitle">
-              {isAr
-                ? "مقطوعات موسيقية وتترات درامية مسجلة بأعلى معايير الإنتاج الموسيقي العالمي."
-                : "A showcase of signature compositions marrying traditional Yemeni acoustic soul with contemporary orchestral luxury."}
-            </p>
-          </div>
-
-          <div className="lookbook-grid">
-            {featuredWorks.map((work, index) => (
-              <div key={work.slug} className="lookbook-card">
-                <div className="lookbook-card-media">
-                  <Image
-                    src={work.image}
-                    alt={isAr ? work.arTitle : work.enTitle}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 540px"
-                    className="lookbook-card-img"
-                  />
-                  <div className="lookbook-card-overlay" />
-                  <div className="lookbook-look-tag">LOOK #{String(index + 1).padStart(2, "0")}</div>
-                </div>
-
-                <div className="lookbook-card-body">
-                  <div className="lookbook-card-meta">
-                    <span className="lookbook-card-cat">{isAr ? work.category : work.categoryEn}</span>
-                    <span className="lookbook-card-year">{work.year}</span>
+              <div className="ed-cover__credits">
+                {t.stats.map((stat) => (
+                  <div key={stat.value}>
+                    <strong>{stat.value}</strong>
+                    <span>{stat.label}</span>
                   </div>
-
-                  <h3 className="lookbook-card-title">
-                    {isAr ? work.arTitle : work.enTitle}
-                  </h3>
-
-                  <p className="lookbook-card-desc">
-                    {isAr ? work.description : work.descriptionEn}
-                  </p>
-
-                  <div className="lookbook-card-footer">
-                    <Link
-                      href={`${getLocalePath(locale, "works")}/${work.slug}`}
-                      className="lookbook-card-link"
-                    >
-                      <span>{isAr ? "استمع واقرأ القصة" : "View Look Story"}</span>
-                      <ArrowIcon size={14} />
-                    </Link>
-                  </div>
-                </div>
+                ))}
               </div>
-            ))}
-          </div>
-
-          <div className="lookbook-center-action">
-            <Link href={getLocalePath(locale, "works")} className="lookbook-btn-outline">
-              <span>{isAr ? "عرض أرشيف اللوك بوك الكامل (18+ عمل)" : "Open Complete Lookbook Vault (18+ Works)"}</span>
-              <ArrowIcon size={16} />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. Haute Interview Monograph */}
-      <section className="lookbook-section lookbook-section-alt">
-        <div className="lookbook-container">
-          <div className="lookbook-quote-box">
-            <div className="lookbook-quote-mark">“</div>
-            <p className="lookbook-quote-text">
-              {isAr
-                ? "الأغنية الحقيقية مثل الثوب الفاخر المتقن.. ليست بحاجة إلى كثرة الزخارف، بل إلى خطوط نقية وأقمشة نادرة. وفي موسيقاي، النغمة الصادقة والعود اليمني هما الخامة الأساسية التي لا تبلى."
-                : "Authentic music is akin to haute couture: it demands no superfluous ornamentation, only pure melodic lines and timeless emotional textures."}
-            </p>
-            <div className="lookbook-quote-author">
-              <strong>{isAr ? "أحمد سيف" : "Ahmed Saif"}</strong>
-              <span>{isAr ? "مؤلف ومغنٍ، استوديو A7MD" : "Composer & Artist, A7MD Studio"}</span>
             </div>
+
+            <figure className="ed-cover__portrait">
+              <Image
+                src="/ahmed-saif-profile.webp"
+                alt={t.hero.title}
+                width={540}
+                height={680}
+                priority
+                sizes="(max-width: 900px) 100vw, 440px"
+              />
+              <figcaption>
+                <span>{t.hero.title}</span>
+                <span>{isAr ? "بورتريه الاستوديو · صنعاء" : "Studio Portrait · Sana'a"}</span>
+              </figcaption>
+            </figure>
           </div>
         </div>
       </section>
 
-      {/* 4. VIP Salon Booking CTA */}
-      <section className="lookbook-section">
-        <div className="lookbook-container">
-          <div className="lookbook-salon-card">
-            <span className="lookbook-salon-tag">{isAr ? "صالون التكليف والإنتاج" : "HAUTE SALON // 2026"}</span>
-            <h2>{isAr ? "هل تبحث عن عمل فني استثنائي؟" : "Inquire for Bespoke Commissions"}</h2>
-            <p>
-              {isAr
-                ? "متاح للتعاون الفني في تلحين تترات المسلسلات، إنتاج الأغاني الفردية، وحفلات المهرجانات والمناسبات الراقية."
-                : "Direct booking channels are open for scoring commissions, festival headline sessions, and single production."}
-            </p>
-            <div className="lookbook-salon-actions">
-              <Link href={getLocalePath(locale, "contact")} className="lookbook-btn-crimson">
-                <span>{isAr ? "حجز جلسة عمل في الصالون" : "Book Salon Session"}</span>
-                <ArrowIcon size={16} />
+      {/* 2. Double-Ruled Pull Quote & Feature Essay */}
+      <section className="ed-section ed-section--tint">
+        <div className="ed-wrap">
+          <blockquote className="ed-pullquote">
+            “{t.aboutPage.statement}”
+          </blockquote>
+
+          <div className="ed-essay-grid">
+            <figure className="ed-essay-photo">
+              <Image
+                src="/visual-sunlit-oud.webp"
+                alt={t.studio.eyebrow}
+                width={1000}
+                height={620}
+                sizes="(max-width: 900px) 100vw, 560px"
+              />
+              <figcaption>{t.studio.title}</figcaption>
+            </figure>
+
+            <div className="ed-essay-copy">
+              <p className="ed-kicker">{t.studio.eyebrow}</p>
+              <h2 className="ed-h2">{t.credits.title}</h2>
+              <p className="ed-dropcap">{t.studio.body}</p>
+              <p className="ed-prose">{t.credits.body}</p>
+              <Link className="ed-link" href={getLocalePath(locale, "about")}>
+                <span>{isAr ? "اقرأ المقال والسيرة الكاملة" : "Read the full profile"}</span>
+                <DirectionalArrow size={15} aria-hidden="true" />
               </Link>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Discography Lookbook Spread */}
+      <section className="ed-section" id="lookbook">
+        <div className="ed-wrap">
+          <div className="ed-section-head">
+            <div>
+              <p className="ed-kicker">{t.featuredWorks.eyebrow}</p>
+              <h2 className="ed-h2">{t.featuredWorks.title}</h2>
+            </div>
+            <Link className="ed-link" href={getLocalePath(locale, "works")}>
+              <span>{isAr ? "فهرس الأعمال الكامل (١٨)" : "Catalogue raisonné (18)"}</span>
+              <ArrowUpRight size={15} aria-hidden="true" />
+            </Link>
+          </div>
+
+          <EditorialLookbook tracks={lookbookTracks} locale={locale} />
+        </div>
+      </section>
+
+      {/* 4. Listening Folio & Press Correspondence */}
+      <section className="ed-section ed-section--tint">
+        <div className="ed-wrap ed-closing">
+          <div>
+            <p className="ed-kicker">{t.strip.label}</p>
+            <h2 className="ed-h2">{t.strip.title}</h2>
+            <div className="ed-platforms">
+              {streaming.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="ed-platform-link"
+                >
+                  <SocialIcon name={item.icon} size={15} />
+                  <span>{item.label}</span>
+                  <ArrowUpRight size={13} aria-hidden="true" />
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <div className="ed-closing__sheet">
+            <p className="ed-kicker">{t.contactPage.eyebrow}</p>
+            <h3>{t.contactPage.title}</h3>
+            <p>{t.contactPage.body}</p>
+            <Link
+              className="ed-btn ed-btn--primary"
+              href={getLocalePath(locale, "contact")}
+            >
+              <span>{t.contactPage.primaryAction}</span>
+              <DirectionalArrow size={15} aria-hidden="true" />
+            </Link>
           </div>
         </div>
       </section>

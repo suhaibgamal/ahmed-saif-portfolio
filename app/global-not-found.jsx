@@ -1,53 +1,42 @@
 import "./globals.css";
 import Link from "next/link";
-import { Home, ArrowUpRight } from "lucide-react";
+import { Cairo } from "next/font/google";
+import { ArrowUpRight, Home } from "lucide-react";
+
+const sansFont = Cairo({
+  subsets: ["arabic", "latin"],
+  weight: ["400", "600", "700"],
+  variable: "--font-sans",
+  display: "swap"
+});
 
 export const metadata = {
   title: "404 | Ahmed Saif",
   description: "الصفحة غير موجودة — Page not found",
-  robots: {
-    index: false,
-    follow: false
-  }
+  robots: { index: false, follow: false }
 };
 
 export default function GlobalNotFound() {
   return (
-    <html lang="ar" dir="rtl">
-      <head>
-        <link
-          rel="preload"
-          href="/fonts/alexandria-arabic.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="/fonts/alexandria-latin.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-      </head>
+    <html lang="ar" dir="rtl" data-mode="light" className={sansFont.variable}>
       <body>
-        <div className="site-shell site-shell--inner" dir="rtl" lang="ar">
-          <main className="not-found">
-            <p className="eyebrow">404</p>
+        <main className="bn-not-found" dir="rtl" lang="ar">
+          <div className="bn-tile bn-not-found__card">
+            <span className="bn-pill">404</span>
             <h1>الصفحة غير موجودة</h1>
             <p>Page not found</p>
-            <div className="hero-actions">
-              <Link className="button button-primary" href="/">
-                <Home aria-hidden="true" size={18} />
+            <div className="bn-actions">
+              <Link className="bn-btn bn-btn--primary" href="/">
+                <Home size={15} aria-hidden="true" />
                 <span>الرئيسية</span>
               </Link>
-              <Link className="button button-secondary" href="/en">
+              <Link className="bn-btn bn-btn--soft" href="/en">
                 <span>English Home</span>
-                <ArrowUpRight aria-hidden="true" size={18} />
+                <ArrowUpRight size={15} aria-hidden="true" />
               </Link>
             </div>
-          </main>
-        </div>
+          </div>
+        </main>
       </body>
     </html>
   );

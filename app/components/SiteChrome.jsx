@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import {
   Cloud,
@@ -8,14 +7,10 @@ import {
   Ghost,
   Instagram,
   Languages,
-  LayoutGrid,
   Mail,
-  Menu,
   Music2,
   Radio,
-  Sparkles,
   Twitter,
-  X,
   Youtube
 } from "lucide-react";
 import {
@@ -26,15 +21,7 @@ import {
   socialLinks
 } from "../data";
 import MobileNav from "./MobileNav";
-
-export function OutboundIcon({ label }) {
-  return (
-    <>
-      <ExternalLink aria-hidden="true" size={16} strokeWidth={1.8} />
-      <span className="sr-only">{label}</span>
-    </>
-  );
-}
+import ThemeToggle from "./ThemeToggle";
 
 const socialIconMap = {
   youtube: Youtube,
@@ -48,74 +35,63 @@ const socialIconMap = {
   soundcloud: Cloud
 };
 
-export function SocialIcon({ name, size = 18 }) {
+export function SocialIcon({ name, size = 16 }) {
   const Icon = socialIconMap[name] || ExternalLink;
-  return <Icon aria-hidden="true" size={size} strokeWidth={1.8} />;
+  return <Icon aria-hidden="true" size={size} strokeWidth={1.75} />;
 }
 
 export function emailHref(email, subject) {
   return `mailto:${email}?subject=${encodeURIComponent(subject)}`;
 }
 
-export { Menu, X, Languages };
-
-export default function SiteChrome({
-  children,
-  locale,
-  page,
-  work = null
-}) {
+export default function SiteChrome({ children, locale, page, work = null }) {
   const t = content[locale];
-  const structuredData = JSON.stringify(getStructuredData(locale, page, work)).replace(
-    /</g,
-    "\\u003c"
-  );
+  const isAr = locale === "ar";
+  const structuredData = JSON.stringify(
+    getStructuredData(locale, page, work)
+  ).replace(/</g, "\\u003c");
 
   return (
-    <div className="bento-shell" dir={t.dir} lang={t.locale}>
+    <div className="bn-shell" dir={t.dir} lang={t.locale}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: structuredData }}
       />
 
       <a className="skip-link" href="#main">
-        {locale === "ar" ? "انتقل إلى المحتوى" : "Skip to content"}
+        {isAr ? "انتقل إلى المحتوى" : "Skip to content"}
       </a>
 
-      <header className="bento-header" aria-label={t.navLabel}>
-        <div className="bento-header-inner">
-          <Link className="bento-brand" href={getLocalePath(locale, "home")}>
-            <div className="bento-brand-icon">
-              <LayoutGrid size={18} className="bento-indigo-icon" />
-            </div>
-            <div className="bento-brand-info">
-              <span className="bento-brand-name">{t.brandName}</span>
-              <span className="bento-brand-badge">BENTO // A7MD STUDIO</span>
-            </div>
+      {/* Floating Centered Capsule Navbar */}
+      <div className="bn-dock-wrap">
+        <header className="bn-capsule" aria-label={t.navLabel}>
+          <Link className="bn-brand" href={getLocalePath(locale, "home")}>
+            <span className="bn-brand__mark" aria-hidden="true">A</span>
+            <strong>{t.brandName}</strong>
           </Link>
 
-          <nav className="bento-nav" aria-label={t.navLabel}>
+          <nav className="bn-nav" aria-label={t.navLabel}>
             {t.nav.map((item) => (
               <Link
-                aria-current={item.page === page ? "page" : undefined}
-                className={`bento-nav-link ${item.page === page ? "is-active" : ""}`}
-                href={getLocalePath(locale, item.page)}
                 key={item.page}
+                href={getLocalePath(locale, item.page)}
+                aria-current={item.page === page ? "page" : undefined}
+                className={`bn-nav__pill ${item.page === page ? "is-active" : ""}`}
               >
                 {item.label}
               </Link>
             ))}
           </nav>
 
-          <div className="bento-header-actions">
-            <Link className="bento-lang-btn" href={getSwitchPath(locale, page)}>
-              <Languages aria-hidden="true" size={15} strokeWidth={1.8} />
+          <div className="bn-capsule__tools">
+            <ThemeToggle locale={locale} />
+            <Link className="bn-lang-chip" href={getSwitchPath(locale, page)}>
+              <Languages size={14} aria-hidden="true" />
               <span>{t.switchLabel}</span>
             </Link>
-
             <MobileNav
-              closeLabel={locale === "ar" ? "إغلاق القائمة" : "Close menu"}
-              openLabel={locale === "ar" ? "فتح القائمة" : "Open menu"}
+              closeLabel={isAr ? "إغلاق القائمة" : "Close menu"}
+              openLabel={isAr ? "فتح القائمة" : "Open menu"}
               externalLabel={t.external}
               brandName={t.brandName}
               navLabel={t.navLabel}
@@ -128,45 +104,51 @@ export default function SiteChrome({
                 label: item.label,
                 href: getLocalePath(locale, item.page)
               }))}
-              socialLinks={socialLinks.slice(0, 5)}
+              socialLinks={socialLinks.slice(0, 6)}
             />
           </div>
-        </div>
-      </header>
+        </header>
+      </div>
 
-      <main id="main" className="bento-main">{children}</main>
+      <main id="main" className="bn-main">
+        {children}
+      </main>
 
-      <footer className="bento-footer">
-        <div className="bento-footer-inner">
-          <div className="bento-footer-info">
-            <div className="bento-pill-live">
-              <span className="bento-dot-purple" />
-              <span>MODULAR BENTO REPERTOIRE // 2026</span>
+      <footer className="bn-footer-wrap">
+        <div className="bn-wrap">
+          <div className="bn-tile bn-footer-tile">
+            <div>
+              <strong>{t.footer.line}</strong>
+              <p>{t.footer.credit}</p>
             </div>
-            <p className="bento-footer-quote">{t.footer.line}</p>
-            <p className="bento-footer-sub">{t.footer.credit}</p>
-          </div>
 
-          <div className="bento-footer-social" aria-label={t.socialLabel}>
-            {socialLinks.map((link) => (
+            <div className="bn-footer-tile__nav">
+              {t.nav.map((item) => (
+                <Link key={item.page} href={getLocalePath(locale, item.page)}>
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+
+            <div className="bn-footer-tile__socials" aria-label={t.socialLabel}>
+              {socialLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${link.label} - ${t.external}`}
+                >
+                  <SocialIcon name={link.icon} size={15} />
+                </a>
+              ))}
               <a
-                href={link.href}
-                key={link.label}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`${link.label} - ${t.external}`}
-                className="bento-social-btn"
+                href={emailHref(t.contactPage.primaryEmail, t.contactPage.subject)}
+                aria-label={t.contactPage.primaryAction}
               >
-                <SocialIcon name={link.icon} size={16} />
+                <Mail size={15} aria-hidden="true" />
               </a>
-            ))}
-            <a
-              href={emailHref(t.contactPage.primaryEmail, t.contactPage.subject)}
-              aria-label={t.contactPage.primaryAction}
-              className="bento-social-btn"
-            >
-              <Mail aria-hidden="true" size={16} />
-            </a>
+            </div>
           </div>
         </div>
       </footer>

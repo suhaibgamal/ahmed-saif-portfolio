@@ -1,78 +1,78 @@
-import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, Play, LayoutGrid, Sparkles } from "lucide-react";
-import { content, getLocalePath, works } from "../data";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import {
+  content,
+  getLocalePath,
+  getWorkCopy,
+  getWorkKey,
+  getWorkPath,
+  works
+} from "../data";
 import SiteChrome from "./SiteChrome";
+import WorkVideoCatalog from "./WorkVideoCatalog";
+
+function classify(work) {
+  const type = work.enType.toLowerCase();
+  if (type.includes("series") || type.includes("live") || type.includes("collaborative")) {
+    return "stage";
+  }
+  if (type.includes("video") || type.includes("gharaa") || type.includes("medley")) {
+    return "visual";
+  }
+  return "singles";
+}
 
 export default function WorksPage({ locale = "ar" }) {
   const t = content[locale];
   const isAr = locale === "ar";
-  const ArrowIcon = isAr ? ArrowLeft : ArrowRight;
+  const DirectionalArrow = isAr ? ArrowLeft : ArrowRight;
+
+  const tracks = works.map((work) => {
+    const copy = getWorkCopy(work, locale);
+    return {
+      key: getWorkKey(work),
+      year: work.year,
+      youtubeId: work.youtubeId,
+      durationSeconds: work.durationSeconds,
+      category: classify(work),
+      title: copy.title,
+      subtitle: copy.subtitle,
+      type: copy.type,
+      mood: copy.mood,
+      note: copy.note,
+      href: getWorkPath(locale, work)
+    };
+  });
 
   return (
     <SiteChrome locale={locale} page="works">
-      <div className="bento-page-header">
-        <div className="bento-container">
-          <div className="bento-badge">
-            <LayoutGrid size={14} className="bento-indigo-icon" />
-            <span>{isAr ? "مصفوفة الإصدارات الموسيقية // A7MD" : "BENTO AUDIO VAULT // COMPLETE CATALOG"}</span>
+      <section className="bn-section">
+        <div className="bn-wrap">
+          <div className="bn-tile bn-page-banner">
+            <span className="bn-pill">{t.worksPage.eyebrow}</span>
+            <h1 className="bn-hero-title">{t.worksPage.title}</h1>
+            <p className="bn-hero-lead">{t.worksPage.body}</p>
           </div>
-          <h1 className="bento-page-title">
-            {isAr ? "الأعمال الموسيقية والتترات" : "Musical Repertoire & Soundtracks"}
-          </h1>
-          <p className="bento-page-desc">
-            {isAr
-              ? "مجموعة الألحان والتترات والأغاني المستقلة التي أنتجها ولحنها أحمد سيف في استوديو A7MD."
-              : "Comprehensive digital bento archive of television scores, independent releases, and original melodies by Ahmed Saif."}
-          </p>
         </div>
-      </div>
+      </section>
 
-      <section className="bento-section">
-        <div className="bento-container">
-          <div className="bento-catalog-grid">
-            {works.map((work, index) => (
-              <article key={work.slug} className="bento-catalog-card">
-                <div className="bento-catalog-media">
-                  <Image
-                    src={work.image}
-                    alt={isAr ? work.arTitle : work.enTitle}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 420px"
-                    className="bento-catalog-img"
-                  />
-                  <div className="bento-catalog-overlay" />
-                  <div className="bento-catalog-pill">ITEM #{String(index + 1).padStart(2, "0")}</div>
-                  <div className="bento-catalog-year">{work.year}</div>
-                </div>
+      <WorkVideoCatalog
+        tracks={tracks}
+        locale={locale}
+        detailLabel={isAr ? "تفاصيل العمل" : "Release page"}
+      />
 
-                <div className="bento-catalog-body">
-                  <span className="bento-catalog-cat">
-                    {isAr ? work.category : work.categoryEn}
-                  </span>
-
-                  <h2 className="bento-catalog-title">
-                    <Link href={`${getLocalePath(locale, "works")}/${work.slug}`}>
-                      {isAr ? work.arTitle : work.enTitle}
-                    </Link>
-                  </h2>
-
-                  <p className="bento-catalog-desc">
-                    {isAr ? work.description : work.descriptionEn}
-                  </p>
-
-                  <div className="bento-catalog-footer">
-                    <Link
-                      href={`${getLocalePath(locale, "works")}/${work.slug}`}
-                      className="bento-catalog-btn"
-                    >
-                      <Play size={14} fill="currentColor" />
-                      <span>{isAr ? "الاستماع والتفاصيل" : "Stream Details"}</span>
-                    </Link>
-                  </div>
-                </div>
-              </article>
-            ))}
+      <section className="bn-section">
+        <div className="bn-wrap">
+          <div className="bn-tile bn-cta-inline">
+            <div>
+              <span className="bn-label">{t.contactPage.eyebrow}</span>
+              <h2 className="bn-tile-h2">{t.worksPage.cta}</h2>
+            </div>
+            <Link className="bn-btn bn-btn--primary" href={getLocalePath(locale, "contact")}>
+              <span>{t.contactPage.primaryAction}</span>
+              <DirectionalArrow size={15} aria-hidden="true" />
+            </Link>
           </div>
         </div>
       </section>

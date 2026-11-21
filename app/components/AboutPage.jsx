@@ -1,136 +1,79 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, Award, Compass, Music, Sparkles, LayoutGrid, Zap } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { content, getLocalePath } from "../data";
 import SiteChrome from "./SiteChrome";
 
 export default function AboutPage({ locale = "ar" }) {
   const t = content[locale];
   const isAr = locale === "ar";
-  const ArrowIcon = isAr ? ArrowLeft : ArrowRight;
+  const DirectionalArrow = isAr ? ArrowLeft : ArrowRight;
 
   return (
     <SiteChrome locale={locale} page="about">
-      <div className="bento-page-header">
-        <div className="bento-container">
-          <div className="bento-badge">
-            <Sparkles size={14} className="bento-indigo-icon" />
-            <span>{isAr ? "السيرة الفنية والمسيرة الموسيقية" : "ARTIST DOSSIER // BENTO BIOGRAPHY"}</span>
-          </div>
-          <h1 className="bento-page-title">
-            {isAr ? "عن أحمد سيف ومسيرته الفنية" : "About Ahmed Saif & Sonic Vision"}
-          </h1>
-          <p className="bento-page-desc">
-            {isAr
-              ? "رحلة في تطور الصوت اليمني الحديث، من أول دندنة عود إلى كبرى المهرجانات الدولية وشاشات الدراما."
-              : "An exploratory journey tracing contemporary Yemeni melody from intimate acoustic sessions to world expos and television screens."}
-          </p>
-        </div>
-      </div>
-
-      <section className="bento-section">
-        <div className="bento-container">
-          <div className="bento-about-grid">
-            {/* Sidebar Bento Card */}
-            <div className="bento-about-sidebar">
-              <div className="bento-portrait-card">
-                <div className="bento-portrait-wrap">
-                  <Image
-                    src="/ahmed-saif-profile.webp"
-                    alt="Ahmed Saif - الفنان أحمد سيف"
-                    fill
-                    sizes="(max-width: 768px) 100vw, 420px"
-                    className="bento-portrait-img"
-                  />
-                  <div className="bento-portrait-gradient" />
-                </div>
+      <section className="bn-section">
+        <div className="bn-wrap">
+          <div className="bn-mosaic">
+            <div className="bn-tile bn-tile--hero">
+              <div>
+                <span className="bn-pill">{t.aboutPage.eyebrow}</span>
+                <h1 className="bn-hero-title">{t.aboutPage.title}</h1>
+                <p className="bn-hero-lead">{t.aboutPage.body}</p>
               </div>
-
-              <div className="bento-specs-card">
-                <div className="bento-spec-item">
-                  <span>{isAr ? "الاستوديو الخاص" : "Studio Lab"}</span>
-                  <strong>A7MD Studio</strong>
-                </div>
-                <div className="bento-spec-item">
-                  <span>{isAr ? "مجالات الإتقان" : "Capabilities"}</span>
-                  <strong>{isAr ? "غناء • تلحين • مكس وماستر" : "Vocals • Scoring • Audio Design"}</strong>
-                </div>
-                <div className="bento-spec-item">
-                  <span>{isAr ? "الآلة الأساسية" : "Core Instrument"}</span>
-                  <strong>{isAr ? "العود والوتريات الشرقية" : "Acoustic Oud & Strings"}</strong>
-                </div>
+              <div className="bn-actions">
+                <Link className="bn-btn bn-btn--primary" href={getLocalePath(locale, "works")}>
+                  <span>{t.hero.explore}</span>
+                  <DirectionalArrow size={15} aria-hidden="true" />
+                </Link>
+                <Link className="bn-btn bn-btn--soft" href={getLocalePath(locale, "contact")}>
+                  <span>{t.contactPage.primaryAction}</span>
+                </Link>
               </div>
             </div>
 
-            {/* Narrative Content */}
-            <div className="bento-about-content">
-              <h2 className="bento-gradient-title">
-                {isAr ? "أنا والموسيقى.. قصة شغف بدأت من النغمة البسيطة" : "Acoustic Modernism: Heritage Reimagined"}
-              </h2>
-
-              <p className="bento-lead">
-                {isAr
-                  ? "أهلاً بكم.. أنا أحمد سيف. مغنٍ وملحّن يمني، أحب الأغنية البسيطة الصادقة اللي تدخل القلب وتعلّق في البال بدون تكلف. نشأت وسط تراث غنائي ثري جداً، علّمني كيف أحترم الكلمة الأصيلة وأمنحها اللحن اللي يعيش مع الناس."
-                  : "Welcome.. I am Ahmed Saif. Rooted in Yemen's vibrant melodic heritage, I create music that honors traditional acoustic modes while speaking a modern visual and sonic language."}
-              </p>
-
-              <p className="bento-body">
-                {isAr
-                  ? "أشتغل من الاستوديو حقي (A7MD Studio) على كل تفصيلة في العمل الفني: من أول جلسة عود ودندنة، مروراً بكتابة التوزيع والتنسيق مع العازفين، وصولاً إلى مرحلة المكس والماستر النهائي بأعلى المعايير التقنية العالمية."
-                  : "From A7MD Studio, I direct every facet of production: from solo oud compositions to multi-layered string arrangements, live percussion capture, and broadcast mastering."}
-              </p>
-
-              {/* Bento Milestones */}
-              <div className="bento-milestones">
-                <h3 className="bento-milestones-title">
-                  {isAr ? "محطات بارزة في المسيرة" : "Pivotal Milestones"}
-                </h3>
-
-                <div className="bento-milestone-tile">
-                  <span className="bento-m-year">2026</span>
-                  <div className="bento-m-info">
-                    <h4>{isAr ? "تتر مسلسل (الضايعة) - يا مدوّر الحاجة" : "Al-Dhayeh Theme - Ya Mdawer Al-Hajah"}</h4>
-                    <p>
-                      {isAr
-                        ? "تلحين وغناء التتر الرسمي للعمل الدرامي، محققاً تفاعلاً جماهيرياً واسعاً بفضل المزج بين الطابع التراثي والروح المعاصرة."
-                        : "Composed and performed the television drama soundtrack, blending regional folk cadences with modern orchestration."}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="bento-milestone-tile">
-                  <span className="bento-m-year">2025</span>
-                  <div className="bento-m-info">
-                    <h4>{isAr ? "تمثيل اليمن في إكسبو أوساكا - اليابان" : "Osaka World Expo - Japan Representation"}</h4>
-                    <p>
-                      {isAr
-                        ? "تقديم عروض موسيقية حية ومقطوعات تحتفي بالهوية اليمنية أمام جمهور دولي في جناح اليمن بإكسبو 2025."
-                        : "Represented Yemeni music culture on world stages at Expo 2025 Osaka with live acoustic performances and orchestral themes."}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="bento-milestone-tile">
-                  <span className="bento-m-year">2024</span>
-                  <div className="bento-m-info">
-                    <h4>{isAr ? "سلسلة الأغاني الفردية الخاصة" : "Independent Singles & Studio Releases"}</h4>
-                    <p>
-                      {isAr
-                        ? "إطلاق أعمال ناجحة مثل (شلني إب)، (محد داري)، و(فقدتش)، والتي رسخت مكانة أحمد سيف كصوت يمني معاصر يحظى بتقدير الجمهور."
-                        : "Released celebrated singles including 'Shallani Ibb', 'Mahad Dari', and 'Faqadtish', reaching millions across digital platforms."}
-                    </p>
-                  </div>
-                </div>
+            <figure className="bn-tile bn-tile--portrait">
+              <div className="bn-portrait-box">
+                <Image
+                  src="/ahmed-saif-profile.webp"
+                  alt={t.hero.title}
+                  width={500}
+                  height={500}
+                  priority
+                />
               </div>
+              <figcaption className="bn-portrait-cap">
+                <div>
+                  <strong>{t.hero.title}</strong>
+                  <span>{isAr ? "صنعاء، اليمن" : "Sana'a, Yemen"}</span>
+                </div>
+                <span className="bn-pill">A7MD Studio</span>
+              </figcaption>
+            </figure>
 
-              <div className="bento-about-actions">
-                <Link href={getLocalePath(locale, "contact")} className="bento-btn-primary">
-                  <span>{isAr ? "تواصل للتعاون الفني" : "Initiate Collaboration"}</span>
-                  <ArrowIcon size={16} />
-                </Link>
-                <Link href={getLocalePath(locale, "works")} className="bento-btn-secondary">
-                  <span>{isAr ? "استمع لجميع الأعمال" : "Browse All Compositions"}</span>
-                </Link>
+            <div className="bn-tile bn-tile--accent bn-col-12 bn-quote-banner">
+              <blockquote>“{t.aboutPage.statement}”</blockquote>
+              <span>— {t.hero.title}</span>
+            </div>
+
+            {t.aboutPage.principles.map((p) => (
+              <div className="bn-tile bn-col-4" key={p.title}>
+                <h2 className="bn-tile-h2">{p.title}</h2>
+                <p className="bn-tile-body">{p.body}</p>
+              </div>
+            ))}
+
+            <div className="bn-tile bn-col-12">
+              <span className="bn-label">{isAr ? "المسار الزمني" : "Timeline"}</span>
+              <h2 className="bn-tile-h2">
+                {isAr ? "محطات مختارة (٢٠٢٠ – ٢٠٢٦)" : "Selected Chapters (2020 – 2026)"}
+              </h2>
+              <div className="bn-timeline-grid">
+                {t.timeline.map((step) => (
+                  <div className="bn-timeline-item" key={step.year}>
+                    <span className="bn-pill">{step.year}</span>
+                    <p>{step.label}</p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>

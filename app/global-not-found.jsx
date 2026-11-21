@@ -1,53 +1,52 @@
 import "./globals.css";
 import Link from "next/link";
-import { Home, ArrowUpRight } from "lucide-react";
+import { Amiri, Vazirmatn } from "next/font/google";
+import { ArrowUpRight, Home } from "lucide-react";
+
+const sansFont = Vazirmatn({
+  subsets: ["arabic", "latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-sans",
+  display: "swap"
+});
+
+const serifFont = Amiri({
+  subsets: ["arabic", "latin"],
+  weight: ["400", "700"],
+  variable: "--font-serif",
+  display: "swap"
+});
 
 export const metadata = {
   title: "404 | Ahmed Saif",
   description: "الصفحة غير موجودة — Page not found",
-  robots: {
-    index: false,
-    follow: false
-  }
+  robots: { index: false, follow: false }
 };
 
 export default function GlobalNotFound() {
   return (
-    <html lang="ar" dir="rtl">
-      <head>
-        <link
-          rel="preload"
-          href="/fonts/alexandria-arabic.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="/fonts/alexandria-latin.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-      </head>
+    <html
+      lang="ar"
+      dir="rtl"
+      data-mode="dark"
+      className={`${sansFont.variable} ${serifFont.variable}`}
+    >
       <body>
-        <div className="site-shell site-shell--inner" dir="rtl" lang="ar">
-          <main className="not-found">
-            <p className="eyebrow">404</p>
-            <h1>الصفحة غير موجودة</h1>
-            <p>Page not found</p>
-            <div className="hero-actions">
-              <Link className="button button-primary" href="/">
-                <Home aria-hidden="true" size={18} />
-                <span>الرئيسية</span>
-              </Link>
-              <Link className="button button-secondary" href="/en">
-                <span>English Home</span>
-                <ArrowUpRight aria-hidden="true" size={18} />
-              </Link>
-            </div>
-          </main>
-        </div>
+        <main className="zn-not-found" dir="rtl" lang="ar">
+          <p className="zn-label">404</p>
+          <h1>الصفحة غير موجودة</h1>
+          <p>Page not found</p>
+          <div className="zn-actions">
+            <Link className="zn-btn zn-btn--sand" href="/">
+              <Home size={15} aria-hidden="true" />
+              <span>الرئيسية</span>
+            </Link>
+            <Link className="zn-btn zn-btn--quiet" href="/en">
+              <span>English Home</span>
+              <ArrowUpRight size={15} aria-hidden="true" />
+            </Link>
+          </div>
+        </main>
       </body>
     </html>
   );

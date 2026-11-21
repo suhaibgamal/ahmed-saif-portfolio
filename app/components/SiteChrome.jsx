@@ -1,7 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
 import {
-  Activity,
   Cloud,
   Disc3,
   ExternalLink,
@@ -10,13 +8,9 @@ import {
   Instagram,
   Languages,
   Mail,
-  Menu,
   Music2,
   Radio,
-  Sliders,
-  SlidersHorizontal,
   Twitter,
-  X,
   Youtube
 } from "lucide-react";
 import {
@@ -27,15 +21,7 @@ import {
   socialLinks
 } from "../data";
 import MobileNav from "./MobileNav";
-
-export function OutboundIcon({ label }) {
-  return (
-    <>
-      <ExternalLink aria-hidden="true" size={16} strokeWidth={1.8} />
-      <span className="sr-only">{label}</span>
-    </>
-  );
-}
+import ThemeToggle from "./ThemeToggle";
 
 const socialIconMap = {
   youtube: Youtube,
@@ -49,87 +35,65 @@ const socialIconMap = {
   soundcloud: Cloud
 };
 
-export function SocialIcon({ name, size = 18 }) {
+export function SocialIcon({ name, size = 16 }) {
   const Icon = socialIconMap[name] || ExternalLink;
-  return <Icon aria-hidden="true" size={size} strokeWidth={1.8} />;
+  return <Icon aria-hidden="true" size={size} strokeWidth={1.7} />;
 }
 
 export function emailHref(email, subject) {
   return `mailto:${email}?subject=${encodeURIComponent(subject)}`;
 }
 
-export { Menu, X, Languages };
-
-export default function SiteChrome({
-  children,
-  locale,
-  page,
-  work = null
-}) {
+export default function SiteChrome({ children, locale, page, work = null }) {
   const t = content[locale];
-  const structuredData = JSON.stringify(getStructuredData(locale, page, work)).replace(
-    /</g,
-    "\\u003c"
-  );
+  const isAr = locale === "ar";
+  const structuredData = JSON.stringify(
+    getStructuredData(locale, page, work)
+  ).replace(/</g, "\\u003c");
 
   return (
-    <div className="console-shell" dir={t.dir} lang={t.locale}>
+    <div className="hf-shell" dir={t.dir} lang={t.locale}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: structuredData }}
       />
 
       <a className="skip-link" href="#main">
-        {locale === "ar" ? "انتقل إلى المحتوى" : "Skip to content"}
+        {isAr ? "انتقل إلى المحتوى" : "Skip to content"}
       </a>
 
-      {/* Meter Bridge Ticker */}
-      <div className="console-meter-bar">
-        <div className="console-meter-inner">
-          <div className="console-power-led">
-            <span className="console-led-green" />
-            <span>CONSOLE BUS // 48V PHANTOM ON</span>
-          </div>
-          <span className="console-clock-rate">SAMPLE CLOCK: 96.0 kHz // MASTER CLOCK LOCK</span>
-          <span className="console-session-label">A7MD STUDIO // ANALOG DESK</span>
-        </div>
-      </div>
-
-      <header className="console-header" aria-label={t.navLabel}>
-        <div className="console-header-inner">
-          <Link className="console-brand" href={getLocalePath(locale, "home")}>
-            <div className="console-brand-fader">
-              <SlidersHorizontal size={18} className="console-green-icon" />
-            </div>
-            <div className="console-brand-info">
-              <span className="console-brand-name">{t.brandName}</span>
-              <span className="console-brand-strip">CH. MASTER // COMPOSER</span>
-            </div>
+      <header className="hf-bar" aria-label={t.navLabel}>
+        <div className="hf-wrap hf-bar__inner">
+          <Link className="hf-brand" href={getLocalePath(locale, "home")}>
+            <span className="hf-brass-dot" aria-hidden="true" />
+            <span>
+              <strong>{t.brandName}</strong>
+              <small>A7MD STUDIO</small>
+            </span>
           </Link>
 
-          <nav className="console-nav" aria-label={t.navLabel}>
-            {t.nav.map((item, idx) => (
+          <nav className="hf-switch-bay" aria-label={t.navLabel}>
+            {t.nav.map((item) => (
               <Link
-                aria-current={item.page === page ? "page" : undefined}
-                className={`console-nav-link ${item.page === page ? "is-active" : ""}`}
-                href={getLocalePath(locale, item.page)}
                 key={item.page}
+                href={getLocalePath(locale, item.page)}
+                aria-current={item.page === page ? "page" : undefined}
+                className={`hf-switch-bay__item ${item.page === page ? "is-active" : ""}`}
               >
-                <span className="console-ch-badge">CH{idx + 1}</span>
-                <span>{item.label}</span>
+                {item.label}
               </Link>
             ))}
           </nav>
 
-          <div className="console-header-actions">
-            <Link className="console-lang-btn" href={getSwitchPath(locale, page)}>
-              <Languages aria-hidden="true" size={15} strokeWidth={1.8} />
+          <div className="hf-bar__tools">
+            <ThemeToggle locale={locale} />
+            <Link className="hf-lang-btn" href={getSwitchPath(locale, page)}>
+              <Languages size={14} aria-hidden="true" />
               <span>{t.switchLabel}</span>
             </Link>
-
             <MobileNav
-              closeLabel={locale === "ar" ? "إغلاق القائمة" : "Close menu"}
-              openLabel={locale === "ar" ? "فتح القائمة" : "Open menu"}
+              closeLabel={isAr ? "إغلاق القائمة" : "Close menu"}
+              openLabel={isAr ? "فتح القائمة" : "Open menu"}
               externalLabel={t.external}
               brandName={t.brandName}
               navLabel={t.navLabel}
@@ -142,34 +106,37 @@ export default function SiteChrome({
                 label: item.label,
                 href: getLocalePath(locale, item.page)
               }))}
-              socialLinks={socialLinks.slice(0, 5)}
+              socialLinks={socialLinks.slice(0, 6)}
             />
           </div>
         </div>
       </header>
 
-      <main id="main" className="console-main">{children}</main>
+      <main id="main" className="hf-main">
+        {children}
+      </main>
 
-      <footer className="console-footer">
-        <div className="console-footer-inner">
-          <div className="console-footer-monitor">
-            <div className="console-monitor-led">
-              <span className="console-led-green" />
-              <span>DESK ACTIVE // MONITOR LEVEL: +4 dBu</span>
-            </div>
-            <p className="console-footer-quote">{t.footer.line}</p>
-            <p className="console-footer-sub">{t.footer.credit}</p>
+      <footer className="hf-footer">
+        <div className="hf-wrap hf-footer__inner">
+          <div>
+            <strong>{t.footer.line}</strong>
+            <p className="hf-mono">{t.footer.credit}</p>
           </div>
-
-          <div className="console-footer-social" aria-label={t.socialLabel}>
+          <div className="hf-footer__links">
+            {t.nav.map((item) => (
+              <Link key={item.page} href={getLocalePath(locale, item.page)}>
+                {item.label}
+              </Link>
+            ))}
+          </div>
+          <div className="hf-footer__socials" aria-label={t.socialLabel}>
             {socialLinks.map((link) => (
               <a
-                href={link.href}
                 key={link.label}
+                href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`${link.label} - ${t.external}`}
-                className="console-social-btn"
               >
                 <SocialIcon name={link.icon} size={15} />
               </a>
@@ -177,9 +144,8 @@ export default function SiteChrome({
             <a
               href={emailHref(t.contactPage.primaryEmail, t.contactPage.subject)}
               aria-label={t.contactPage.primaryAction}
-              className="console-social-btn"
             >
-              <Mail aria-hidden="true" size={15} />
+              <Mail size={15} aria-hidden="true" />
             </a>
           </div>
         </div>

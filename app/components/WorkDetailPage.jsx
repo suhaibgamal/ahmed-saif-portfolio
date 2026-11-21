@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, ExternalLink, Music2, Play } from "lucide-react";
+import { ArrowLeft, ArrowRight, ExternalLink, Music2 } from "lucide-react";
 import {
   content,
   getLocalePath,
@@ -19,124 +19,103 @@ function formatUploadDate(locale, uploadDate) {
   }).format(new Date(uploadDate));
 }
 
-function formatDuration(locale, seconds) {
-  const totalSeconds = Number(seconds);
-
-  if (!Number.isFinite(totalSeconds) || totalSeconds <= 0) {
-    return locale === "ar" ? "غير محدد" : "Not listed";
-  }
-
-  const minutes = Math.floor(totalSeconds / 60);
-  const remainingSeconds = totalSeconds % 60;
-  const numberFormatter = new Intl.NumberFormat(locale === "ar" ? "ar-YE" : "en-US", {
-    minimumIntegerDigits: 2,
-    useGrouping: false
-  });
-  const minuteFormatter = new Intl.NumberFormat(locale === "ar" ? "ar-YE" : "en-US", {
-    useGrouping: false
-  });
-
-  return `${minuteFormatter.format(minutes)}:${numberFormatter.format(remainingSeconds)}`;
+function formatDuration(seconds) {
+  const m = String(Math.floor(seconds / 60)).padStart(2, "0");
+  const s = String(seconds % 60).padStart(2, "0");
+  return `${m}:${s}`;
 }
 
-export default function WorkDetailPage({ locale, work }) {
+export default function WorkDetailPage({ locale = "ar", work }) {
   const t = content[locale];
+  const isAr = locale === "ar";
   const copy = getWorkCopy(work, locale);
-  const currentIndex = works.findIndex((item) => item.youtubeId === work.youtubeId);
-  const previousWork = works[currentIndex - 1];
-  const nextWork = works[currentIndex + 1];
-  const watchLabel = locale === "ar" ? "شاهد على يوتيوب" : "Watch on YouTube";
-  const catalogLabel = locale === "ar" ? "العودة إلى الأعمال" : "Back to works";
-  const publishedLabel = locale === "ar" ? "تاريخ النشر" : "Published";
-  const durationLabel = locale === "ar" ? "مدة العمل" : "Duration";
-  const roleLabel = locale === "ar" ? "نوع العمل" : "Work type";
-  const nextLabel = locale === "ar" ? "العمل التالي" : "Next work";
-  const previousLabel = locale === "ar" ? "العمل السابق" : "Previous work";
+  const idx = works.findIndex((item) => item.youtubeId === work.youtubeId);
+  const prev = works[idx - 1];
+  const next = works[idx + 1];
 
   return (
     <SiteChrome locale={locale} page="works" work={work}>
-      <article className="work-detail">
-        <section className="work-detail-hero">
-          <div className="work-detail__copy">
-            <Link className="text-link" href={getLocalePath(locale, "works")}>
-              {locale === "ar" ? <ArrowRight size={17} /> : <ArrowLeft size={17} />}
-              <span>{catalogLabel}</span>
+      <article className="hf-section">
+        <div className="hf-wrap hf-detail-stack">
+          <div className="hf-chassis">
+            <Link className="hf-link" href={getLocalePath(locale, "works")}>
+              {isAr ? <ArrowRight size={14} aria-hidden="true" /> : <ArrowLeft size={14} aria-hidden="true" />}
+              <span>{isAr ? "العودة للأرشيف" : "Back to archive"}</span>
             </Link>
-            <p className="eyebrow">{work.year} / {copy.type}</p>
-            <h1>{copy.title}</h1>
-            <p>{copy.note}</p>
-            <div className="hero-actions">
-              <a
-                className="button button-primary"
-                href={getYoutubeWatchUrl(work)}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <ExternalLink aria-hidden="true" size={18} />
-                <span>{watchLabel}</span>
-              </a>
-              <Link className="button button-secondary" href={getLocalePath(locale, "contact")}>
-                <Music2 aria-hidden="true" size={18} />
-                <span>{t.contactPage.primaryAction}</span>
-              </Link>
+            <p className="hf-kicker hf-kicker--mt">
+              {work.year} · {copy.type}
+            </p>
+            <h1 className="hf-title">{copy.title}</h1>
+            <p className="hf-lead">{copy.note}</p>
+          </div>
+
+          <div className="hf-chassis hf-chassis--screen">
+            <div className="hf-deck__screen">
+              <iframe
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="strict-origin-when-cross-origin"
+                src={`${getYoutubeEmbedUrl(work)}?rel=0&modestbranding=1&playsinline=1`}
+                title={copy.title}
+              />
             </div>
           </div>
 
-          <div className="work-detail__player" aria-label={copy.title}>
-            <iframe
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="strict-origin-when-cross-origin"
-              src={`${getYoutubeEmbedUrl(work)}?rel=0&modestbranding=1&playsinline=1`}
-              title={copy.title}
-            />
+          <div className="hf-channels">
+            <div className="hf-chassis hf-channel">
+              <span className="hf-channel__label">{isAr ? "النشر" : "Published"}</span>
+              <strong>{formatUploadDate(locale, work.uploadDate)}</strong>
+            </div>
+            <div className="hf-chassis hf-channel">
+              <span className="hf-channel__label">{isAr ? "المدة" : "Duration"}</span>
+              <strong className="hf-mono">{formatDuration(work.durationSeconds)}</strong>
+            </div>
+            <div className="hf-chassis hf-channel">
+              <span className="hf-channel__label">{isAr ? "النوع" : "Format"}</span>
+              <strong>{copy.type}</strong>
+            </div>
+            <div className="hf-chassis hf-channel">
+              <span className="hf-channel__label">{isAr ? "الأجواء" : "Mood"}</span>
+              <strong>{copy.mood}</strong>
+            </div>
           </div>
-        </section>
 
-        <section className="section work-detail-meta">
-          <div className="work-detail-meta__item">
-            <span>{publishedLabel}</span>
-            <strong>{formatUploadDate(locale, work.uploadDate)}</strong>
-          </div>
-          <div className="work-detail-meta__item">
-            <span>{durationLabel}</span>
-            <strong>{formatDuration(locale, work.durationSeconds)}</strong>
-          </div>
-          <div className="work-detail-meta__item">
-            <span>{roleLabel}</span>
-            <strong>{copy.type}</strong>
-          </div>
-          <div className="work-detail-meta__item">
-            <span>{locale === "ar" ? "المزاج" : "Mood"}</span>
-            <strong>{copy.mood}</strong>
-          </div>
-        </section>
-
-        <nav className="section work-detail-nav" aria-label={locale === "ar" ? "التنقل بين الأعمال" : "Work navigation"}>
-          {previousWork ? (
-            <Link href={getWorkPath(locale, previousWork)}>
-              <span>{previousLabel}</span>
-              <strong>{getWorkCopy(previousWork, locale).title}</strong>
+          <div className="hf-actions">
+            <a
+              className="hf-btn hf-btn--brass"
+              href={getYoutubeWatchUrl(work)}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <ExternalLink size={15} aria-hidden="true" />
+              <span>{isAr ? "شاهد على يوتيوب" : "Watch on YouTube"}</span>
+            </a>
+            <Link className="hf-btn hf-btn--metal" href={getLocalePath(locale, "contact")}>
+              <Music2 size={15} aria-hidden="true" />
+              <span>{t.contactPage.primaryAction}</span>
             </Link>
-          ) : (
-            <span />
-          )}
+          </div>
 
-          <Link className="work-detail-nav__center" href={getLocalePath(locale, "works")}>
-            <Play aria-hidden="true" size={16} fill="currentColor" />
-            <span>{t.worksPage.catalogLabel}</span>
-          </Link>
-
-          {nextWork ? (
-            <Link href={getWorkPath(locale, nextWork)}>
-              <span>{nextLabel}</span>
-              <strong>{getWorkCopy(nextWork, locale).title}</strong>
-            </Link>
-          ) : (
-            <span />
-          )}
-        </nav>
+          <nav className="hf-pager" aria-label={isAr ? "التنقل بين الأعمال" : "Work navigation"}>
+            {prev ? (
+              <Link className="hf-chassis hf-pager__item" href={getWorkPath(locale, prev)}>
+                <span className="hf-mono hf-brass-text">{isAr ? "الأحدث" : "NEWER"}</span>
+                <strong>{getWorkCopy(prev, locale).title}</strong>
+              </Link>
+            ) : (
+              <span />
+            )}
+            {next ? (
+              <Link className="hf-chassis hf-pager__item hf-pager__item--end" href={getWorkPath(locale, next)}>
+                <span className="hf-mono hf-brass-text">{isAr ? "السابق" : "EARLIER"}</span>
+                <strong>{getWorkCopy(next, locale).title}</strong>
+              </Link>
+            ) : (
+              <span />
+            )}
+          </nav>
+        </div>
       </article>
     </SiteChrome>
   );

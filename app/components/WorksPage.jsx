@@ -1,85 +1,76 @@
-import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, Play, Sliders, Activity } from "lucide-react";
-import { content, getLocalePath, works } from "../data";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import {
+  content,
+  getLocalePath,
+  getWorkCopy,
+  getWorkKey,
+  getWorkPath,
+  works
+} from "../data";
 import SiteChrome from "./SiteChrome";
+import WorkVideoCatalog from "./WorkVideoCatalog";
+
+function classify(work) {
+  const type = work.enType.toLowerCase();
+  if (type.includes("series") || type.includes("live") || type.includes("collaborative")) {
+    return "stage";
+  }
+  if (type.includes("video") || type.includes("gharaa") || type.includes("medley")) {
+    return "visual";
+  }
+  return "singles";
+}
 
 export default function WorksPage({ locale = "ar" }) {
   const t = content[locale];
   const isAr = locale === "ar";
-  const ArrowIcon = isAr ? ArrowLeft : ArrowRight;
+  const DirectionalArrow = isAr ? ArrowLeft : ArrowRight;
+
+  const tracks = works.map((work) => {
+    const copy = getWorkCopy(work, locale);
+    return {
+      key: getWorkKey(work),
+      year: work.year,
+      youtubeId: work.youtubeId,
+      durationSeconds: work.durationSeconds,
+      category: classify(work),
+      title: copy.title,
+      subtitle: copy.subtitle,
+      type: copy.type,
+      mood: copy.mood,
+      note: copy.note,
+      href: getWorkPath(locale, work)
+    };
+  });
 
   return (
     <SiteChrome locale={locale} page="works">
-      <div className="console-page-header">
-        <div className="console-container">
-          <div className="console-strip-badge">
-            <Activity size={14} className="console-green-icon" />
-            <span>{isAr ? "مصفوفة قنوات الماستر الكاملة // استوديو A7MD" : "MASTER CONSOLE REPERTOIRE // COMPLETE DESK"}</span>
-          </div>
-          <h1 className="console-page-title">
-            {isAr ? "أرشيف قنوات الإنتاج والتترات" : "Master Audio Channels & Soundtracks"}
-          </h1>
-          <p className="console-page-desc">
-            {isAr
-              ? "مستودع الألحان والتترات والأغاني المستقلة التي تم تلحينها وغناؤها ومعالجتها هندسياً في استوديو A7MD."
-              : "Complete chronological catalog of television soundtracks, master singles, and studio compositions by Ahmed Saif."}
-          </p>
+      <section className="hf-section hf-section--head">
+        <div className="hf-wrap">
+          <p className="hf-kicker">{t.worksPage.eyebrow}</p>
+          <h1 className="hf-title">{t.worksPage.title}</h1>
+          <p className="hf-lead">{t.worksPage.body}</p>
         </div>
-      </div>
+      </section>
 
-      <section className="console-section">
-        <div className="console-container">
-          <div className="console-catalog-grid">
-            {works.map((work, index) => (
-              <article key={work.slug} className="console-catalog-card">
-                <div className="console-catalog-top">
-                  <span className="console-catalog-ch">CH_{String(index + 1).padStart(2, "0")}</span>
-                  <div className="console-catalog-leds">
-                    <span className="led-sm-green on" />
-                    <span className="led-sm-amber" />
-                  </div>
-                  <span className="console-catalog-year">{work.year}</span>
-                </div>
+      <WorkVideoCatalog
+        tracks={tracks}
+        locale={locale}
+        detailLabel={isAr ? "بطاقة العمل" : "Master sheet"}
+      />
 
-                <div className="console-catalog-media">
-                  <Image
-                    src={work.image}
-                    alt={isAr ? work.arTitle : work.enTitle}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 420px"
-                    className="console-catalog-img"
-                  />
-                  <div className="console-catalog-overlay" />
-                </div>
-
-                <div className="console-catalog-body">
-                  <span className="console-catalog-cat">
-                    {isAr ? work.category : work.categoryEn}
-                  </span>
-
-                  <h2 className="console-catalog-title">
-                    <Link href={`${getLocalePath(locale, "works")}/${work.slug}`}>
-                      {isAr ? work.arTitle : work.enTitle}
-                    </Link>
-                  </h2>
-
-                  <p className="console-catalog-desc">
-                    {isAr ? work.description : work.descriptionEn}
-                  </p>
-
-                  <div className="console-catalog-footer">
-                    <Link
-                      href={`${getLocalePath(locale, "works")}/${work.slug}`}
-                      className="console-catalog-btn"
-                    >
-                      <Play size={14} fill="currentColor" />
-                      <span>{isAr ? "سولو القناة" : "Solo Channel"}</span>
-                    </Link>
-                  </div>
-                </div>
-              </article>
-            ))}
+      <section className="hf-section">
+        <div className="hf-wrap">
+          <div className="hf-chassis hf-cta-bar">
+            <div>
+              <p className="hf-kicker">{t.contactPage.eyebrow}</p>
+              <h2 className="hf-h2">{t.worksPage.cta}</h2>
+            </div>
+            <Link className="hf-btn hf-btn--brass" href={getLocalePath(locale, "contact")}>
+              <span>{t.contactPage.primaryAction}</span>
+              <DirectionalArrow size={15} aria-hidden="true" />
+            </Link>
           </div>
         </div>
       </section>

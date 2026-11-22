@@ -1,10 +1,7 @@
-import HomePage from "../components/HomePage";
-import { getMetadata } from "../data";
+import ShowcaseHub from "../components/ShowcaseHub";
 
 export const dynamic = "force-static";
 
-export const metadata = getMetadata("ar", "home");
-
-export default function Page() {
-  return <HomePage locale="ar" />;
+export default function ArabicShowcasePage() {
+  return <ShowcaseHub locale="ar" />;
 }
